@@ -20,7 +20,7 @@ public class TasksPagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new PendingTasksFragment();
             case 2:
-                return new DoneTasksFragment();
+                return new FinishedTasksFragment();
             default:
                 return new OverdueTasksFragment();
         }

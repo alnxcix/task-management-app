@@ -37,9 +37,9 @@ public class TasksFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Initialize variables
-        ExtendedFloatingActionButton btnFAB = getActivity().findViewById(R.id.btnFAB);
-        ViewPager2 viewPager2 = getActivity().findViewById(R.id.viewPager);
-        TabLayout tabLayout = getActivity().findViewById(R.id.tabLayout);
+        ExtendedFloatingActionButton btnFAB = requireActivity().findViewById(R.id.btnFAB);
+        ViewPager2 viewPager2 = requireActivity().findViewById(R.id.viewPager);
+        TabLayout tabLayout = requireActivity().findViewById(R.id.tabLayout);
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
@@ -54,7 +54,7 @@ public class TasksFragment extends Fragment {
                         break;
                     }
                     case 2: {
-                        setTab(tab, R.string.label_done_tasks, R.drawable.ic_done_all_24px, 50);
+                        setTab(tab, R.string.label_finished_tasks, R.drawable.ic_done_all_24px, 50);
                         break;
                     }
                     case 3: {
