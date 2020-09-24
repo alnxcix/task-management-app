@@ -37,13 +37,9 @@ public class TasksFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Initialize variables
-        ExtendedFloatingActionButton btnFAB = ((MainActivity) requireActivity()).findViewById(R.id.btnFAB);
-        ViewPager2 viewPager2 = ((MainActivity) requireActivity()).findViewById(R.id.viewPager);
-
-        btnFAB.setText(getResources().getString(R.string.label_task));
-        viewPager2.setAdapter(new TasksPagerAdapter(this.requireActivity()));
-
-        TabLayout tabLayout = ((MainActivity) requireActivity()).findViewById(R.id.tabLayout);
+        ExtendedFloatingActionButton btnFAB = getActivity().findViewById(R.id.btnFAB);
+        ViewPager2 viewPager2 = getActivity().findViewById(R.id.viewPager);
+        TabLayout tabLayout = getActivity().findViewById(R.id.tabLayout);
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
@@ -67,8 +63,10 @@ public class TasksFragment extends Fragment {
                     }
                 }
             }
-        }
-        );
+        });
+
+        btnFAB.setText(getResources().getString(R.string.label_task));
+        viewPager2.setAdapter(new TasksPagerAdapter(this.requireActivity()));
         tabLayoutMediator.attach();
 
         // Add event listeners
