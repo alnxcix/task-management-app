@@ -51,7 +51,7 @@ public class NewTaskActivity extends AppCompatActivity {
                 setResult(RESULT_CANCELED, replyIntent);
                 Toast.makeText(this, "Fill up all necessary fields.", Toast.LENGTH_SHORT).show();
             } else {
-                Task task = new Task(textInputLayoutLabel.getEditText().getText().toString(), getResources().getString(R.string.label_open_tasks), Objects.requireNonNull(textInputLayoutDescription.getEditText()).getText().toString(), cal.getTime());
+                Task task = new Task(textInputLayoutLabel.getEditText().getText().toString(), getResources().getString(R.string.open), Objects.requireNonNull(textInputLayoutDescription.getEditText()).getText().toString(), cal.getTime());
                 replyIntent.putExtra(EXTRA_REPLY, task);
                 setResult(RESULT_OK, replyIntent);
                 finish();

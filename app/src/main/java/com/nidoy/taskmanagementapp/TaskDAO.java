@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -14,17 +15,11 @@ public interface TaskDAO {
     @Insert
     void insert(Task task);
 
-    @Query("SELECT * from task_table WHERE status IS 'Open' ORDER BY due ASC")
-    LiveData<List<Task>> getOpenTasks();
+    @Query("SELECT * from task_table WHERE status IS :status ORDER BY due ASC")
+    LiveData<List<Task>> getTasksByStatus(String status);
 
-    @Query("SELECT * from task_table WHERE status IS 'Pending'  ORDER BY due ASC")
-    LiveData<List<Task>> getPendingTasks();
-
-    @Query("SELECT * from task_table WHERE status IS 'Finished'  ORDER BY due ASC")
-    LiveData<List<Task>> getFinishedTasks();
-
-    @Query("SELECT * from task_table WHERE status IS 'Overdue'  ORDER BY due ASC")
-    LiveData<List<Task>> getOverdueTasks();
+    @Update
+    void update(Task task);
 
     @Delete
     void delete(Task task);

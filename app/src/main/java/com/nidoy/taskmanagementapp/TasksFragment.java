@@ -49,25 +49,25 @@ public class TasksFragment extends Fragment {
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
             switch (position) {
                 case 0: {
-                    setTab(tab, R.string.label_open_tasks, R.drawable.ic_wb_incandescent_24px, 100);
+                    setTab(tab, R.string.open, R.drawable.ic_wb_incandescent_24px, 100);
                     break;
                 }
                 case 1: {
-                    setTab(tab, R.string.label_pending_tasks, R.drawable.ic_hourglass_empty_black_24dp, 75);
+                    setTab(tab, R.string.pending, R.drawable.ic_hourglass_empty_black_24dp, 75);
                     break;
                 }
                 case 2: {
-                    setTab(tab, R.string.label_finished_tasks, R.drawable.ic_done_all_24px, 50);
+                    setTab(tab, R.string.finished, R.drawable.ic_done_all_24px, 50);
                     break;
                 }
                 case 3: {
-                    setTab(tab, R.string.label_overdue_tasks, R.drawable.ic_error_outline_black_24dp, 25);
+                    setTab(tab, R.string.overdue, R.drawable.ic_error_outline_black_24dp, 25);
                     break;
                 }
             }
         });
 
-        btnFAB.setText(getResources().getString(R.string.label_task));
+        btnFAB.setText(getResources().getString(R.string.task));
         viewPager2.setAdapter(new TasksPagerAdapter(this.requireActivity()));
         tabLayoutMediator.attach();
 
@@ -86,9 +86,7 @@ public class TasksFragment extends Fragment {
             Task task = (Task) data.getSerializableExtra(NewTaskActivity.EXTRA_REPLY);
             mTaskViewModel.insert(task);
             Toast.makeText(requireContext(), "Saved.", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(requireContext(), "Not saved.", Toast.LENGTH_LONG).show();
-        }
+        } else Toast.makeText(requireContext(), "Not saved.", Toast.LENGTH_LONG).show();
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

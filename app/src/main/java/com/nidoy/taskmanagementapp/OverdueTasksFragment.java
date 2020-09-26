@@ -40,6 +40,6 @@ public class OverdueTasksFragment extends Fragment {
 
         TasksFragment.mTaskViewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
         // Update the cached copy of the tasks in the adapter.
-        TasksFragment.mTaskViewModel.getFinishedTasks().observe(getViewLifecycleOwner(), adapter::setTasks);
+        TasksFragment.mTaskViewModel.getOverdueTasks().observe(getViewLifecycleOwner(), adapter::setTasks);
     }
 }

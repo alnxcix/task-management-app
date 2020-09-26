@@ -8,16 +8,16 @@
     <fragment
         android:id="@+id/tasksFragment"
         android:name="com.nidoy.taskmanagementapp.TasksFragment"
-        android:label="@string/label_tasks"
+        android:label="@string/tasks"
         tools:layout="@layout/fragment_tasks" />
     <fragment
         android:id="@+id/notesFragment"
         android:name="com.nidoy.taskmanagementapp.NotesFragment"
-        android:label="@string/label_notes"
+        android:label="@string/notes"
         tools:layout="@layout/fragment_notes" />
     <fragment
         android:id="@+id/scheduleFragment"
         android:name="com.nidoy.taskmanagementapp.ScheduleFragment"
-        android:label="@string/label_schedule"
+        android:label="@string/schedule"
         tools:layout="@layout/fragment_schedule" />
 </navigation>

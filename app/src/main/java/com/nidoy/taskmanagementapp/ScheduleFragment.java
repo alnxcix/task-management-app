@@ -1,14 +1,13 @@
 package com.nidoy.taskmanagementapp;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
@@ -37,7 +36,7 @@ public class ScheduleFragment extends Fragment {
         // Initialize variables
         btnFAB = ((MainActivity) requireActivity()).findViewById(R.id.btnFAB);
 
-        btnFAB.setText(getResources().getString(R.string.label_schedule));
+        btnFAB.setText(getResources().getString(R.string.schedule));
 
         // Add event listeners
         btnFAB.setOnClickListener(new View.OnClickListener() {

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="@string/hint_label"
+        android:hint="@string/label"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="@string/hint_description"
+        android:hint="@string/description"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutLabel">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -43,7 +43,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="@string/hint_date"
+        android:hint="@string/date"
         app:endIconDrawable="@drawable/ic_event_black_24dp"
         app:endIconMode="custom"
         app:layout_constraintEnd_toStartOf="@id/guideline"
@@ -61,7 +61,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="@string/hint_time"
+        android:hint="@string/time"
         app:endIconDrawable="@drawable/ic_schedule_black_24dp"
         app:endIconMode="custom"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/label_save"
+        android:text="@string/save"
         app:icon="@drawable/ic_done_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

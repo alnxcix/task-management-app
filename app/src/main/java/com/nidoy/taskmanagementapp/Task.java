@@ -59,4 +59,20 @@ public class Task implements Serializable {
     public Date getmDue() {
         return mDue;
     }
+
+    public void setmLabel(@NonNull String mLabel) {
+        this.mLabel = mLabel;
+    }
+
+    public void setmStatus(@NonNull String mStatus) {
+        this.mStatus = mStatus;
+    }
+
+    public void setmDescription(String mDescription) {
+        this.mDescription = mDescription;
+    }
+
+    public void setmDue(@NonNull Date mDue) {
+        this.mDue = mDue;
+    }
 }

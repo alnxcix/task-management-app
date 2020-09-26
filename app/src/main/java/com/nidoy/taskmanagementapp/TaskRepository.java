@@ -8,36 +8,35 @@ import java.util.List;
 
 class TaskRepository {
     private TaskDAO mTaskDAO;
-    private LiveData<List<Task>> mOpenTasks, mPendingTasks, mFinishedTasks, mOverdueTasks;
 
     TaskRepository(Application application) {
         RoomDB db = RoomDB.getDatabase(application);
         mTaskDAO = db.taskDAO();
-        mOpenTasks = mTaskDAO.getOpenTasks();
-        mPendingTasks = mTaskDAO.getPendingTasks();
-        mFinishedTasks = mTaskDAO.getFinishedTasks();
-        mOverdueTasks = mTaskDAO.getOverdueTasks();
     }
 
     LiveData<List<Task>> getOpenTasks() {
-        return mOpenTasks;
+        return (LiveData<List<Task>>) mTaskDAO.getTasksByStatus("Open");
     }
-
     LiveData<List<Task>> getPendingTasks() {
-        return mPendingTasks;
+        return (LiveData<List<Task>>) mTaskDAO.getTasksByStatus("Pending");
     }
-
     LiveData<List<Task>> getFinishedTasks() {
-        return mFinishedTasks;
+        return (LiveData<List<Task>>) mTaskDAO.getTasksByStatus("Finished");
     }
 
     LiveData<List<Task>> getOverdueTasks() {
-        return mOverdueTasks;
+        return (LiveData<List<Task>>) mTaskDAO.getTasksByStatus("Overdue");
     }
 
     void insert(Task task) {
         RoomDB.databaseWriteExecutor.execute(() -> {
             mTaskDAO.insert(task);
+        });
+    }
+
+    void update(Task task) {
+        RoomDB.databaseWriteExecutor.execute(() -> {
+            mTaskDAO.update(task);
         });
     }
 
