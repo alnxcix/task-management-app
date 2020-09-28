@@ -1,13 +1,11 @@
 package com.nidoy.taskmanagementapp;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,10 +19,6 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.Date;
 
 public class TasksFragment extends Fragment {
-
-    public static final int NEW_TASK_ACTIVITY_REQUEST_CODE = 1;
-    public static final int MODIFY_TASK_ACTIVITY_REQUEST_CODE = 2;
-    public static TaskViewModel mTaskViewModel;
 
     public TasksFragment() { /* Required empty public constructor */ }
 
@@ -76,22 +70,8 @@ public class TasksFragment extends Fragment {
         btnFAB.setOnClickListener(v -> {
             Intent intent = new Intent(view.getContext(), NewTaskActivity.class);
             intent.putExtra("task", new Task("", "Open", "", new Date()));
-            startActivityForResult(intent, NEW_TASK_ACTIVITY_REQUEST_CODE);
+            requireActivity().startActivityForResult(intent, MainActivity.NEW_TASK_ACTIVITY_REQUEST_CODE);
         });
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        requireActivity();
-        if (requestCode == NEW_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Task task = (Task) data.getSerializableExtra(NewTaskActivity.EXTRA_REPLY);
-            mTaskViewModel.insert(task);
-            Toast.makeText(requireContext(), "Saved.", Toast.LENGTH_SHORT).show();
-        } else if (requestCode == MODIFY_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Task task = (Task) data.getSerializableExtra(NewTaskActivity.EXTRA_REPLY);
-            mTaskViewModel.update(task);
-            Toast.makeText(requireContext(), "Saved.", Toast.LENGTH_SHORT).show();
-        } else Toast.makeText(requireContext(), "Not saved.", Toast.LENGTH_SHORT).show();
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

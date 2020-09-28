@@ -38,15 +38,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         mContext = context;
     }
 
-    @NonNull
-    @Override
-    public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.task_list_item, parent, false);
-        return new TaskViewHolder(itemView);
-
-
-    }
-
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
@@ -66,7 +57,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             builder.setMessage(mContext.getText(R.string.prompt_open_task));
             builder.setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
                 current.setmStatus(mContext.getString(R.string.open));
-                TasksFragment.mTaskViewModel.update(current);
+                MainActivity.mTaskViewModel.update(current);
                 Toast.makeText(mContext, mContext.getText(R.string.toast_task_open), Toast.LENGTH_SHORT).show();
             });
             builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
@@ -79,7 +70,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             builder.setMessage(mContext.getText(R.string.prompt_pending_task));
             builder.setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
                 current.setmStatus(mContext.getString(R.string.pending));
-                TasksFragment.mTaskViewModel.update(current);
+                MainActivity.mTaskViewModel.update(current);
                 Toast.makeText(mContext, mContext.getText(R.string.toast_task_pending), Toast.LENGTH_SHORT).show();
             });
             builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
@@ -92,7 +83,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             builder.setMessage(mContext.getText(R.string.prompt_finished_task));
             builder.setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
                 current.setmStatus(mContext.getString(R.string.finished));
-                TasksFragment.mTaskViewModel.update(current);
+                MainActivity.mTaskViewModel.update(current);
                 Toast.makeText(mContext, mContext.getText(R.string.toast_task_finished), Toast.LENGTH_SHORT).show();
             });
             builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
@@ -101,17 +92,16 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         });
 
         holder.btnEdit.setOnClickListener(v -> {
-            // TODO Finish edit functionality
             Intent intent = new Intent(mContext, NewTaskActivity.class);
             intent.putExtra("task", current);
-            ((Activity) mInflater.getContext()).startActivityForResult(intent, TasksFragment.MODIFY_TASK_ACTIVITY_REQUEST_CODE);
+            ((Activity) mContext).startActivityForResult(intent, MainActivity.MODIFY_TASK_ACTIVITY_REQUEST_CODE);
         });
 
         holder.btnDelete.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
             builder.setMessage(mContext.getText(R.string.prompt_delete_task));
             builder.setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
-                TasksFragment.mTaskViewModel.delete(current);
+                MainActivity.mTaskViewModel.delete(current);
                 Toast.makeText(mContext, mContext.getText(R.string.toast_task_deleted), Toast.LENGTH_SHORT).show();
             });
             builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
@@ -120,16 +110,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         });
     }
 
+    @NonNull
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    // getItemCount() is called many times, and when it is first called,
-    // mWords has not been updated (means initially, it's null, and we can't return null).
-    @Override
-    public int getItemCount() {
-        return mTasks != null ? mTasks.size() : 0;
+    public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = mInflater.inflate(R.layout.task_list_item, parent, false);
+        return new TaskViewHolder(itemView);
     }
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
@@ -153,9 +138,15 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         }
     }
 
-//
-//    @Override
-//    public int getItemViewType(int position) {
-//        return position;
-//    }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    // getItemCount() is called many times, and when it is first called,
+    // mWords has not been updated (means initially, it's null, and we can't return null).
+    @Override
+    public int getItemCount() {
+        return mTasks != null ? mTasks.size() : 0;
+    }
 }

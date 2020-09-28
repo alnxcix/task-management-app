@@ -38,8 +38,8 @@ public class OverdueTasksFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        TasksFragment.mTaskViewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
+        MainActivity.mTaskViewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
         // Update the cached copy of the tasks in the adapter.
-        TasksFragment.mTaskViewModel.getOverdueTasks().observe(getViewLifecycleOwner(), adapter::setTasks);
+        MainActivity.mTaskViewModel.getOverdueTasks().observe(getViewLifecycleOwner(), adapter::setTasks);
     }
 }

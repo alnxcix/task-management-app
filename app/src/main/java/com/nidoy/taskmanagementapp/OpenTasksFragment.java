@@ -38,8 +38,8 @@ public class OpenTasksFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        TasksFragment.mTaskViewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
+        MainActivity.mTaskViewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
         // Update the cached copy of the tasks in the adapter.
-        TasksFragment.mTaskViewModel.getOpenTasks().observe(getViewLifecycleOwner(), adapter::setTasks);
+        MainActivity.mTaskViewModel.getOpenTasks().observe(getViewLifecycleOwner(), adapter::setTasks);
     }
 }
