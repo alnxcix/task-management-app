@@ -23,14 +23,23 @@ public class NewTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_task);
 
+        // get the intent from the previous activity
+        Task task = (Task) getIntent().getSerializableExtra("task");
+
         // Initialize UI elements
         final TextInputLayout textInputLayoutLabel = findViewById(R.id.textInputLayoutLabel);
         final TextInputLayout textInputLayoutDescription = findViewById(R.id.textInputLayoutDescription);
         final TextInputLayout textInputLayoutDate = findViewById(R.id.textInputLayoutDate);
         final TextInputLayout textInputLayoutTime = findViewById(R.id.textInputLayoutTime);
 
+        // Initialize label and description fields
+        assert task != null;
+        Objects.requireNonNull(textInputLayoutLabel.getEditText()).setText(task.getmLabel());
+        Objects.requireNonNull(textInputLayoutDescription.getEditText()).setText(task.getmDescription());
+
         // Initialize calendar for pickers
         Calendar cal = Calendar.getInstance();
+        cal.setTime(task.getmDue());
 
         // Add event listeners
         textInputLayoutDate.setEndIconOnClickListener(v -> new DatePickerDialog(NewTaskActivity.this,
@@ -48,10 +57,13 @@ public class NewTaskActivity extends AppCompatActivity {
         findViewById(R.id.btnSave).setOnClickListener(v -> {
             Intent replyIntent = new Intent();
             if (Objects.requireNonNull(textInputLayoutLabel.getEditText()).getText().toString().isEmpty()) {
-                setResult(RESULT_CANCELED, replyIntent);
+                // setResult(RESULT_CANCELED, replyIntent);
                 Toast.makeText(this, "Fill up all necessary fields.", Toast.LENGTH_SHORT).show();
             } else {
-                Task task = new Task(textInputLayoutLabel.getEditText().getText().toString(), getResources().getString(R.string.open), Objects.requireNonNull(textInputLayoutDescription.getEditText()).getText().toString(), cal.getTime());
+                task.setmLabel(textInputLayoutLabel.getEditText().getText().toString());
+                task.setmDescription(textInputLayoutDescription.getEditText().getText().toString());
+                task.setmDue(cal.getTime());
+
                 replyIntent.putExtra(EXTRA_REPLY, task);
                 setResult(RESULT_OK, replyIntent);
                 finish();

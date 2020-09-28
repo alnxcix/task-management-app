@@ -16,18 +16,18 @@ public class TaskViewModel extends AndroidViewModel {
     }
 
     LiveData<List<Task>> getOpenTasks() {
-        return (LiveData<List<Task>>) mTaskRepository.getOpenTasks();
+        return mTaskRepository.getOpenTasks();
     }
     LiveData<List<Task>> getPendingTasks() {
-        return (LiveData<List<Task>>) mTaskRepository.getPendingTasks();
+        return mTaskRepository.getPendingTasks();
     }
 
     LiveData<List<Task>> getFinishedTasks() {
-        return (LiveData<List<Task>>) mTaskRepository.getFinishedTasks();
+        return mTaskRepository.getFinishedTasks();
     }
 
     LiveData<List<Task>> getOverdueTasks() {
-        return (LiveData<List<Task>>) mTaskRepository.getOverdueTasks();
+        return mTaskRepository.getOverdueTasks();
     }
 
     public void insert(Task task) {

@@ -15,17 +15,17 @@ class TaskRepository {
     }
 
     LiveData<List<Task>> getOpenTasks() {
-        return (LiveData<List<Task>>) mTaskDAO.getTasksByStatus("Open");
+        return mTaskDAO.getTasksByStatus("Open");
     }
     LiveData<List<Task>> getPendingTasks() {
-        return (LiveData<List<Task>>) mTaskDAO.getTasksByStatus("Pending");
+        return mTaskDAO.getTasksByStatus("Pending");
     }
     LiveData<List<Task>> getFinishedTasks() {
-        return (LiveData<List<Task>>) mTaskDAO.getTasksByStatus("Finished");
+        return mTaskDAO.getTasksByStatus("Finished");
     }
 
     LiveData<List<Task>> getOverdueTasks() {
-        return (LiveData<List<Task>>) mTaskDAO.getTasksByStatus("Overdue");
+        return mTaskDAO.getTasksByStatus("Overdue");
     }
 
     void insert(Task task) {

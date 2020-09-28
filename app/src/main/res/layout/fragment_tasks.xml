@@ -10,11 +10,10 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabIndicatorHeight="3dp"
         app:tabMode="fixed"
-        app:tabPaddingBottom="8dp"
+        app:tabPaddingBottom="15dp"
         app:tabPaddingTop="15dp" />
 
     <View
