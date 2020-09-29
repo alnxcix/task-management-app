@@ -50,6 +50,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         holder.chipOpen.setChecked(current.getmStatus().equals(mContext.getString(R.string.open)));
         holder.chipPending.setChecked(current.getmStatus().equals(mContext.getString(R.string.pending)));
         holder.chipFinished.setChecked(current.getmStatus().equals(mContext.getString(R.string.finished)));
+        holder.chipOpen.setCheckable(current.getmStatus().equals(mContext.getString(R.string.open)));
+        holder.chipPending.setCheckable(current.getmStatus().equals(mContext.getString(R.string.pending)));
+        holder.chipFinished.setCheckable(current.getmStatus().equals(mContext.getString(R.string.finished)));
 
         // Event listeners
         holder.chipOpen.setOnClickListener(v -> {
@@ -60,7 +63,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
                 MainActivity.mTaskViewModel.update(current);
                 Toast.makeText(mContext, mContext.getText(R.string.toast_task_open), Toast.LENGTH_SHORT).show();
             });
-            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> holder.chipOpen.setChecked(false));
+            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
+            });
             builder.create().show();
         });
 
@@ -72,7 +76,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
                 MainActivity.mTaskViewModel.update(current);
                 Toast.makeText(mContext, mContext.getText(R.string.toast_task_pending), Toast.LENGTH_SHORT).show();
             });
-            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> holder.chipPending.setChecked(false));
+            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
+            });
             builder.create().show();
         });
 
@@ -84,7 +89,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
                 MainActivity.mTaskViewModel.update(current);
                 Toast.makeText(mContext, mContext.getText(R.string.toast_task_finished), Toast.LENGTH_SHORT).show();
             });
-            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> holder.chipFinished.setChecked(false));
+            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
+            });
             builder.create().show();
         });
 
@@ -96,7 +102,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
                 MainActivity.mTaskViewModel.delete(current);
                 Toast.makeText(mContext, mContext.getText(R.string.toast_task_deleted), Toast.LENGTH_SHORT).show();
             });
-            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> holder.chipFinished.setChecked(false));
+            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
+            });
             builder.create().show();
         });
     }
