@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,17 +42,14 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         Task current = mTasks.get(position);
 
         // Data
-        holder.task_heading.setText(current.getmLabel());
-        holder.task_subheading.setText(mContext.getResources().getString(R.string.due_on) + " " + Utils.dateFormat.format(current.getmDue()) + ", " + Utils.timeFormat.format(current.getmDue()));
-        holder.task_description.setText(current.getmDescription());
-
-        // Handle chip group
+        holder.txtLabel.setText(current.getmLabel());
+        holder.txtDueDate.setText(Utils.dateFormat.format(current.getmDue()));
+        holder.txtTime.setText(Utils.timeFormat.format(current.getmDue()));
+        holder.txtDescription.setText(current.getmDescription());
+        holder.txtDescription.setVisibility(TextUtils.isEmpty(current.getmDescription()) ? View.GONE : View.VISIBLE);
         holder.chipOpen.setChecked(current.getmStatus().equals(mContext.getString(R.string.open)));
-        holder.chipOpen.setCheckable(!current.getmStatus().equals(mContext.getString(R.string.open)));
         holder.chipPending.setChecked(current.getmStatus().equals(mContext.getString(R.string.pending)));
-        holder.chipPending.setCheckable(!current.getmStatus().equals(mContext.getString(R.string.pending)));
         holder.chipFinished.setChecked(current.getmStatus().equals(mContext.getString(R.string.finished)));
-        holder.chipFinished.setCheckable(!current.getmStatus().equals(mContext.getString(R.string.finished)));
 
         // Event listeners
         holder.chipOpen.setOnClickListener(v -> {
@@ -126,7 +124,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
         private final Chip chipOpen, chipPending, chipFinished;
         private final ImageButton btnDelete, btnEdit;
-        private final TextView task_heading, task_subheading, task_description;
+        private final TextView txtDescription, txtDueDate, txtLabel, txtTime;
 
         private TaskViewHolder(View itemView) {
             super(itemView);
@@ -136,9 +134,10 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             chipFinished = itemView.findViewById(R.id.chipFinished);
             chipOpen = itemView.findViewById(R.id.chipOpen);
             chipPending = itemView.findViewById(R.id.chipPending);
-            task_description = itemView.findViewById(R.id.task_description);
-            task_heading = itemView.findViewById(R.id.task_heading);
-            task_subheading = itemView.findViewById(R.id.task_subheading);
+            txtDescription = itemView.findViewById(R.id.txtDescription);
+            txtDueDate = itemView.findViewById(R.id.txtDueDate);
+            txtLabel = itemView.findViewById(R.id.txtLabel);
+            txtTime = itemView.findViewById(R.id.txtTime);
         }
     }
 }

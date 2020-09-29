@@ -7,7 +7,7 @@
     tools:context=".TaskActivity">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutLabel"
+        android:id="@+id/txtInputLabel"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,13 +21,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutDescription"
+        android:id="@+id/txtInputDescription"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:hint="@string/description"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutLabel">
+        app:layout_constraintTop_toBottomOf="@id/txtInputLabel">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -38,17 +38,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutDate"
+        android:id="@+id/txtInputDate"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="@string/date"
+        android:hint="@string/due_date"
         app:endIconDrawable="@drawable/ic_event_black_24dp"
         app:endIconMode="custom"
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutDescription">
+        app:layout_constraintTop_toBottomOf="@id/txtInputDescription">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -57,7 +57,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutTime"
+        android:id="@+id/txtInputTime"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
         app:endIconMode="custom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutDescription">
+        app:layout_constraintTop_toBottomOf="@id/txtInputDescription">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -81,7 +81,7 @@
         android:layout_height="1dp"
         android:layout_margin="15dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutDate" />
+        app:layout_constraintTop_toBottomOf="@id/txtInputDate" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"

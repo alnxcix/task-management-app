@@ -16,22 +16,56 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/task_heading"
+            android:id="@+id/txtLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:textAppearance="?attr/textAppearanceHeadline6" />
 
-        <TextView
-            android:id="@+id/task_subheading"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="?android:attr/textColorSecondary" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgCalendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/due_date"
+                app:srcCompat="@drawable/ic_event_black_24dp"
+                app:tint="?android:attr/textColorSecondary"
+                tools:ignore="VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/txtDueDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary" />
+
+            <ImageView
+                android:id="@+id/imgClock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/time"
+                app:srcCompat="@drawable/ic_schedule_black_24dp"
+                app:tint="?android:attr/textColorSecondary"
+                tools:ignore="VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/task_description"
+            android:id="@+id/txtDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -84,7 +118,7 @@
                 android:id="@+id/btnEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="18dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/edit"
                 android:tint="@android:color/darker_gray"

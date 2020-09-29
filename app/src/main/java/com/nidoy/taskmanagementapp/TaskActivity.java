@@ -29,10 +29,10 @@ public class TaskActivity extends AppCompatActivity {
         Task task = (Task) getIntent().getSerializableExtra("task");
 
         // Initialize UI elements
-        TextInputLayout textInputLayoutLabel = findViewById(R.id.textInputLayoutLabel);
-        TextInputLayout textInputLayoutDescription = findViewById(R.id.textInputLayoutDescription);
-        TextInputLayout textInputLayoutDate = findViewById(R.id.textInputLayoutDate);
-        TextInputLayout textInputLayoutTime = findViewById(R.id.textInputLayoutTime);
+        TextInputLayout textInputLayoutLabel = findViewById(R.id.txtInputLabel);
+        TextInputLayout textInputLayoutDescription = findViewById(R.id.txtInputDescription);
+        TextInputLayout textInputLayoutDate = findViewById(R.id.txtInputDate);
+        TextInputLayout textInputLayoutTime = findViewById(R.id.txtInputTime);
 
         // Set fields
         assert task != null;
