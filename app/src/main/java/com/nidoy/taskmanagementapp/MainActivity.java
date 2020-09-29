@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Task task = (Task) data.getSerializableExtra(TaskActivity.EXTRA_REPLY);
             mTaskViewModel.update(task);
-            Toast.makeText(this, "Updated.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_changes_saved), Toast.LENGTH_SHORT).show();
         }
     }
 }
