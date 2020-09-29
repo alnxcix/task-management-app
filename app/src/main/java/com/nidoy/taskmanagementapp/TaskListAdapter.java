@@ -41,78 +41,49 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task current = mTasks.get(position);
 
-        // Data
+        // Set data
         holder.txtLabel.setText(current.getmLabel());
         holder.txtDueDate.setText(Utils.dateFormat.format(current.getmDue()));
         holder.txtTime.setText(Utils.timeFormat.format(current.getmDue()));
         holder.txtNotes.setText(current.getmNotes());
         holder.txtNotes.setVisibility(TextUtils.isEmpty(current.getmNotes()) ? View.GONE : View.VISIBLE);
         holder.chipOpen.setChecked(current.getmStatus().equals(mContext.getString(R.string.open)));
-        holder.chipPending.setChecked(current.getmStatus().equals(mContext.getString(R.string.pending)));
-        holder.chipFinished.setChecked(current.getmStatus().equals(mContext.getString(R.string.finished)));
         holder.chipOpen.setCheckable(current.getmStatus().equals(mContext.getString(R.string.open)));
+        holder.chipPending.setChecked(current.getmStatus().equals(mContext.getString(R.string.pending)));
         holder.chipPending.setCheckable(current.getmStatus().equals(mContext.getString(R.string.pending)));
+        holder.chipFinished.setChecked(current.getmStatus().equals(mContext.getString(R.string.finished)));
         holder.chipFinished.setCheckable(current.getmStatus().equals(mContext.getString(R.string.finished)));
 
         // Event listeners
-        holder.chipOpen.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setMessage(mContext.getText(R.string.prompt_open_task));
-            builder.setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
-                current.setmStatus(mContext.getString(R.string.open));
-                MainActivity.mTaskViewModel.update(current);
-                Toast.makeText(mContext, mContext.getText(R.string.toast_task_open), Toast.LENGTH_SHORT).show();
-            });
-            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
-            });
-            builder.create().show();
-        });
+        holder.chipOpen.setOnClickListener(v -> new AlertDialog.Builder(mContext).setMessage(mContext.getText(R.string.prompt_open_task)).setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
+            current.setmStatus(mContext.getString(R.string.open));
+            MainActivity.mTaskViewModel.update(current);
+            Toast.makeText(mContext, mContext.getText(R.string.toast_task_open), Toast.LENGTH_SHORT).show();
+        }).setNegativeButton(mContext.getText(R.string.no), null).create().show());
 
-        holder.chipPending.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setMessage(mContext.getText(R.string.prompt_pending_task));
-            builder.setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
-                current.setmStatus(mContext.getString(R.string.pending));
-                MainActivity.mTaskViewModel.update(current);
-                Toast.makeText(mContext, mContext.getText(R.string.toast_task_pending), Toast.LENGTH_SHORT).show();
-            });
-            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
-            });
-            builder.create().show();
-        });
+        holder.chipPending.setOnClickListener(v -> new AlertDialog.Builder(mContext).setMessage(mContext.getText(R.string.prompt_pending_task)).setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
+            current.setmStatus(mContext.getString(R.string.pending));
+            MainActivity.mTaskViewModel.update(current);
+            Toast.makeText(mContext, mContext.getText(R.string.toast_task_pending), Toast.LENGTH_SHORT).show();
+        }).setNegativeButton(mContext.getText(R.string.no), null).create().show());
 
-        holder.chipFinished.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setMessage(mContext.getText(R.string.prompt_finished_task));
-            builder.setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
-                current.setmStatus(mContext.getString(R.string.finished));
-                MainActivity.mTaskViewModel.update(current);
-                Toast.makeText(mContext, mContext.getText(R.string.toast_task_finished), Toast.LENGTH_SHORT).show();
-            });
-            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
-            });
-            builder.create().show();
-        });
+        holder.chipFinished.setOnClickListener(v -> new AlertDialog.Builder(mContext).setMessage(mContext.getText(R.string.prompt_finished_task)).setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
+            current.setmStatus(mContext.getString(R.string.finished));
+            MainActivity.mTaskViewModel.update(current);
+            Toast.makeText(mContext, mContext.getText(R.string.toast_task_finished), Toast.LENGTH_SHORT).show();
+        }).setNegativeButton(mContext.getText(R.string.no), null).create().show());
 
         holder.btnEdit.setOnClickListener(v -> ((Activity) mContext).startActivityForResult(new Intent(mContext, TaskActivity.class).putExtra("task", current), MainActivity.UPDATE_TASK_ACTIVITY_REQUEST_CODE));
-        holder.btnDelete.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setMessage(mContext.getText(R.string.prompt_delete_task));
-            builder.setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
-                MainActivity.mTaskViewModel.delete(current);
-                Toast.makeText(mContext, mContext.getText(R.string.toast_task_deleted), Toast.LENGTH_SHORT).show();
-            });
-            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
-            });
-            builder.create().show();
-        });
+        holder.btnDelete.setOnClickListener(v -> new AlertDialog.Builder(mContext).setMessage(mContext.getText(R.string.prompt_delete_task)).setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
+            MainActivity.mTaskViewModel.delete(current);
+            Toast.makeText(mContext, mContext.getText(R.string.toast_task_deleted), Toast.LENGTH_SHORT).show();
+        }).setNegativeButton(mContext.getText(R.string.no), null).create().show());
     }
 
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.task_list_item, parent, false);
-        return new TaskViewHolder(itemView);
+        return new TaskViewHolder(mInflater.inflate(R.layout.task_list_item, parent, false));
     }
 
     @Override
@@ -134,7 +105,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
 
         private TaskViewHolder(View itemView) {
             super(itemView);
-            // Initialize UI elements
+            // UI elements
             btnDelete = itemView.findViewById(R.id.btnDelete);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             chipFinished = itemView.findViewById(R.id.chipFinished);

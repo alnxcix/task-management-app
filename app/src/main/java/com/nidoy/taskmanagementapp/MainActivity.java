@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.fragment);
 
         // Handling multiple taps by the user on the same navigation item
-        bottomNavigationView.setOnNavigationItemReselectedListener((item) -> { /* Do nothing when the user double taps on a menu item */ });
+        bottomNavigationView.setOnNavigationItemReselectedListener(v -> {
+        });
 
         // Enable action bar
         NavigationUI.setupActionBarWithNavController(this, navController, new AppBarConfiguration.Builder(R.id.tasksFragment, R.id.notesFragment, R.id.scheduleFragment).build());
