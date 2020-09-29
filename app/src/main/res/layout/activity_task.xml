@@ -21,12 +21,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtInputDescription"
+        android:id="@+id/txtInputNotes"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="@string/description"
+        android:hint="@string/notes_opt"
         app:layout_constraintTop_toBottomOf="@id/txtInputLabel">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -48,7 +48,7 @@
         app:endIconMode="custom"
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtInputDescription">
+        app:layout_constraintTop_toBottomOf="@id/txtInputNotes">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -67,7 +67,7 @@
         app:endIconMode="custom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/txtInputDescription">
+        app:layout_constraintTop_toBottomOf="@id/txtInputNotes">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

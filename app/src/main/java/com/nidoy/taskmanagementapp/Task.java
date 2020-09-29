@@ -18,22 +18,22 @@ public class Task implements Serializable {
     @ColumnInfo(name = "label")
     protected String mLabel;
 
-    @NonNull
-    @ColumnInfo(name = "status")
-    protected String mStatus;
-
-    @ColumnInfo(name = "description")
-    protected String mDescription;
+    @ColumnInfo(name = "notes")
+    protected String mNotes;
 
     @NonNull
     @ColumnInfo(name = "due")
     protected Date mDue;
 
-    public Task(@NonNull String mLabel, @NonNull String mStatus, String mDescription, @NonNull Date mDue) {
+    @NonNull
+    @ColumnInfo(name = "status")
+    protected String mStatus;
+
+    public Task(@NonNull String mLabel, String mNotes, @NonNull Date mDue, @NonNull String mStatus) {
         this.mLabel = mLabel;
-        this.mStatus = mStatus;
-        this.mDescription = mDescription;
+        this.mNotes = mNotes;
         this.mDue = mDue;
+        this.mStatus = mStatus;
     }
 
     public int getId() {
@@ -45,14 +45,16 @@ public class Task implements Serializable {
         return mLabel;
     }
 
-    @NonNull
-    public String getmStatus() {
-        return mStatus;
+    public void setmLabel(@NonNull String mLabel) {
+        this.mLabel = mLabel;
     }
 
-    @NonNull
-    public String getmDescription() {
-        return mDescription;
+    public String getmNotes() {
+        return mNotes;
+    }
+
+    public void setmNotes(String mNotes) {
+        this.mNotes = mNotes;
     }
 
     @NonNull
@@ -60,19 +62,16 @@ public class Task implements Serializable {
         return mDue;
     }
 
-    public void setmLabel(@NonNull String mLabel) {
-        this.mLabel = mLabel;
+    public void setmDue(@NonNull Date mDue) {
+        this.mDue = mDue;
+    }
+
+    @NonNull
+    public String getmStatus() {
+        return mStatus;
     }
 
     public void setmStatus(@NonNull String mStatus) {
         this.mStatus = mStatus;
-    }
-
-    public void setmDescription(String mDescription) {
-        this.mDescription = mDescription;
-    }
-
-    public void setmDue(@NonNull Date mDue) {
-        this.mDue = mDue;
     }
 }

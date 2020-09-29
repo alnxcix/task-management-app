@@ -26,7 +26,7 @@
 
     <!-- New task activity fields -->
     <string name="due_date">Due date</string>
-    <string name="description">Description (Optional)</string>
+    <string name="notes_opt">Notes (Optional)</string>
     <string name="label">Label</string>
     <string name="time">Time</string>
 

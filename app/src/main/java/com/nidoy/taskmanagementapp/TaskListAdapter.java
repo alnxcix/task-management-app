@@ -45,8 +45,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         holder.txtLabel.setText(current.getmLabel());
         holder.txtDueDate.setText(Utils.dateFormat.format(current.getmDue()));
         holder.txtTime.setText(Utils.timeFormat.format(current.getmDue()));
-        holder.txtDescription.setText(current.getmDescription());
-        holder.txtDescription.setVisibility(TextUtils.isEmpty(current.getmDescription()) ? View.GONE : View.VISIBLE);
+        holder.txtNotes.setText(current.getmNotes());
+        holder.txtNotes.setVisibility(TextUtils.isEmpty(current.getmNotes()) ? View.GONE : View.VISIBLE);
         holder.chipOpen.setChecked(current.getmStatus().equals(mContext.getString(R.string.open)));
         holder.chipPending.setChecked(current.getmStatus().equals(mContext.getString(R.string.pending)));
         holder.chipFinished.setChecked(current.getmStatus().equals(mContext.getString(R.string.finished)));
@@ -99,7 +99,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> holder.chipFinished.setChecked(false));
             builder.create().show();
         });
-
     }
 
     @NonNull
@@ -115,7 +114,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     }
 
     // getItemCount() is called many times, and when it is first called,
-    // mWords has not been updated (means initially, it's null, and we can't return null).
+    // mTasks has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
         return mTasks != null ? mTasks.size() : 0;
@@ -124,7 +123,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
         private final Chip chipOpen, chipPending, chipFinished;
         private final ImageButton btnDelete, btnEdit;
-        private final TextView txtDescription, txtDueDate, txtLabel, txtTime;
+        private final TextView txtDueDate, txtLabel, txtNotes, txtTime;
 
         private TaskViewHolder(View itemView) {
             super(itemView);
@@ -134,7 +133,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             chipFinished = itemView.findViewById(R.id.chipFinished);
             chipOpen = itemView.findViewById(R.id.chipOpen);
             chipPending = itemView.findViewById(R.id.chipPending);
-            txtDescription = itemView.findViewById(R.id.txtDescription);
+            txtNotes = itemView.findViewById(R.id.txtNotes);
             txtDueDate = itemView.findViewById(R.id.txtDueDate);
             txtLabel = itemView.findViewById(R.id.txtLabel);
             txtTime = itemView.findViewById(R.id.txtTime);

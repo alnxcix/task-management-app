@@ -29,48 +29,48 @@ public class TaskActivity extends AppCompatActivity {
         Task task = (Task) getIntent().getSerializableExtra("task");
 
         // Initialize UI elements
-        TextInputLayout textInputLayoutLabel = findViewById(R.id.txtInputLabel);
-        TextInputLayout textInputLayoutDescription = findViewById(R.id.txtInputDescription);
-        TextInputLayout textInputLayoutDate = findViewById(R.id.txtInputDate);
-        TextInputLayout textInputLayoutTime = findViewById(R.id.txtInputTime);
+        TextInputLayout txtInputLabel = findViewById(R.id.txtInputLabel);
+        TextInputLayout txtInputNotes = findViewById(R.id.txtInputNotes);
+        TextInputLayout txtInputDate = findViewById(R.id.txtInputDate);
+        TextInputLayout txtInputTime = findViewById(R.id.txtInputTime);
 
         // Set fields
         assert task != null;
-        Objects.requireNonNull(textInputLayoutLabel.getEditText()).setText(task.getmLabel());
-        Objects.requireNonNull(textInputLayoutDescription.getEditText()).setText(task.getmDescription());
-        Objects.requireNonNull(textInputLayoutDate.getEditText()).setText(Utils.dateFormat.format(task.getmDue()));
-        Objects.requireNonNull(textInputLayoutTime.getEditText()).setText(Utils.timeFormat.format(task.getmDue()));
-
-        // Set calendar for pickers
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(task.getmDue());
+        Objects.requireNonNull(txtInputLabel.getEditText()).setText(task.getmLabel());
+        Objects.requireNonNull(txtInputNotes.getEditText()).setText(task.getmNotes());
+        Objects.requireNonNull(txtInputDate.getEditText()).setText(Utils.dateFormat.format(task.getmDue()));
+        Objects.requireNonNull(txtInputTime.getEditText()).setText(Utils.timeFormat.format(task.getmDue()));
 
         // Set the chip group
         ((Chip) findViewById(R.id.chipOpen)).setChecked(task.getmStatus().equals("Open"));
         ((Chip) findViewById(R.id.chipPending)).setChecked(task.getmStatus().equals("Pending"));
         ((Chip) findViewById(R.id.chipFinished)).setChecked(task.getmStatus().equals("Finished"));
 
+        // Set calendar for pickers
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(task.getmDue());
+
         // Add event listeners
-        textInputLayoutDate.setEndIconOnClickListener(v -> new DatePickerDialog(TaskActivity.this,
+        txtInputDate.setEndIconOnClickListener(v -> new DatePickerDialog(TaskActivity.this,
                 (view, year, month, dayOfMonth) -> {
                     cal.set(year, month, dayOfMonth);
-                    Objects.requireNonNull(textInputLayoutDate.getEditText()).setText(DateFormat.format("MM/dd/yyyy", cal));
+                    Objects.requireNonNull(txtInputDate.getEditText()).setText(DateFormat.format("MM/dd/yyyy", cal));
                 }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show());
 
-        textInputLayoutTime.setEndIconOnClickListener(v -> new TimePickerDialog(TaskActivity.this,
+        txtInputTime.setEndIconOnClickListener(v -> new TimePickerDialog(TaskActivity.this,
                 (view, hourOfDay, minute) -> {
                     cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), hourOfDay, minute);
-                    Objects.requireNonNull(textInputLayoutTime.getEditText()).setText(DateFormat.format("hh:mm aa", cal));
+                    Objects.requireNonNull(txtInputTime.getEditText()).setText(DateFormat.format("hh:mm aa", cal));
                 }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), false).show());
 
         findViewById(R.id.btnSave).setOnClickListener(v -> {
-            if (Objects.requireNonNull(textInputLayoutLabel.getEditText()).getText().toString().isEmpty())
+            if (Objects.requireNonNull(txtInputLabel.getEditText()).getText().toString().isEmpty())
                 Toast.makeText(this, "Fill up all necessary fields.", Toast.LENGTH_SHORT).show();
             else {
-                task.setmLabel(textInputLayoutLabel.getEditText().getText().toString());
-                task.setmStatus((String) ((Chip) findViewById(((ChipGroup) findViewById(R.id.chipGroup)).getCheckedChipId())).getText());
-                task.setmDescription(textInputLayoutDescription.getEditText().getText().toString());
+                task.setmLabel(txtInputLabel.getEditText().getText().toString());
+                task.setmNotes(txtInputNotes.getEditText().getText().toString());
                 task.setmDue(cal.getTime());
+                task.setmStatus((String) ((Chip) findViewById(((ChipGroup) findViewById(R.id.chipGroup)).getCheckedChipId())).getText());
 
                 setResult(RESULT_OK, new Intent().putExtra(EXTRA_REPLY, task));
                 finish();
