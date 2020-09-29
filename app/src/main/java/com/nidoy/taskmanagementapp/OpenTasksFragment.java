@@ -32,7 +32,7 @@ public class OpenTasksFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Initialize variables
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
+        final RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         final TaskListAdapter adapter = new TaskListAdapter(view.getContext());
 
         recyclerView.setAdapter(adapter);

@@ -13,9 +13,6 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 
 public class ScheduleFragment extends Fragment {
 
-    // Global variables
-    private ExtendedFloatingActionButton btnFAB;
-
     public ScheduleFragment() { /* Required empty public constructor */ }
 
     @Override
@@ -33,17 +30,11 @@ public class ScheduleFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialize variables
-        btnFAB = ((MainActivity) requireActivity()).findViewById(R.id.btnFAB);
-
-        btnFAB.setText(getResources().getString(R.string.schedule));
-
-        // Add event listeners
-        btnFAB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to NewScheduleActivity
-            }
+        // ExtendedFloatingActionButton
+        ExtendedFloatingActionButton btnNew = requireActivity().findViewById(R.id.btnNew);
+        btnNew.setText(R.string.schedule);
+        btnNew.setOnClickListener(v -> {
+            // TODO Navigate to NewScheduleActivity
         });
     }
 }

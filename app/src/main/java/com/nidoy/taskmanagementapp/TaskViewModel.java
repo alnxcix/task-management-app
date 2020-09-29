@@ -18,6 +18,7 @@ public class TaskViewModel extends AndroidViewModel {
     LiveData<List<Task>> getOpenTasks() {
         return mTaskRepository.getOpenTasks();
     }
+
     LiveData<List<Task>> getPendingTasks() {
         return mTaskRepository.getPendingTasks();
     }

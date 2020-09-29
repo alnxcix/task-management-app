@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Task.class}, version = 1, exportSchema = false)
-@TypeConverters({Converters.class})
+@TypeConverters({Utils.class})
 public abstract class RoomDB extends RoomDatabase {
 
     private static final int NUMBER_OF_THREADS = 4;

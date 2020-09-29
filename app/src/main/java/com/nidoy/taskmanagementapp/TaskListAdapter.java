@@ -17,25 +17,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
 
-    @SuppressLint("SimpleDateFormat")
-    private final SimpleDateFormat formatter = new SimpleDateFormat("MMM. dd (h:mm aa)");
     private final LayoutInflater mInflater;
     private final Context mContext;
     List<Task> mTasks; // Cached copy of tasks
 
-    void setTasks(List<Task> tasks) {
-        mTasks = tasks;
-        notifyDataSetChanged();
-    }
-
     TaskListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
         mContext = context;
+    }
+
+    void setTasks(List<Task> tasks) {
+        mTasks = tasks;
+        notifyDataSetChanged();
     }
 
     @SuppressLint("SetTextI18n")
@@ -45,11 +42,16 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
 
         // Data
         holder.task_heading.setText(current.getmLabel());
-        holder.task_subheading.setText(mContext.getResources().getString(R.string.due_on) + " " + formatter.format(current.getmDue()));
+        holder.task_subheading.setText(mContext.getResources().getString(R.string.due_on) + " " + Utils.dateFormat.format(current.getmDue()) + ", " + Utils.timeFormat.format(current.getmDue()));
         holder.task_description.setText(current.getmDescription());
-        holder.chipOpen.setEnabled(!current.getmStatus().equals(mContext.getString(R.string.open)));
-        holder.chipPending.setEnabled(!current.getmStatus().equals(mContext.getString(R.string.pending)));
-        holder.chipFinished.setEnabled(!current.getmStatus().equals(mContext.getString(R.string.finished)));
+
+        // Handle chip group
+        holder.chipOpen.setChecked(current.getmStatus().equals(mContext.getString(R.string.open)));
+        holder.chipOpen.setCheckable(!current.getmStatus().equals(mContext.getString(R.string.open)));
+        holder.chipPending.setChecked(current.getmStatus().equals(mContext.getString(R.string.pending)));
+        holder.chipPending.setCheckable(!current.getmStatus().equals(mContext.getString(R.string.pending)));
+        holder.chipFinished.setChecked(current.getmStatus().equals(mContext.getString(R.string.finished)));
+        holder.chipFinished.setCheckable(!current.getmStatus().equals(mContext.getString(R.string.finished)));
 
         // Event listeners
         holder.chipOpen.setOnClickListener(v -> {
@@ -60,8 +62,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
                 MainActivity.mTaskViewModel.update(current);
                 Toast.makeText(mContext, mContext.getText(R.string.toast_task_open), Toast.LENGTH_SHORT).show();
             });
-            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
-            });
+            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> holder.chipOpen.setChecked(false));
             builder.create().show();
         });
 
@@ -73,8 +74,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
                 MainActivity.mTaskViewModel.update(current);
                 Toast.makeText(mContext, mContext.getText(R.string.toast_task_pending), Toast.LENGTH_SHORT).show();
             });
-            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
-            });
+            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> holder.chipPending.setChecked(false));
             builder.create().show();
         });
 
@@ -86,17 +86,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
                 MainActivity.mTaskViewModel.update(current);
                 Toast.makeText(mContext, mContext.getText(R.string.toast_task_finished), Toast.LENGTH_SHORT).show();
             });
-            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
-            });
+            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> holder.chipFinished.setChecked(false));
             builder.create().show();
         });
 
-        holder.btnEdit.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, NewTaskActivity.class);
-            intent.putExtra("task", current);
-            ((Activity) mContext).startActivityForResult(intent, MainActivity.MODIFY_TASK_ACTIVITY_REQUEST_CODE);
-        });
-
+        holder.btnEdit.setOnClickListener(v -> ((Activity) mContext).startActivityForResult(new Intent(mContext, TaskActivity.class).putExtra("task", current), MainActivity.UPDATE_TASK_ACTIVITY_REQUEST_CODE));
         holder.btnDelete.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
             builder.setMessage(mContext.getText(R.string.prompt_delete_task));
@@ -104,10 +98,10 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
                 MainActivity.mTaskViewModel.delete(current);
                 Toast.makeText(mContext, mContext.getText(R.string.toast_task_deleted), Toast.LENGTH_SHORT).show();
             });
-            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> {
-            });
+            builder.setNegativeButton(mContext.getText(R.string.no), (dialog, which) -> holder.chipFinished.setChecked(false));
             builder.create().show();
         });
+
     }
 
     @NonNull
@@ -115,27 +109,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.task_list_item, parent, false);
         return new TaskViewHolder(itemView);
-    }
-
-    public static class TaskViewHolder extends RecyclerView.ViewHolder {
-        // Declare UI elements
-        private final Chip chipOpen, chipPending, chipFinished;
-
-        private final ImageButton btnEdit, btnDelete;
-        private final TextView task_heading, task_subheading, task_description;
-
-        private TaskViewHolder(View itemView) {
-            super(itemView);
-            // Initialize UI elements
-            btnEdit = itemView.findViewById(R.id.btnEdit);
-            btnDelete = itemView.findViewById(R.id.btnDelete);
-            chipFinished = itemView.findViewById(R.id.chipFinished);
-            chipOpen = itemView.findViewById(R.id.chipOpen);
-            chipPending = itemView.findViewById(R.id.chipPending);
-            task_description = itemView.findViewById(R.id.task_description);
-            task_heading = itemView.findViewById(R.id.task_heading);
-            task_subheading = itemView.findViewById(R.id.task_subheading);
-        }
     }
 
     @Override
@@ -148,5 +121,24 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     @Override
     public int getItemCount() {
         return mTasks != null ? mTasks.size() : 0;
+    }
+
+    public static class TaskViewHolder extends RecyclerView.ViewHolder {
+        private final Chip chipOpen, chipPending, chipFinished;
+        private final ImageButton btnDelete, btnEdit;
+        private final TextView task_heading, task_subheading, task_description;
+
+        private TaskViewHolder(View itemView) {
+            super(itemView);
+            // Initialize UI elements
+            btnDelete = itemView.findViewById(R.id.btnDelete);
+            btnEdit = itemView.findViewById(R.id.btnEdit);
+            chipFinished = itemView.findViewById(R.id.chipFinished);
+            chipOpen = itemView.findViewById(R.id.chipOpen);
+            chipPending = itemView.findViewById(R.id.chipPending);
+            task_description = itemView.findViewById(R.id.task_description);
+            task_heading = itemView.findViewById(R.id.task_heading);
+            task_subheading = itemView.findViewById(R.id.task_subheading);
+        }
     }
 }

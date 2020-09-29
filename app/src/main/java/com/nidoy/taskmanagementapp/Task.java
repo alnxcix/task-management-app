@@ -45,9 +45,17 @@ public class Task implements Serializable {
         return mLabel;
     }
 
+    public void setmLabel(@NonNull String mLabel) {
+        this.mLabel = mLabel;
+    }
+
     @NonNull
     public String getmStatus() {
         return mStatus;
+    }
+
+    public void setmStatus(@NonNull String mStatus) {
+        this.mStatus = mStatus;
     }
 
     @NonNull
@@ -55,21 +63,13 @@ public class Task implements Serializable {
         return mDescription;
     }
 
+    public void setmDescription(String mDescription) {
+        this.mDescription = mDescription;
+    }
+
     @NonNull
     public Date getmDue() {
         return mDue;
-    }
-
-    public void setmLabel(@NonNull String mLabel) {
-        this.mLabel = mLabel;
-    }
-
-    public void setmStatus(@NonNull String mStatus) {
-        this.mStatus = mStatus;
-    }
-
-    public void setmDescription(String mDescription) {
-        this.mDescription = mDescription;
     }
 
     public void setmDue(@NonNull Date mDue) {

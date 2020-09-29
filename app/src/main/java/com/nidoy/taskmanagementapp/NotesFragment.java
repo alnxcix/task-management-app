@@ -13,9 +13,6 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 
 public class NotesFragment extends Fragment {
 
-    // Global variables
-    private ExtendedFloatingActionButton btnFAB;
-
     public NotesFragment() { /* Required empty public constructor */ }
 
     @Override
@@ -33,17 +30,11 @@ public class NotesFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialize variables
-        btnFAB = ((MainActivity) requireActivity()).findViewById(R.id.btnFAB);
-
-        btnFAB.setText(getResources().getString(R.string.note));
-
-        // Add event listeners
-        btnFAB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to NewNoteActivity
-            }
+        // ExtendedFloatingActionButton
+        ExtendedFloatingActionButton btnNew = requireActivity().findViewById(R.id.btnNew);
+        btnNew.setText(R.string.note);
+        btnNew.setOnClickListener(v -> {
+            // TODO Navigate to NewNoteActivity
         });
     }
 }

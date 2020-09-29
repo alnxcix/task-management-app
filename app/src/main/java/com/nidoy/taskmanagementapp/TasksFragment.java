@@ -37,8 +37,7 @@ public class TasksFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialize variables
-        ExtendedFloatingActionButton btnFAB = requireActivity().findViewById(R.id.btnFAB);
+        // Navigate between tabs (Open, Pending, Finished, and Overdue)
         ViewPager2 viewPager2 = requireActivity().findViewById(R.id.viewPager);
         TabLayout tabLayout = requireActivity().findViewById(R.id.tabLayout);
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
@@ -61,17 +60,13 @@ public class TasksFragment extends Fragment {
                 }
             }
         });
-
-        btnFAB.setText(getResources().getString(R.string.task));
         viewPager2.setAdapter(new TasksPagerAdapter(this.requireActivity()));
         tabLayoutMediator.attach();
 
-        // Add event listeners
-        btnFAB.setOnClickListener(v -> {
-            Intent intent = new Intent(view.getContext(), NewTaskActivity.class);
-            intent.putExtra("task", new Task("", "Open", "", new Date()));
-            requireActivity().startActivityForResult(intent, MainActivity.NEW_TASK_ACTIVITY_REQUEST_CODE);
-        });
+        // ExtendedFloatingActionButton
+        ExtendedFloatingActionButton btnNew = requireActivity().findViewById(R.id.btnNew);
+        btnNew.setText(R.string.task);
+        btnNew.setOnClickListener(v -> requireActivity().startActivityForResult(new Intent(view.getContext(), TaskActivity.class).putExtra("task", new Task("", "Open", "", new Date())), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE));
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

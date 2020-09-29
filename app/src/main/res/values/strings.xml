@@ -6,9 +6,6 @@
     <string name="new_schedule">New Schedule</string>
     <string name="new_task">New Task</string>
 
-    <!-- Button content descriptions -->
-    <string name="expand">Expand</string>
-
     <!-- Button labels -->
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
@@ -41,12 +38,12 @@
 
     <!-- Task labels -->
     <string name="due_on">Due on</string>
-    <string name="status">Status</string>
 
     <!-- Toast messages -->
+    <string name="toast_not_saved">Not saved.</string>
+    <string name="toast_task_deleted">Task deleted.</string>
+    <string name="toast_task_finished">Task marked finished.</string>
     <string name="toast_task_open">Task marked as open.</string>
     <string name="toast_task_pending">Task marked as pending.</string>
-    <string name="toast_task_finished">Task marked finished.</string>
-    <string name="toast_task_deleted">Task deleted.</string>
 
 </resources>

@@ -17,9 +17,11 @@ class TaskRepository {
     LiveData<List<Task>> getOpenTasks() {
         return mTaskDAO.getTasksByStatus("Open");
     }
+
     LiveData<List<Task>> getPendingTasks() {
         return mTaskDAO.getTasksByStatus("Pending");
     }
+
     LiveData<List<Task>> getFinishedTasks() {
         return mTaskDAO.getTasksByStatus("Finished");
     }
@@ -29,20 +31,14 @@ class TaskRepository {
     }
 
     void insert(Task task) {
-        RoomDB.databaseWriteExecutor.execute(() -> {
-            mTaskDAO.insert(task);
-        });
+        RoomDB.databaseWriteExecutor.execute(() -> mTaskDAO.insert(task));
     }
 
     void update(Task task) {
-        RoomDB.databaseWriteExecutor.execute(() -> {
-            mTaskDAO.update(task);
-        });
+        RoomDB.databaseWriteExecutor.execute(() -> mTaskDAO.update(task));
     }
 
     void delete(Task task) {
-        RoomDB.databaseWriteExecutor.execute(() -> {
-            mTaskDAO.delete(task);
-        });
+        RoomDB.databaseWriteExecutor.execute(() -> mTaskDAO.delete(task));
     }
 }
