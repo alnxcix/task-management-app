@@ -2,6 +2,7 @@ package com.nidoy.taskmanagementapp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.widget.Toast;
@@ -70,6 +71,8 @@ public class TaskActivity extends AppCompatActivity {
                 task.setmStatus((String) ((Chip) findViewById(((ChipGroup) findViewById(R.id.chipGroup)).getCheckedChipId())).getText());
                 task.setmDescription(textInputLayoutDescription.getEditText().getText().toString());
                 task.setmDue(cal.getTime());
+
+                setResult(RESULT_OK, new Intent().putExtra(EXTRA_REPLY, task));
                 finish();
             }
         });

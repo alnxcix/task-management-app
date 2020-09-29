@@ -3,6 +3,7 @@ package com.nidoy.taskmanagementapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -44,9 +45,11 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == CREATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Task task = (Task) data.getSerializableExtra(TaskActivity.EXTRA_REPLY);
             mTaskViewModel.insert(task);
+            Toast.makeText(this, "Saved.", Toast.LENGTH_SHORT).show();
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Task task = (Task) data.getSerializableExtra(TaskActivity.EXTRA_REPLY);
             mTaskViewModel.update(task);
-        }
+            Toast.makeText(this, "Updated.", Toast.LENGTH_SHORT).show();
+        } else Toast.makeText(this, "Something went wrong.", Toast.LENGTH_SHORT).show();
     }
 }

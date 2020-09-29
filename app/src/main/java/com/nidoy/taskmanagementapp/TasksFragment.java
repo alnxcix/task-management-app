@@ -64,9 +64,10 @@ public class TasksFragment extends Fragment {
         tabLayoutMediator.attach();
 
         // ExtendedFloatingActionButton
-        ExtendedFloatingActionButton btnNew = requireActivity().findViewById(R.id.btnNew);
+        ExtendedFloatingActionButton btnNew = this.requireActivity().findViewById(R.id.btnNew);
         btnNew.setText(R.string.task);
-        btnNew.setOnClickListener(v -> requireActivity().startActivityForResult(new Intent(view.getContext(), TaskActivity.class).putExtra("task", new Task("", "Open", "", new Date())), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE));
+        btnNew.setOnClickListener(v ->
+                requireActivity().startActivityForResult(new Intent(view.getContext(), TaskActivity.class).putExtra("task", new Task("", "Open", "", new Date())), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE));
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
