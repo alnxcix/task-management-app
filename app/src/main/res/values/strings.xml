@@ -40,10 +40,11 @@
     <string name="due_on">Due on</string>
 
     <!-- Toast messages -->
-    <string name="toast_not_saved">Not saved.</string>
+    <string name="toast_changes_saved">Changes saved.</string>
     <string name="toast_task_deleted">Task deleted.</string>
     <string name="toast_task_finished">Task marked finished.</string>
     <string name="toast_task_open">Task marked as open.</string>
     <string name="toast_task_pending">Task marked as pending.</string>
+    <string name="toast_task_saved">Task saved.</string>
 
 </resources>
