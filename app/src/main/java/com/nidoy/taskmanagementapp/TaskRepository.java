@@ -27,7 +27,7 @@ class TaskRepository {
     }
 
     LiveData<List<Task>> getOverdueTasks() {
-        return mTaskDAO.getTasksByStatus("Overdue");
+        return mTaskDAO.getOverdueTasks();
     }
 
     void insert(Task task) {

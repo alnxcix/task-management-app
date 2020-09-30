@@ -18,6 +18,9 @@ public interface TaskDAO {
     @Query("SELECT * from task_table WHERE status IS :status ORDER BY due ASC")
     LiveData<List<Task>> getTasksByStatus(String status);
 
+    @Query("SELECT * from task_table WHERE status IS NOT 'Finished' AND due < (strftime('%s','now') * 1000) ORDER BY due ASC")
+    LiveData<List<Task>> getOverdueTasks();
+
     @Update
     void update(Task task);
 
