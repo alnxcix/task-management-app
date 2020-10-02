@@ -3,7 +3,6 @@ package com.nidoy.taskmanagementapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -12,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == CREATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Task task = (Task) data.getSerializableExtra(TaskActivity.EXTRA_REPLY);
             mTaskViewModel.insert(task);
-            Toast.makeText(this, getString(R.string.toast_task_saved), Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.parent), getString(R.string.snack_task_saved), Snackbar.LENGTH_SHORT).show();
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Task task = (Task) data.getSerializableExtra(TaskActivity.EXTRA_REPLY);
             mTaskViewModel.update(task);
-            Toast.makeText(this, getString(R.string.toast_changes_saved), Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.parent), getString(R.string.snack_changes_saved), Snackbar.LENGTH_SHORT).show();
         }
     }
 }

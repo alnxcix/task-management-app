@@ -35,7 +35,9 @@ public class OpenTasksFragment extends Fragment {
         final RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         final TaskListAdapter adapter = new TaskListAdapter(view.getContext());
 
+        adapter.setHasStableIds(true);
         recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         MainActivity.mTaskViewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);

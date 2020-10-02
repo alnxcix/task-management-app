@@ -2,30 +2,48 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginEnd="10dp"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="3dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
     app:contentPadding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/collapsed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btnExpand"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btnExpand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/expand"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_expand_more_black_24dp"
+                tools:ignore="VectorDrawableCompat" />
 
             <ImageView
                 android:id="@+id/imgCalendar"
@@ -33,6 +51,9 @@
                 android:layout_height="14dp"
                 android:layout_margin="5dp"
                 android:contentDescription="@string/due_date"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtLabel"
                 app:srcCompat="@drawable/ic_event_black_24dp"
                 app:tint="?android:attr/textColorSecondary"
                 tools:ignore="VectorDrawableCompat" />
@@ -41,9 +62,12 @@
                 android:id="@+id/txtDueDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                android:textColor="?android:attr/textColorSecondary" />
+                android:textColor="?android:attr/textColorSecondary"
+                app:layout_constraintBottom_toBottomOf="@+id/imgCalendar"
+                app:layout_constraintLeft_toRightOf="@id/imgCalendar"
+                app:layout_constraintTop_toTopOf="@id/imgCalendar" />
 
             <ImageView
                 android:id="@+id/imgClock"
@@ -51,6 +75,9 @@
                 android:layout_height="14dp"
                 android:layout_margin="5dp"
                 android:contentDescription="@string/time"
+                app:layout_constraintBottom_toBottomOf="@+id/txtDueDate"
+                app:layout_constraintLeft_toRightOf="@id/txtDueDate"
+                app:layout_constraintTop_toTopOf="@id/txtDueDate"
                 app:srcCompat="@drawable/ic_schedule_black_24dp"
                 app:tint="?android:attr/textColorSecondary"
                 tools:ignore="VectorDrawableCompat" />
@@ -59,45 +86,52 @@
                 android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                android:textColor="?android:attr/textColorSecondary" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/txtNotes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            android:textColor="?android:attr/textColorSecondary" />
+                android:textColor="?android:attr/textColorSecondary"
+                app:layout_constraintBottom_toBottomOf="@+id/imgClock"
+                app:layout_constraintLeft_toRightOf="@id/imgClock"
+                app:layout_constraintTop_toTopOf="@id/imgClock" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/expanded"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/txtNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="?android:attr/textColorSecondary"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/btnEdit"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_margin="5dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/edit"
                 android:tint="@android:color/darker_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtNotes"
                 app:srcCompat="@drawable/ic_create_black_24dp"
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageButton
                 android:id="@+id/btnDelete"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="18dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/delete"
                 android:tint="@android:color/darker_gray"
@@ -106,6 +140,9 @@
                 app:layout_constraintTop_toTopOf="@id/btnEdit"
                 app:srcCompat="@drawable/ic_delete_black_24dp"
                 tools:ignore="VectorDrawableCompat" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
+
 </com.google.android.material.card.MaterialCardView>

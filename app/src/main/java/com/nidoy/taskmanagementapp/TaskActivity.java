@@ -1,25 +1,28 @@
 package com.nidoy.taskmanagementapp;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Objects;
 
 public class TaskActivity extends AppCompatActivity {
 
-    public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
+    public static final String EXTRA_REPLY = "REPLY";
 
+    @SuppressLint("SimpleDateFormat")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +41,8 @@ public class TaskActivity extends AppCompatActivity {
         assert task != null;
         Objects.requireNonNull(txtInputLabel.getEditText()).setText(task.getmLabel());
         Objects.requireNonNull(txtInputNotes.getEditText()).setText(task.getmNotes());
-        Objects.requireNonNull(txtInputDate.getEditText()).setText(Utils.dateFormat.format(task.getmDue()));
-        Objects.requireNonNull(txtInputTime.getEditText()).setText(Utils.timeFormat.format(task.getmDue()));
+        Objects.requireNonNull(txtInputDate.getEditText()).setText(new SimpleDateFormat("MMM. dd, yyyy").format(task.getmDue()));
+        Objects.requireNonNull(txtInputTime.getEditText()).setText(new SimpleDateFormat("hh:mm aa").format(task.getmDue()));
 
         // Set the chip group
         ((Chip) findViewById(R.id.chipOpen)).setChecked(task.getmStatus().equals("Open"));
@@ -65,7 +68,7 @@ public class TaskActivity extends AppCompatActivity {
 
         findViewById(R.id.btnSave).setOnClickListener(v -> {
             if (Objects.requireNonNull(txtInputLabel.getEditText()).getText().toString().isEmpty())
-                Toast.makeText(this, "Fill up all necessary fields.", Toast.LENGTH_SHORT).show();
+                Snackbar.make(findViewById(R.id.parent), getString(R.string.snack_fill_up), Snackbar.LENGTH_SHORT).show();
             else {
                 task.setmLabel(txtInputLabel.getEditText().getText().toString());
                 task.setmNotes(txtInputNotes.getEditText().getText().toString());
