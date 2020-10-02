@@ -17,7 +17,7 @@
     <string name="yes">Yes</string>
 
     <!-- Content descriptions -->
-    <string name="expand">Expand</string>
+    <string name="expand_collapse">Expand / Collapse</string>
 
     <!-- Nav labels -->
     <string name="finished">Finished</string>

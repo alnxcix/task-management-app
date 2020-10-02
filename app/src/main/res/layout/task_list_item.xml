@@ -8,8 +8,8 @@
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
-    app:cardCornerRadius="5dp"
-    app:cardElevation="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
     app:contentPadding="10dp">
 
     <LinearLayout
@@ -37,8 +37,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:alpha="0.6"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/expand"
+                android:contentDescription="@string/expand_collapse"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -50,12 +51,12 @@
                 android:layout_width="14dp"
                 android:layout_height="14dp"
                 android:layout_margin="5dp"
+                android:alpha="0.6"
                 android:contentDescription="@string/due_date"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtLabel"
                 app:srcCompat="@drawable/ic_event_black_24dp"
-                app:tint="?android:attr/textColorSecondary"
                 tools:ignore="VectorDrawableCompat" />
 
             <TextView
@@ -63,8 +64,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:alpha="0.6"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                android:textColor="?android:attr/textColorSecondary"
                 app:layout_constraintBottom_toBottomOf="@+id/imgCalendar"
                 app:layout_constraintLeft_toRightOf="@id/imgCalendar"
                 app:layout_constraintTop_toTopOf="@id/imgCalendar" />
@@ -74,12 +75,12 @@
                 android:layout_width="14dp"
                 android:layout_height="14dp"
                 android:layout_margin="5dp"
+                android:alpha="0.6"
                 android:contentDescription="@string/time"
                 app:layout_constraintBottom_toBottomOf="@+id/txtDueDate"
                 app:layout_constraintLeft_toRightOf="@id/txtDueDate"
                 app:layout_constraintTop_toTopOf="@id/txtDueDate"
                 app:srcCompat="@drawable/ic_schedule_black_24dp"
-                app:tint="?android:attr/textColorSecondary"
                 tools:ignore="VectorDrawableCompat" />
 
             <TextView
@@ -87,8 +88,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:alpha="0.6"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                android:textColor="?android:attr/textColorSecondary"
                 app:layout_constraintBottom_toBottomOf="@+id/imgClock"
                 app:layout_constraintLeft_toRightOf="@id/imgClock"
                 app:layout_constraintTop_toTopOf="@id/imgClock" />
@@ -105,8 +106,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:alpha="0.6"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textColor="?android:attr/textColorSecondary"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -118,9 +119,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:alpha="0.6"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/edit"
-                android:tint="@android:color/darker_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtNotes"
@@ -132,9 +133,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
+                android:alpha="0.6"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/delete"
-                android:tint="@android:color/darker_gray"
                 app:layout_constraintBottom_toBottomOf="@id/btnEdit"
                 app:layout_constraintRight_toLeftOf="@id/btnEdit"
                 app:layout_constraintTop_toTopOf="@id/btnEdit"
