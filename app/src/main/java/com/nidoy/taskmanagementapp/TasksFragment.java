@@ -1,7 +1,5 @@
 package com.nidoy.taskmanagementapp;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,21 +8,30 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
-
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.Date;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class TasksFragment extends Fragment {
 
+    private static final String ARG_STATUS = null;
+
+    private String mStatus;
+
     public TasksFragment() { /* Required empty public constructor */ }
+
+    public static TasksFragment newInstance(String status) {
+        TasksFragment fragment = new TasksFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_STATUS, status);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mStatus = (getArguments() == null ? null : getArguments().getString(ARG_STATUS));
     }
 
     @Override
@@ -37,42 +44,17 @@ public class TasksFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Navigate between tabs (Open, Pending, Finished, and Overdue)
-        ViewPager2 viewPager2 = requireActivity().findViewById(R.id.viewPager);
-        TabLayout tabLayout = requireActivity().findViewById(R.id.tabLayout);
-        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
-            switch (position) {
-                case 0: {
-                    setTab(tab, R.string.open, R.drawable.ic_wb_incandescent_24px);
-                    break;
-                }
-                case 1: {
-                    setTab(tab, R.string.pending, R.drawable.ic_hourglass_empty_black_24dp);
-                    break;
-                }
-                case 2: {
-                    setTab(tab, R.string.finished, R.drawable.ic_done_all_24px);
-                    break;
-                }
-                case 3: {
-                    setTab(tab, R.string.overdue, R.drawable.ic_error_outline_black_24dp);
-                    break;
-                }
-            }
-        });
-        viewPager2.setAdapter(new TasksPagerAdapter(this.requireActivity()));
-        tabLayoutMediator.attach();
+        // Initialize variables
+        final RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
+        final TaskListAdapter adapter = new TaskListAdapter(view.getContext());
 
-        // ExtendedFloatingActionButton
-        ExtendedFloatingActionButton btnNew = this.requireActivity().findViewById(R.id.btnNew);
-        btnNew.setText(R.string.task);
-        btnNew.setOnClickListener(v ->
-                requireActivity().startActivityForResult(new Intent(view.getContext(), TaskActivity.class).putExtra("task", new Task("", "", new Date(), "Open")), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE));
-    }
+        adapter.setHasStableIds(true);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-    @SuppressLint("UseCompatLoadingForDrawables")
-    private void setTab(TabLayout.Tab tab, int label, int icon) {
-        tab.setText(getResources().getString(label));
-        tab.setIcon(getResources().getDrawable(icon));
+        MainActivity.mTaskViewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
+        // Update the cached copy of the tasks in the adapter.
+        MainActivity.mTaskViewModel.getTaskByStatus(mStatus).observe(getViewLifecycleOwner(), adapter::setTasks);
     }
 }

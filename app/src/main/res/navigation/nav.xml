@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/tasksFragment"
-        android:name="com.nidoy.taskmanagementapp.TasksFragment"
+        android:name="com.nidoy.taskmanagementapp.TasksMainFragment"
         android:label="@string/tasks"
-        tools:layout="@layout/fragment_tasks" />
+        tools:layout="@layout/fragment_tasks_main" />
     <fragment
         android:id="@+id/notesFragment"
         android:name="com.nidoy.taskmanagementapp.NotesFragment"

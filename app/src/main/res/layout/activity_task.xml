@@ -91,7 +91,6 @@
         android:layout_margin="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider"
-        app:selectionRequired="true"
         app:singleSelection="true">
 
         <com.google.android.material.chip.Chip

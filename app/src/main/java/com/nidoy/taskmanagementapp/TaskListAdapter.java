@@ -16,7 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.chip.Chip;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
@@ -47,6 +47,41 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         holder.txtTime.setText(new SimpleDateFormat("hh:mm aa").format(current.getmDue()));
         holder.txtNotes.setText(current.getmNotes());
         holder.txtNotes.setVisibility(TextUtils.isEmpty(current.getmNotes()) ? View.GONE : View.VISIBLE);
+        holder.chipFinished.setCheckable(current.getmStatus().equals("Finished"));
+        holder.chipFinished.setChecked(current.getmStatus().equals("Finished"));
+        holder.chipOpen.setCheckable(current.getmStatus().equals("Open"));
+        holder.chipOpen.setChecked(current.getmStatus().equals("Open"));
+        holder.chipPending.setCheckable(current.getmStatus().equals("Pending"));
+        holder.chipPending.setChecked(current.getmStatus().equals("Pending"));
+
+        // Event listeners
+        holder.chipFinished.setOnClickListener(v -> {
+            if (!current.getmStatus().equals("Finished")) {
+                new AlertDialog.Builder(mContext).setMessage(mContext.getText(R.string.prompt_finished_task)).setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
+                    current.setmStatus("Finished");
+                    MainActivity.mTaskViewModel.update(current);
+                    Snackbar.make(holder.itemView, mContext.getString(R.string.snack_task_finished), Snackbar.LENGTH_SHORT).show();
+                }).setNegativeButton(mContext.getText(R.string.no), null).create().show();
+            }
+        });
+        holder.chipOpen.setOnClickListener(v -> {
+            if (!current.getmStatus().equals("Open")) {
+                new AlertDialog.Builder(mContext).setMessage(mContext.getText(R.string.prompt_open_task)).setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
+                    current.setmStatus("Open");
+                    MainActivity.mTaskViewModel.update(current);
+                    Snackbar.make(holder.itemView, mContext.getString(R.string.snack_task_open), Snackbar.LENGTH_SHORT).show();
+                }).setNegativeButton(mContext.getText(R.string.no), null).create().show();
+            }
+        });
+        holder.chipPending.setOnClickListener(v -> {
+            if (!current.getmStatus().equals("Pending")) {
+                new AlertDialog.Builder(mContext).setMessage(mContext.getText(R.string.prompt_pending_task)).setPositiveButton(mContext.getText(R.string.yes), (dialog, which) -> {
+                    current.setmStatus("Pending");
+                    MainActivity.mTaskViewModel.update(current);
+                    Snackbar.make(holder.itemView, mContext.getString(R.string.snack_task_pending), Snackbar.LENGTH_SHORT).show();
+                }).setNegativeButton(mContext.getText(R.string.no), null).create().show();
+            }
+        });
         holder.btnExpand.setOnClickListener(v -> {
             holder.expanded.setVisibility(holder.expanded.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
             holder.btnExpand.setImageResource(holder.expanded.getVisibility() == View.GONE ? R.drawable.ic_expand_more_black_24dp : R.drawable.ic_expand_less_black_24dp);
@@ -80,18 +115,21 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     }
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
+        private final Chip chipFinished, chipOpen, chipPending;
         private final ConstraintLayout expanded;
         private final ImageButton btnDelete, btnEdit, btnExpand;
-        private final MaterialCardView parent;
         private final TextView txtDueDate, txtLabel, txtNotes, txtTime;
+
         private TaskViewHolder(View itemView) {
             super(itemView);
             // UI elements
+            chipFinished = itemView.findViewById(R.id.chipFinished);
+            chipOpen = itemView.findViewById(R.id.chipOpen);
+            chipPending = itemView.findViewById(R.id.chipPending);
             expanded = itemView.findViewById(R.id.expanded);
             btnDelete = itemView.findViewById(R.id.btnDelete);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnExpand = itemView.findViewById(R.id.btnExpand);
-            parent = itemView.findViewById(R.id.parent);
             txtNotes = itemView.findViewById(R.id.txtNotes);
             txtDueDate = itemView.findViewById(R.id.txtDueDate);
             txtLabel = itemView.findViewById(R.id.txtLabel);
