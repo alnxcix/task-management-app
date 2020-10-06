@@ -1,178 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="8dp"
-    android:layout_marginTop="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="8dp"
-    app:contentPadding="10dp">
+    android:clipToPadding="false"
+    android:paddingHorizontal="8dp"
+    android:paddingTop="8dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/txtLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/btnExpand"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/btnExpand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:alpha="0.6"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/expand_collapse"
-            app:layout_constraintBottom_toBottomOf="@id/imgCalendar"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txtLabel"
-            app:srcCompat="@drawable/ic_expand_more_black_24dp"
-            tools:ignore="VectorDrawableCompat" />
-
-        <ImageView
-            android:id="@+id/imgCalendar"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_margin="5dp"
-            android:alpha="0.6"
-            android:contentDescription="@string/due_date"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtLabel"
-            app:srcCompat="@drawable/ic_event_black_24dp"
-            tools:ignore="VectorDrawableCompat" />
+    <LinearLayout
+        android:id="@+id/stamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/taskCard">
 
         <TextView
-            android:id="@+id/txtDueDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:alpha="0.6"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            app:layout_constraintBottom_toBottomOf="@+id/imgCalendar"
-            app:layout_constraintLeft_toRightOf="@id/imgCalendar"
-            app:layout_constraintTop_toTopOf="@id/imgCalendar" />
-
-        <ImageView
-            android:id="@+id/imgClock"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_margin="5dp"
-            android:alpha="0.6"
-            android:contentDescription="@string/time"
-            app:layout_constraintBottom_toBottomOf="@+id/txtDueDate"
-            app:layout_constraintLeft_toRightOf="@id/txtDueDate"
-            app:layout_constraintTop_toTopOf="@id/txtDueDate"
-            app:srcCompat="@drawable/ic_schedule_black_24dp"
-            tools:ignore="VectorDrawableCompat" />
-
-        <TextView
-            android:id="@+id/txtTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:alpha="0.6"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            app:layout_constraintBottom_toBottomOf="@+id/imgClock"
-            app:layout_constraintLeft_toRightOf="@id/imgClock"
-            app:layout_constraintTop_toTopOf="@id/imgClock" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/expanded"
+            android:id="@+id/monthStamp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/imgCalendar">
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dateStamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/taskCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:cardCornerRadius="4dp"
+        app:contentPadding="8dp"
+        app:layout_constraintLeft_toRightOf="@id/stamp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@android:color/darker_gray"
+        app:strokeWidth="0.6dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/txtNotes"
-                android:layout_width="match_parent"
+                android:id="@+id/txtLabel"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:alpha="0.6"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_margin="4dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btnShowMenu"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
+            <ImageButton
+                android:id="@+id/btnShowMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtNotes"
-                app:selectionRequired="true"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipOpen"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/open"
-                    app:chipEndPadding="8dp"
-                    app:chipStartPadding="8dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipPending"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pending"
-                    app:chipEndPadding="8dp"
-                    app:chipStartPadding="8dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipFinished"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/finished"
-                    app:chipEndPadding="8dp"
-                    app:chipStartPadding="8dp" />
-
-            </com.google.android.material.chip.ChipGroup>
-
-            <ImageButton
-                android:id="@+id/btnEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="5dp"
-                android:alpha="0.6"
+                android:layout_margin="4dp"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/edit"
-                app:layout_constraintBottom_toBottomOf="@id/chipGroup"
+                android:tint="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@id/imgClock"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/chipGroup"
-                app:srcCompat="@drawable/ic_create_black_24dp"
-                tools:ignore="VectorDrawableCompat" />
+                app:layout_constraintTop_toTopOf="@+id/txtLabel"
+                app:srcCompat="@drawable/ic_more_horiz_black_24dp"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
 
-            <ImageButton
-                android:id="@+id/btnDelete"
+            <ImageView
+                android:id="@+id/imgClock"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_margin="4dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtLabel"
+                app:srcCompat="@drawable/ic_schedule_black_24dp"
+                app:tint="@android:color/darker_gray"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="20dp"
-                android:alpha="0.6"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/delete"
-                app:layout_constraintBottom_toBottomOf="@id/btnEdit"
-                app:layout_constraintRight_toLeftOf="@id/btnEdit"
-                app:layout_constraintTop_toTopOf="@id/btnEdit"
-                app:srcCompat="@drawable/ic_delete_black_24dp"
-                tools:ignore="VectorDrawableCompat" />
-
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@id/imgClock"
+                app:layout_constraintLeft_toRightOf="@id/imgClock"
+                app:layout_constraintTop_toTopOf="@id/imgClock" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-</com.google.android.material.card.MaterialCardView>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:alpha="0.6"
+        android:background="@android:color/darker_gray"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/taskCard" />
+</androidx.constraintlayout.widget.ConstraintLayout>

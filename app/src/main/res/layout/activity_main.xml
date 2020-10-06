@@ -16,7 +16,8 @@
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav" />
+        app:navGraph="@navigation/nav"
+        tools:ignore="FragmentTagUsage" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnNew"

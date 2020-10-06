@@ -14,14 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class TasksFragment extends Fragment {
 
-    private static final String ARG_STATUS = null;
+    private static final String ARG_STATUS = "status";
 
     private String mStatus;
 
-    public TasksFragment() { /* Required empty public constructor */ }
-
     public static TasksFragment newInstance(String status) {
-        TasksFragment fragment = new TasksFragment();
+        final TasksFragment fragment = new TasksFragment();
         Bundle args = new Bundle();
         args.putString(ARG_STATUS, status);
         fragment.setArguments(args);
