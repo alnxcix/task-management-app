@@ -5,15 +5,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
+
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
@@ -39,13 +40,20 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
 
         holder.txtLabel.setText(current.getmLabel());
         holder.txtTime.setText(new SimpleDateFormat("hh:mm aa").format(current.getmDue()));
-        holder.monthStamp.setText(new SimpleDateFormat("MMM").format(current.getmDue()));
-        holder.dateStamp.setText(new SimpleDateFormat("dd").format(current.getmDue()));
+        holder.txtMonth.setText(new SimpleDateFormat("MMM").format(current.getmDue()));
+        holder.txtDate.setText(new SimpleDateFormat("dd").format(current.getmDue()));
+
+        if (new SimpleDateFormat("MMM. dd, yyyy").format(new Date()).equals(new SimpleDateFormat("MMM. dd, yyyy").format(current.getmDue()))) {
+            holder.txtMonth.setTextColor(mContext.getResources().getColor(R.color.scarlet));
+            holder.txtDate.setTextColor(mContext.getResources().getColor(R.color.scarlet));
+        }
 
         try {
-            holder.stamp.setVisibility(new SimpleDateFormat("MMM. dd, yyyy").format(current.getmDue()).equals(new SimpleDateFormat("MMM. dd, yyyy").format(mTasks.get(position - 1).getmDue())) ? View.INVISIBLE : View.VISIBLE);
+            holder.txtMonth.setVisibility(new SimpleDateFormat("MMM. dd, yyyy").format(current.getmDue()).equals(new SimpleDateFormat("MMM. dd, yyyy").format(mTasks.get(position - 1).getmDue())) ? View.INVISIBLE : View.VISIBLE);
+            holder.txtDate.setVisibility(new SimpleDateFormat("MMM. dd, yyyy").format(current.getmDue()).equals(new SimpleDateFormat("MMM. dd, yyyy").format(mTasks.get(position - 1).getmDue())) ? View.INVISIBLE : View.VISIBLE);
         } catch (Exception e) {
-            holder.stamp.setVisibility(View.VISIBLE);
+            holder.txtMonth.setVisibility(View.VISIBLE);
+            holder.txtDate.setVisibility(View.VISIBLE);
         }
 
         try {
@@ -54,8 +62,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             holder.divider.setVisibility(View.GONE);
         }
 
-        // Event listener(s)
-        holder.btnShowMenu.setOnClickListener(v -> TasksBottomSheetFragment.newInstance(current).show(((FragmentActivity) mContext).getSupportFragmentManager(), "dialog"));
+        holder.taskCard.setOnClickListener(v -> TasksBottomSheetFragment.newInstance(current).show(((FragmentActivity) mContext).getSupportFragmentManager(), "dialog"));
     }
 
     @NonNull
@@ -80,21 +87,18 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     }
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
-        private final ImageButton btnShowMenu;
-        private final TextView txtLabel, txtTime, monthStamp, dateStamp;
-        private final LinearLayout stamp;
+        private final TextView txtMonth, txtDate, txtLabel, txtTime;
         private final View divider;
+        private final MaterialCardView taskCard;
 
         private TaskViewHolder(View itemView) {
             super(itemView);
-            // UI elements
-            btnShowMenu = itemView.findViewById(R.id.btnShowMenu);
+            txtMonth = itemView.findViewById(R.id.txtMonth);
+            txtDate = itemView.findViewById(R.id.txtDate);
             txtLabel = itemView.findViewById(R.id.txtLabel);
             txtTime = itemView.findViewById(R.id.txtTime);
-            monthStamp = itemView.findViewById(R.id.monthStamp);
-            dateStamp = itemView.findViewById(R.id.dateStamp);
-            stamp = itemView.findViewById(R.id.stamp);
             divider = itemView.findViewById(R.id.divider);
+            taskCard = itemView.findViewById(R.id.taskCard);
         }
     }
 }

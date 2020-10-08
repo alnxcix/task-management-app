@@ -14,7 +14,6 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.chip.Chip;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 
@@ -73,19 +72,15 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
                 new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_open_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
                     mTask.setmStatus("Open");
                     MainActivity.mTaskViewModel.update(mTask);
-                    Snackbar.make(view, requireContext().getString(R.string.snack_task_open), Snackbar.LENGTH_SHORT).setAction(R.string.snack_dismiss, v1 -> {
-                    }).show();
                     this.dismiss();
                 }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
             }
         });
         chipPending.setOnClickListener(v -> {
             if (!mTask.getmStatus().equals("Pending")) {
-                new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_open_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
+                new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_pending_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
                     mTask.setmStatus("Pending");
                     MainActivity.mTaskViewModel.update(mTask);
-                    Snackbar.make(view, requireContext().getString(R.string.snack_task_pending), Snackbar.LENGTH_SHORT).setAction(R.string.snack_dismiss, v1 -> {
-                    }).show();
                     this.dismiss();
                 }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
             }
@@ -95,25 +90,20 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
                 new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_finished_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
                     mTask.setmStatus("Finished");
                     MainActivity.mTaskViewModel.update(mTask);
-                    Snackbar.make(view, requireContext().getString(R.string.snack_task_open), Snackbar.LENGTH_SHORT).setAction(R.string.snack_dismiss, v1 -> {
-                    }).show();
                     this.dismiss();
                 }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
             }
         });
         txtOpen.setOnClickListener(v -> {
-            // TODO Create dedicated task activity
-            Snackbar.make(view, "Navigate to task activity.", Snackbar.LENGTH_SHORT).show();
+            requireActivity().startActivity(new Intent(requireActivity(), TaskIndividualActivity.class).putExtra("task", mTask));
             this.dismiss();
         });
         txtEdit.setOnClickListener(v -> {
-            requireActivity().startActivityForResult(new Intent(requireActivity(), TaskActivity.class).putExtra("task", mTask), MainActivity.UPDATE_TASK_ACTIVITY_REQUEST_CODE);
+            requireActivity().startActivityForResult(new Intent(requireActivity(), TaskFormActivity.class).putExtra("task", mTask), MainActivity.UPDATE_TASK_ACTIVITY_REQUEST_CODE);
             this.dismiss();
         });
         txtDelete.setOnClickListener(v -> new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_delete_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
             MainActivity.mTaskViewModel.delete(mTask);
-            Snackbar.make(view, requireContext().getString(R.string.snack_task_deleted), Snackbar.LENGTH_SHORT).setAction(R.string.snack_dismiss, v1 -> {
-            }).show();
             this.dismiss();
         }).setNegativeButton(requireContext().getText(R.string.no), null).create().show());
     }

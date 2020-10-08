@@ -7,11 +7,9 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,21 +34,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Enable action bar
-        NavigationUI.setupActionBarWithNavController(this, navController, new AppBarConfiguration.Builder(R.id.tasksFragment, R.id.notesFragment, R.id.scheduleFragment).build());
-
+        // NavigationUI.setupActionBarWithNavController(this, navController, new AppBarConfiguration.Builder(R.id.tasksFragment, R.id.notesFragment, R.id.scheduleFragment).build());
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CREATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Task task = (Task) data.getSerializableExtra(TaskActivity.EXTRA_REPLY);
+            Task task = (Task) data.getSerializableExtra(TaskFormActivity.EXTRA_REPLY);
             mTaskViewModel.insert(task);
-            Snackbar.make(findViewById(R.id.parent), getString(R.string.snack_task_saved), Snackbar.LENGTH_SHORT).show();
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Task task = (Task) data.getSerializableExtra(TaskActivity.EXTRA_REPLY);
+            Task task = (Task) data.getSerializableExtra(TaskFormActivity.EXTRA_REPLY);
             mTaskViewModel.update(task);
-            Snackbar.make(findViewById(R.id.parent), getString(R.string.snack_changes_saved), Snackbar.LENGTH_SHORT).show();
         }
     }
 }

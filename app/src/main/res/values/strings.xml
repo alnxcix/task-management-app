@@ -39,6 +39,7 @@
     <!-- Snack bar messages -->
     <string name="snack_changes_saved">Changes saved.</string>
     <string name="snack_dismiss">Dismiss</string>
+    <string name="snack_not_saved">Not saved.</string>
     <string name="snack_fill_up">Fill up all required fields.</string>
     <string name="snack_task_deleted">Task deleted.</string>
     <string name="snack_task_finished">Task marked finished.</string>

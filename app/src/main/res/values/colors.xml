@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">@color/pine</color>
+    <color name="colorPrimaryDark">@color/pine_dark</color>
+    <color name="colorAccent">@color/mustard</color>
+
+    -- Custom palette
+    <color name="pine">#005867</color>
+    <color name="pine_dark">#002f3d</color>
+    <color name="pine_light">#418595</color>
+    <color name="mustard">#ffb335</color>
+    <color name="mustard_dark">#c78400</color>
+    <color name="mustard_light">#ffe568</color>
+    <color name="scarlet">#f34226</color>
+    <color name="scarlet_dark">#b80000</color>
+    <color name="scarlet_light">#ff7852</color>
+    <color name="beige">#f0edee</color>
+    <color name="gunmetal">#2e383d</color>
 </resources>

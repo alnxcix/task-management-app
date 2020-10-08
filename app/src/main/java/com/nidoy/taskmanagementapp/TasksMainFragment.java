@@ -16,8 +16,6 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import java.util.Date;
-
 public class TasksMainFragment extends Fragment {
 
     @Override
@@ -55,8 +53,7 @@ public class TasksMainFragment extends Fragment {
         // ExtendedFloatingActionButton
         ExtendedFloatingActionButton btnNew = this.requireActivity().findViewById(R.id.btnNew);
         btnNew.setText(R.string.task);
-        btnNew.setOnClickListener(v ->
-                requireActivity().startActivityForResult(new Intent(view.getContext(), TaskActivity.class).putExtra("task", new Task("", "", new Date(), "Open")), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE));
+        btnNew.setOnClickListener(v -> requireActivity().startActivityForResult(new Intent(view.getContext(), TaskFormActivity.class), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE));
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

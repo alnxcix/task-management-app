@@ -1,6 +1,5 @@
 package com.nidoy.taskmanagementapp;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -14,22 +13,19 @@ public class Task implements Serializable {
     @PrimaryKey(autoGenerate = true)
     protected int id;
 
-    @NonNull
     @ColumnInfo(name = "label")
     protected String mLabel;
 
     @ColumnInfo(name = "notes")
     protected String mNotes;
 
-    @NonNull
     @ColumnInfo(name = "due")
     protected Date mDue;
 
-    @NonNull
     @ColumnInfo(name = "status")
     protected String mStatus;
 
-    public Task(@NonNull String mLabel, String mNotes, @NonNull Date mDue, @NonNull String mStatus) {
+    public Task(String mLabel, String mNotes, Date mDue, String mStatus) {
         this.mLabel = mLabel;
         this.mNotes = mNotes;
         this.mDue = mDue;
@@ -40,12 +36,11 @@ public class Task implements Serializable {
         return id;
     }
 
-    @NonNull
     public String getmLabel() {
         return mLabel;
     }
 
-    public void setmLabel(@NonNull String mLabel) {
+    public void setmLabel(String mLabel) {
         this.mLabel = mLabel;
     }
 
@@ -57,21 +52,19 @@ public class Task implements Serializable {
         this.mNotes = mNotes;
     }
 
-    @NonNull
     public Date getmDue() {
         return mDue;
     }
 
-    public void setmDue(@NonNull Date mDue) {
+    public void setmDue(Date mDue) {
         this.mDue = mDue;
     }
 
-    @NonNull
     public String getmStatus() {
         return mStatus;
     }
 
-    public void setmStatus(@NonNull String mStatus) {
+    public void setmStatus(String mStatus) {
         this.mStatus = mStatus;
     }
 }
