@@ -57,13 +57,13 @@ public class TaskFormActivity extends AppCompatActivity {
         cal.setTime(task.getmDue());
 
         // Add event listeners
-        txtInputDate.setEndIconOnClickListener(v -> new DatePickerDialog(TaskFormActivity.this,
+        txtInputDate.getEditText().setOnClickListener(v -> new DatePickerDialog(TaskFormActivity.this,
                 (view, year, month, dayOfMonth) -> {
                     cal.set(year, month, dayOfMonth);
                     Objects.requireNonNull(txtInputDate.getEditText()).setText(DateFormat.format("MM/dd/yyyy", cal));
                 }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show());
 
-        txtInputTime.setEndIconOnClickListener(v -> new TimePickerDialog(TaskFormActivity.this,
+        txtInputTime.getEditText().setOnClickListener(v -> new TimePickerDialog(TaskFormActivity.this,
                 (view, hourOfDay, minute) -> {
                     cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), hourOfDay, minute);
                     Objects.requireNonNull(txtInputTime.getEditText()).setText(DateFormat.format("hh:mm aa", cal));
