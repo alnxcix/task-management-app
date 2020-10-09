@@ -13,14 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class TasksFragment extends Fragment {
 
-    private static final String ARG_STATUS = "status";
+    private static final String ARG_STATUS_ID = "statusId";
 
-    private String mStatus;
+    private int mStatusId;
 
-    public static TasksFragment newInstance(String status) {
+    public static TasksFragment newInstance(int statusId) {
         final TasksFragment fragment = new TasksFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_STATUS, status);
+        args.putInt(ARG_STATUS_ID, statusId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -28,7 +28,7 @@ public class TasksFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mStatus = (getArguments() == null ? null : getArguments().getString(ARG_STATUS));
+        mStatusId = (getArguments() == null ? null : getArguments().getInt(ARG_STATUS_ID));
     }
 
     @Override
@@ -52,6 +52,6 @@ public class TasksFragment extends Fragment {
 
         MainActivity.mTaskViewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
         // Update the cached copy of the tasks in the adapter.
-        MainActivity.mTaskViewModel.getTaskByStatus(mStatus).observe(getViewLifecycleOwner(), adapter::setTasks);
+        MainActivity.mTaskViewModel.getTaskByStatusId(mStatusId).observe(getViewLifecycleOwner(), adapter::setTasks);
     }
 }

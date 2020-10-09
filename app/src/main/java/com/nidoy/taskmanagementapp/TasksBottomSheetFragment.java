@@ -35,6 +35,7 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTask = (getArguments() == null ? null : (Task) getArguments().getSerializable(ARG_TASK));
+//        setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
     }
 
     @Override
@@ -60,35 +61,35 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
         txtLabel.setText(mTask.getmLabel());
         txtDueDate.setText(new SimpleDateFormat("MMM. dd, yyyy").format(mTask.getmDue()));
         txtTime.setText(new SimpleDateFormat("hh:mm aa").format(mTask.getmDue()));
-        chipOpen.setChecked(mTask.getmStatus().equals("Open"));
-        chipPending.setChecked(mTask.getmStatus().equals("Pending"));
-        chipFinished.setChecked(mTask.getmStatus().equals("Finished"));
-        chipOpen.setCheckable(mTask.getmStatus().equals("Open"));
-        chipPending.setCheckable(mTask.getmStatus().equals("Pending"));
-        chipFinished.setCheckable(mTask.getmStatus().equals("Finished"));
+        chipOpen.setChecked(mTask.getmStatusId() == R.string.open);
+        chipPending.setChecked(mTask.getmStatusId() == R.string.pending);
+        chipFinished.setChecked(mTask.getmStatusId() == R.string.finished);
+        chipOpen.setCheckable(mTask.getmStatusId() == R.string.open);
+        chipPending.setCheckable(mTask.getmStatusId() == R.string.pending);
+        chipFinished.setCheckable(mTask.getmStatusId() == R.string.finished);
 
         chipOpen.setOnClickListener(v -> {
-            if (!mTask.getmStatus().equals("Open")) {
+            if (mTask.getmStatusId() != R.string.open) {
                 new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_open_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-                    mTask.setmStatus("Open");
+                    mTask.setmStatusId(R.string.open);
                     MainActivity.mTaskViewModel.update(mTask);
                     this.dismiss();
                 }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
             }
         });
         chipPending.setOnClickListener(v -> {
-            if (!mTask.getmStatus().equals("Pending")) {
+            if (mTask.getmStatusId() != R.string.pending) {
                 new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_pending_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-                    mTask.setmStatus("Pending");
+                    mTask.setmStatusId(R.string.pending);
                     MainActivity.mTaskViewModel.update(mTask);
                     this.dismiss();
                 }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
             }
         });
         chipFinished.setOnClickListener(v -> {
-            if (!mTask.getmStatus().equals("Finished")) {
+            if (mTask.getmStatusId() != R.string.finished) {
                 new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_finished_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-                    mTask.setmStatus("Finished");
+                    mTask.setmStatusId(R.string.finished);
                     MainActivity.mTaskViewModel.update(mTask);
                     this.dismiss();
                 }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();

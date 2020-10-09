@@ -14,8 +14,8 @@ class TaskRepository {
         mTaskDAO = db.taskDAO();
     }
 
-    LiveData<List<Task>> getTasksByStatus(String status) {
-        return mTaskDAO.getTasksByStatus(status);
+    LiveData<List<Task>> getTasksByStatusId(int statusId) {
+        return mTaskDAO.getTasksByStatusId(statusId);
     }
 
     void insert(Task task) {

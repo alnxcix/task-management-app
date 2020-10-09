@@ -15,8 +15,8 @@ public class TaskViewModel extends AndroidViewModel {
         mTaskRepository = new TaskRepository(application);
     }
 
-    LiveData<List<Task>> getTaskByStatus(String status) {
-        return mTaskRepository.getTasksByStatus(status);
+    LiveData<List<Task>> getTaskByStatusId(int statusId) {
+        return mTaskRepository.getTasksByStatusId(statusId);
     }
 
     public void insert(Task task) {

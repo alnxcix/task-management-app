@@ -47,4 +47,7 @@
     <string name="snack_task_pending">Task marked as pending.</string>
     <string name="snack_task_saved">Task saved.</string>
 
+    <string name="status">Status</string>
+    <string name="theme">Theme</string>
+
 </resources>

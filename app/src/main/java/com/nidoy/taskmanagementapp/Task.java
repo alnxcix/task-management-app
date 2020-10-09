@@ -23,13 +23,17 @@ public class Task implements Serializable {
     protected Date mDue;
 
     @ColumnInfo(name = "status")
-    protected String mStatus;
+    protected int mStatusId;
 
-    public Task(String mLabel, String mNotes, Date mDue, String mStatus) {
-        this.mLabel = mLabel;
-        this.mNotes = mNotes;
-        this.mDue = mDue;
-        this.mStatus = mStatus;
+    @ColumnInfo(name = "color")
+    protected int mColorId;
+
+    public Task() {
+        this.mLabel = null;
+        this.mNotes = null;
+        this.mDue = null;
+        this.mStatusId = -1;
+        this.mColorId = -1;
     }
 
     public int getId() {
@@ -60,11 +64,19 @@ public class Task implements Serializable {
         this.mDue = mDue;
     }
 
-    public String getmStatus() {
-        return mStatus;
+    public int getmStatusId() {
+        return mStatusId;
     }
 
-    public void setmStatus(String mStatus) {
-        this.mStatus = mStatus;
+    public void setmStatusId(int mStatusId) {
+        this.mStatusId = mStatusId;
+    }
+
+    public int getmColorId() {
+        return mColorId;
+    }
+
+    public void setmColorId(int mColorId) {
+        this.mColorId = mColorId;
     }
 }

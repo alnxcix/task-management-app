@@ -2,12 +2,15 @@ package com.nidoy.taskmanagementapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,21 +46,34 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         holder.txtMonth.setText(new SimpleDateFormat("MMM").format(current.getmDue()));
         holder.txtDate.setText(new SimpleDateFormat("dd").format(current.getmDue()));
 
-        if (new SimpleDateFormat("MMM. dd, yyyy").format(new Date()).equals(new SimpleDateFormat("MMM. dd, yyyy").format(current.getmDue()))) {
+        if (new SimpleDateFormat("yyyyMMMdd").format(new Date()).equals(new SimpleDateFormat("yyyyMMMdd").format(current.getmDue()))) {
             holder.txtMonth.setTextColor(mContext.getResources().getColor(R.color.scarlet));
             holder.txtDate.setTextColor(mContext.getResources().getColor(R.color.scarlet));
+        } else {
+            holder.txtMonth.setTextColor(mContext.getResources().getColor(R.color.pine_dark));
+            holder.txtDate.setTextColor(mContext.getResources().getColor(R.color.pine_dark));
+        }
+
+        if (current.getmDue().getTime() <= new Date().getTime()) {
+            holder.imgTime.setImageResource(R.drawable.ic_report_problem_black_24dp);
+            holder.imgTime.setColorFilter(ContextCompat.getColor(mContext, R.color.scarlet));
+            holder.txtTime.setTextColor(mContext.getResources().getColor(R.color.scarlet));
+        } else {
+            holder.imgTime.setImageResource(R.drawable.ic_schedule_black_24dp);
+            holder.imgTime.setColorFilter(Color.BLACK);
+            holder.txtTime.setTextColor(Color.BLACK);
         }
 
         try {
-            holder.txtMonth.setVisibility(new SimpleDateFormat("MMM. dd, yyyy").format(current.getmDue()).equals(new SimpleDateFormat("MMM. dd, yyyy").format(mTasks.get(position - 1).getmDue())) ? View.INVISIBLE : View.VISIBLE);
-            holder.txtDate.setVisibility(new SimpleDateFormat("MMM. dd, yyyy").format(current.getmDue()).equals(new SimpleDateFormat("MMM. dd, yyyy").format(mTasks.get(position - 1).getmDue())) ? View.INVISIBLE : View.VISIBLE);
+            holder.txtMonth.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getmDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(mTasks.get(position - 1).getmDue())) ? View.INVISIBLE : View.VISIBLE);
+            holder.txtDate.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getmDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(mTasks.get(position - 1).getmDue())) ? View.INVISIBLE : View.VISIBLE);
         } catch (Exception e) {
             holder.txtMonth.setVisibility(View.VISIBLE);
             holder.txtDate.setVisibility(View.VISIBLE);
         }
 
         try {
-            holder.divider.setVisibility(new SimpleDateFormat("MMM. dd, yyyy").format(current.getmDue()).equals(new SimpleDateFormat("MMM. dd, yyyy").format(mTasks.get(position + 1).getmDue())) ? View.GONE : View.VISIBLE);
+            holder.divider.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getmDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(mTasks.get(position + 1).getmDue())) ? View.GONE : View.VISIBLE);
         } catch (Exception e) {
             holder.divider.setVisibility(View.GONE);
         }
@@ -77,11 +93,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     }
 
     @Override
-    public int getItemViewType(int position) {
-        return mTasks.get(position).getId();
-    }
-
-    @Override
     public int getItemCount() {
         return mTasks != null ? mTasks.size() : 0;
     }
@@ -90,6 +101,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         private final TextView txtMonth, txtDate, txtLabel, txtTime;
         private final View divider;
         private final MaterialCardView taskCard;
+        private final ImageView imgTime;
 
         private TaskViewHolder(View itemView) {
             super(itemView);
@@ -99,6 +111,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             txtTime = itemView.findViewById(R.id.txtTime);
             divider = itemView.findViewById(R.id.divider);
             taskCard = itemView.findViewById(R.id.taskCard);
+            imgTime = itemView.findViewById(R.id.imgTime);
         }
     }
 }

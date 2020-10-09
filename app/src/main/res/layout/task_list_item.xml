@@ -52,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:ellipsize="end"
+                android:maxLines="2"
                 android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -59,24 +60,25 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imgClock"
+                android:id="@+id/imgTime"
                 android:layout_width="14dp"
                 android:layout_height="14dp"
-                android:layout_margin="4dp"
+                android:layout_marginStart="4dp"
+                app:layout_constraintBottom_toBottomOf="@id/txtTime"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtLabel"
-                app:srcCompat="@drawable/ic_schedule_black_24dp"
-                tools:ignore="ContentDescription,VectorDrawableCompat" />
+                app:layout_constraintTop_toTopOf="@id/txtTime"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_margin="4dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                app:layout_constraintBottom_toBottomOf="@id/imgClock"
-                app:layout_constraintLeft_toRightOf="@id/imgClock"
-                app:layout_constraintTop_toTopOf="@id/imgClock" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/imgTime"
+                app:layout_constraintTop_toBottomOf="@id/txtLabel" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
