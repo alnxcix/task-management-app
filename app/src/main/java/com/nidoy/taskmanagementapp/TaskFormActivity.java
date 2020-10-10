@@ -24,8 +24,6 @@ import java.util.Objects;
 public class TaskFormActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "REPLY";
-    public static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("MMM. dd, yyyy");
-    public static final SimpleDateFormat TIME_FORMATTER = new SimpleDateFormat("hh:mm aa");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,41 +43,39 @@ public class TaskFormActivity extends AppCompatActivity {
         SpectrumPalette spectrumPalette = findViewById(R.id.spectrumPalette);
 
         // Set fields
-        topAppBar.setTitle(Objects.requireNonNull(task).getmLabel() == null ? getString(R.string.new_task) : task.getmLabel());
-        Objects.requireNonNull(txtInputLabel.getEditText()).setText(task.getmLabel());
-        Objects.requireNonNull(txtInputNotes.getEditText()).setText(task.getmNotes());
-        Objects.requireNonNull(txtInputDate.getEditText()).setText(task.getmDue() == null ? null : DATE_FORMATTER.format(task.getmDue()));
-        Objects.requireNonNull(txtInputTime.getEditText()).setText(task.getmDue() == null ? null : TIME_FORMATTER.format(task.getmDue()));
+        topAppBar.setTitle(Objects.requireNonNull(task).getLabel() == null ? getString(R.string.new_task) : task.getLabel());
+        Objects.requireNonNull(txtInputLabel.getEditText()).setText(task.getLabel());
+        Objects.requireNonNull(txtInputNotes.getEditText()).setText(task.getNotes());
+        Objects.requireNonNull(txtInputDate.getEditText()).setText(task.getDue() == null ? null : new SimpleDateFormat("MMM. dd, yyyy").format(task.getDue()));
+        Objects.requireNonNull(txtInputTime.getEditText()).setText(task.getDue() == null ? null : new SimpleDateFormat("hh:mm aa").format(task.getDue()));
 
         // Set calendar for date and time pickers
         Calendar cal = Calendar.getInstance();
-        if (task.getmDue() == null) {
+        if (task.getDue() == null) {
             cal.setTime(new Date());
             cal.set(Calendar.HOUR_OF_DAY, 0);
             cal.set(Calendar.MINUTE, 0);
-        } else {
-            cal.setTime(task.getmDue());
-        }
+        } else cal.setTime(task.getDue());
 
         // Set color picker
-        spectrumPalette.setOnColorSelectedListener(task::setmLegendColor);
-        spectrumPalette.setSelectedColor(task.getmLegendColor() == -1 ? getResources().getIntArray(R.array.color_picker)[0] : task.getmLegendColor());
+        spectrumPalette.setOnColorSelectedListener(task::setLegendColor);
+        spectrumPalette.setSelectedColor(task.getLegendColor() == -1 ? getResources().getIntArray(R.array.color_picker)[0] : task.getLegendColor());
 
         // Add event listeners
         chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
                 case R.id.chipOpen:
-                    task.setmStatus(R.string.open);
+                    task.setStatus(R.string.open);
                     break;
                 case R.id.chipPending:
-                    task.setmStatus(R.string.pending);
+                    task.setStatus(R.string.pending);
                     break;
                 case R.id.chipFinished:
-                    task.setmStatus(R.string.finished);
+                    task.setStatus(R.string.finished);
                     break;
             }
         });
-        chipGroup.check(task.getmStatus() == R.string.open ? R.id.chipOpen : task.getmStatus() == R.string.pending ? R.id.chipPending : task.getmStatus() == R.string.finished ? R.id.chipFinished : R.id.chipOpen);
+        chipGroup.check(task.getStatus() == R.string.open ? R.id.chipOpen : task.getStatus() == R.string.pending ? R.id.chipPending : task.getStatus() == R.string.finished ? R.id.chipFinished : R.id.chipOpen);
 
         txtInputDate.getEditText().setOnClickListener(v -> new DatePickerDialog(TaskFormActivity.this,
                 (view, year, month, dayOfMonth) -> {
@@ -96,9 +92,9 @@ public class TaskFormActivity extends AppCompatActivity {
             if (Objects.requireNonNull(txtInputLabel.getEditText()).getText().toString().isEmpty() || txtInputDate.getEditText().getText().toString().isEmpty() || txtInputTime.getEditText().getText().toString().isEmpty())
                 Snackbar.make(findViewById(R.id.parent), getString(R.string.snack_fill_up), Snackbar.LENGTH_SHORT).show();
             else {
-                task.setmLabel(txtInputLabel.getEditText().getText().toString());
-                task.setmNotes(txtInputNotes.getEditText().getText().toString());
-                task.setmDue(cal.getTime());
+                task.setLabel(txtInputLabel.getEditText().getText().toString());
+                task.setNotes(txtInputNotes.getEditText().getText().toString());
+                task.setDue(cal.getTime());
 
                 setResult(RESULT_OK, new Intent().putExtra(EXTRA_REPLY, task));
                 finish();

@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Task Management App</string>
 
-    <!-- Activity labels -->
+    -- Activity labels
     <string name="new_note">New Note</string>
     <string name="new_schedule">New Schedule</string>
     <string name="new_task">New Task</string>
 
-    <!-- Button labels -->
+    -- Button labels
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="no">No</string>
@@ -16,7 +16,7 @@
     <string name="schedule">Schedule</string>
     <string name="yes">Yes</string>
 
-    <!-- Nav labels -->
+    -- Nav labels
     <string name="finished">Finished</string>
     <string name="notes">Notes</string>
     <string name="open">Open</string>
@@ -24,20 +24,20 @@
     <string name="overdue">Overdue</string>
     <string name="tasks">Tasks</string>
 
-    <!-- New task activity fields -->
+    -- Task fields
     <string name="due_date">Due date</string>
     <string name="label">Label</string>
     <string name="legend">Legend</string>
     <string name="status">Status</string>
     <string name="time">Time</string>
 
-    <!-- Prompt messages -->
+    -- Prompt messages
     <string name="prompt_open_task">Mark this task as open?</string>
     <string name="prompt_pending_task">Mark this task as pending?</string>
     <string name="prompt_finished_task">Mark this task as finished?</string>
     <string name="prompt_delete_task">Delete this task?</string>
 
-    <!-- Snack bar messages -->
+    -- Snack bar messages
     <string name="snack_changes_saved">Changes saved.</string>
     <string name="snack_dismiss">Dismiss</string>
     <string name="snack_not_saved">Not saved.</string>
@@ -47,5 +47,8 @@
     <string name="snack_task_open">Task marked as open.</string>
     <string name="snack_task_pending">Task marked as pending.</string>
     <string name="snack_task_saved">Task saved.</string>
+
+    -- Other
+    <string name="due_on">Due on </string>
 
 </resources>

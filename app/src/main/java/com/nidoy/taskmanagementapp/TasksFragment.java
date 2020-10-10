@@ -15,7 +15,7 @@ public class TasksFragment extends Fragment {
 
     private static final String ARG_STATUS_ID = "statusId";
 
-    private int mStatusId;
+    private int statusId;
 
     public static TasksFragment newInstance(int statusId) {
         final TasksFragment fragment = new TasksFragment();
@@ -28,7 +28,7 @@ public class TasksFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mStatusId = (getArguments() == null ? -1 : getArguments().getInt(ARG_STATUS_ID));
+        statusId = (getArguments() == null ? -1 : getArguments().getInt(ARG_STATUS_ID));
     }
 
     @Override
@@ -50,8 +50,8 @@ public class TasksFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        MainActivity.mTaskViewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
+        MainActivity.taskViewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
         // Update the cached copy of the tasks in the adapter.
-        MainActivity.mTaskViewModel.getTaskByStatusId(mStatusId).observe(getViewLifecycleOwner(), adapter::setTasks);
+        MainActivity.taskViewModel.getTaskByStatusId(statusId).observe(getViewLifecycleOwner(), adapter::setTasks);
     }
 }

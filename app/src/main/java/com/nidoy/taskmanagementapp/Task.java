@@ -1,6 +1,5 @@
 package com.nidoy.taskmanagementapp;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -12,71 +11,61 @@ public class Task implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     protected int id;
-
-    @ColumnInfo(name = "label")
-    protected String mLabel;
-
-    @ColumnInfo(name = "notes")
-    protected String mNotes;
-
-    @ColumnInfo(name = "due")
-    protected Date mDue;
-
-    @ColumnInfo(name = "status")
-    protected int mStatus;
-
-    @ColumnInfo(name = "legendColor")
-    protected int mLegendColor;
+    protected String label;
+    protected String notes;
+    protected Date due;
+    protected int status;
+    protected int legendColor;
 
     public Task() {
-        this.mLabel = null;
-        this.mNotes = null;
-        this.mDue = null;
-        this.mStatus = -1;
-        this.mLegendColor = -1;
+        this.label = null;
+        this.notes = null;
+        this.due = null;
+        this.status = -1;
+        this.legendColor = -1;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getmLabel() {
-        return mLabel;
+    public String getLabel() {
+        return label;
     }
 
-    public void setmLabel(String mLabel) {
-        this.mLabel = mLabel;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
-    public String getmNotes() {
-        return mNotes;
+    public String getNotes() {
+        return notes;
     }
 
-    public void setmNotes(String mNotes) {
-        this.mNotes = mNotes;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
-    public Date getmDue() {
-        return mDue;
+    public Date getDue() {
+        return due;
     }
 
-    public void setmDue(Date mDue) {
-        this.mDue = mDue;
+    public void setDue(Date due) {
+        this.due = due;
     }
 
-    public int getmStatus() {
-        return mStatus;
+    public int getStatus() {
+        return status;
     }
 
-    public void setmStatus(int mStatus) {
-        this.mStatus = mStatus;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public int getmLegendColor() {
-        return mLegendColor;
+    public int getLegendColor() {
+        return legendColor;
     }
 
-    public void setmLegendColor(int mLegendColor) {
-        this.mLegendColor = mLegendColor;
+    public void setLegendColor(int legendColor) {
+        this.legendColor = legendColor;
     }
 }

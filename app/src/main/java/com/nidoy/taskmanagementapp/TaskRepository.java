@@ -7,26 +7,26 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 class TaskRepository {
-    private TaskDAO mTaskDAO;
+    private TaskDAO taskDAO;
 
     TaskRepository(Application application) {
         RoomDB db = RoomDB.getDatabase(application);
-        mTaskDAO = db.taskDAO();
+        taskDAO = db.taskDAO();
     }
 
     LiveData<List<Task>> getTasksByStatusId(int statusId) {
-        return mTaskDAO.getTasksByStatusId(statusId);
+        return taskDAO.getTasksByStatusId(statusId);
     }
 
     void insert(Task task) {
-        RoomDB.databaseWriteExecutor.execute(() -> mTaskDAO.insert(task));
+        RoomDB.databaseWriteExecutor.execute(() -> taskDAO.insert(task));
     }
 
     void update(Task task) {
-        RoomDB.databaseWriteExecutor.execute(() -> mTaskDAO.update(task));
+        RoomDB.databaseWriteExecutor.execute(() -> taskDAO.update(task));
     }
 
     void delete(Task task) {
-        RoomDB.databaseWriteExecutor.execute(() -> mTaskDAO.delete(task));
+        RoomDB.databaseWriteExecutor.execute(() -> taskDAO.delete(task));
     }
 }

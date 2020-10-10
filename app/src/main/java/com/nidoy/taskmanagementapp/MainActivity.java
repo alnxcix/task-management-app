@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int UPDATE_TASK_ACTIVITY_REQUEST_CODE = 2;
 
     // Task view models
-    public static TaskViewModel mTaskViewModel;
+    public static TaskViewModel taskViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CREATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Task task = (Task) data.getSerializableExtra(TaskFormActivity.EXTRA_REPLY);
-            mTaskViewModel.insert(task);
+            taskViewModel.insert(task);
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Task task = (Task) data.getSerializableExtra(TaskFormActivity.EXTRA_REPLY);
-            mTaskViewModel.update(task);
+            taskViewModel.update(task);
         }
     }
 }
