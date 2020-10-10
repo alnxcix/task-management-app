@@ -13,6 +13,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+import com.thebluealliance.spectrum.SpectrumPalette;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,6 +42,7 @@ public class TaskFormActivity extends AppCompatActivity {
         TextInputLayout txtInputTime = findViewById(R.id.txtInputTime);
         TextInputLayout txtInputNotes = findViewById(R.id.txtInputNotes);
         ChipGroup chipGroup = findViewById(R.id.chipGroup);
+        SpectrumPalette spectrumPalette = findViewById(R.id.spectrumPalette);
 
         // Set fields
         topAppBar.setTitle(Objects.requireNonNull(task).getmLabel() == null ? getString(R.string.new_task) : task.getmLabel());
@@ -49,7 +51,7 @@ public class TaskFormActivity extends AppCompatActivity {
         Objects.requireNonNull(txtInputDate.getEditText()).setText(task.getmDue() == null ? null : DATE_FORMATTER.format(task.getmDue()));
         Objects.requireNonNull(txtInputTime.getEditText()).setText(task.getmDue() == null ? null : TIME_FORMATTER.format(task.getmDue()));
 
-        // Set calendar for pickers
+        // Set calendar for date and time pickers
         Calendar cal = Calendar.getInstance();
         if (task.getmDue() == null) {
             cal.setTime(new Date());
@@ -59,21 +61,25 @@ public class TaskFormActivity extends AppCompatActivity {
             cal.setTime(task.getmDue());
         }
 
+        // Set color picker
+        spectrumPalette.setOnColorSelectedListener(task::setmLegendColor);
+        spectrumPalette.setSelectedColor(task.getmLegendColor() == -1 ? getResources().getIntArray(R.array.color_picker)[0] : task.getmLegendColor());
+
         // Add event listeners
         chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
                 case R.id.chipOpen:
-                    task.setmStatusId(R.string.open);
+                    task.setmStatus(R.string.open);
                     break;
                 case R.id.chipPending:
-                    task.setmStatusId(R.string.pending);
+                    task.setmStatus(R.string.pending);
                     break;
                 case R.id.chipFinished:
-                    task.setmStatusId(R.string.finished);
+                    task.setmStatus(R.string.finished);
                     break;
             }
         });
-        chipGroup.check(task.getmStatusId() == R.string.open ? R.id.chipOpen : task.getmStatusId() == R.string.pending ? R.id.chipPending : task.getmStatusId() == R.string.finished ? R.id.chipFinished : R.id.chipOpen);
+        chipGroup.check(task.getmStatus() == R.string.open ? R.id.chipOpen : task.getmStatus() == R.string.pending ? R.id.chipPending : task.getmStatus() == R.string.finished ? R.id.chipFinished : R.id.chipOpen);
 
         txtInputDate.getEditText().setOnClickListener(v -> new DatePickerDialog(TaskFormActivity.this,
                 (view, year, month, dayOfMonth) -> {

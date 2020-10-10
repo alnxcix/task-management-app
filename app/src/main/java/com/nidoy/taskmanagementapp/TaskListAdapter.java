@@ -46,6 +46,14 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         holder.txtMonth.setText(new SimpleDateFormat("MMM").format(current.getmDue()));
         holder.txtDate.setText(new SimpleDateFormat("dd").format(current.getmDue()));
 
+        try {
+            holder.txtMonth.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getmDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(mTasks.get(position - 1).getmDue())) ? View.INVISIBLE : View.VISIBLE);
+            holder.txtDate.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getmDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(mTasks.get(position - 1).getmDue())) ? View.INVISIBLE : View.VISIBLE);
+        } catch (Exception e) {
+            holder.txtMonth.setVisibility(View.VISIBLE);
+            holder.txtDate.setVisibility(View.VISIBLE);
+        }
+
         if (new SimpleDateFormat("yyyyMMMdd").format(new Date()).equals(new SimpleDateFormat("yyyyMMMdd").format(current.getmDue()))) {
             holder.txtMonth.setTextColor(mContext.getResources().getColor(R.color.scarlet));
             holder.txtDate.setTextColor(mContext.getResources().getColor(R.color.scarlet));
@@ -53,6 +61,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             holder.txtMonth.setTextColor(mContext.getResources().getColor(R.color.pine_dark));
             holder.txtDate.setTextColor(mContext.getResources().getColor(R.color.pine_dark));
         }
+
+        holder.imgLabel.setColorFilter(current.getmLegendColor());
 
         if (current.getmDue().getTime() <= new Date().getTime()) {
             holder.imgTime.setImageResource(R.drawable.ic_report_problem_black_24dp);
@@ -62,14 +72,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             holder.imgTime.setImageResource(R.drawable.ic_schedule_black_24dp);
             holder.imgTime.setColorFilter(Color.BLACK);
             holder.txtTime.setTextColor(Color.BLACK);
-        }
-
-        try {
-            holder.txtMonth.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getmDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(mTasks.get(position - 1).getmDue())) ? View.INVISIBLE : View.VISIBLE);
-            holder.txtDate.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getmDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(mTasks.get(position - 1).getmDue())) ? View.INVISIBLE : View.VISIBLE);
-        } catch (Exception e) {
-            holder.txtMonth.setVisibility(View.VISIBLE);
-            holder.txtDate.setVisibility(View.VISIBLE);
         }
 
         try {
@@ -101,7 +103,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         private final TextView txtMonth, txtDate, txtLabel, txtTime;
         private final View divider;
         private final MaterialCardView taskCard;
-        private final ImageView imgTime;
+        private final ImageView imgLabel, imgTime;
 
         private TaskViewHolder(View itemView) {
             super(itemView);
@@ -111,6 +113,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             txtTime = itemView.findViewById(R.id.txtTime);
             divider = itemView.findViewById(R.id.divider);
             taskCard = itemView.findViewById(R.id.taskCard);
+            imgLabel = itemView.findViewById(R.id.imgLabel);
             imgTime = itemView.findViewById(R.id.imgTime);
         }
     }

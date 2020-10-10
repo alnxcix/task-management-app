@@ -26,8 +26,9 @@
 
     <!-- New task activity fields -->
     <string name="due_date">Due date</string>
-    <string name="notes_opt">Notes (Optional)</string>
     <string name="label">Label</string>
+    <string name="legend">Legend</string>
+    <string name="status">Status</string>
     <string name="time">Time</string>
 
     <!-- Prompt messages -->
@@ -46,8 +47,5 @@
     <string name="snack_task_open">Task marked as open.</string>
     <string name="snack_task_pending">Task marked as pending.</string>
     <string name="snack_task_saved">Task saved.</string>
-
-    <string name="status">Status</string>
-    <string name="theme">Theme</string>
 
 </resources>

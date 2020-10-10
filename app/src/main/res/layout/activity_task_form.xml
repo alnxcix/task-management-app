@@ -167,14 +167,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="@string/theme"
+                android:text="@string/legend"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider2" />
 
             <com.thebluealliance.spectrum.SpectrumPalette
-                android:id="@+id/spectrum"
+                android:id="@+id/spectrumPalette"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -187,7 +187,7 @@
                 android:layout_height="1dp"
                 android:layout_margin="16dp"
                 android:background="@android:color/darker_gray"
-                app:layout_constraintTop_toBottomOf="@id/spectrum" />
+                app:layout_constraintTop_toBottomOf="@id/spectrumPalette" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtInputNotes"
@@ -195,7 +195,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="@string/notes_opt"
+                android:hint="@string/notes"
                 app:layout_constraintTop_toBottomOf="@id/divider3">
 
                 <com.google.android.material.textfield.TextInputEditText

@@ -23,17 +23,17 @@ public class Task implements Serializable {
     protected Date mDue;
 
     @ColumnInfo(name = "status")
-    protected int mStatusId;
+    protected int mStatus;
 
-    @ColumnInfo(name = "color")
-    protected int mColorId;
+    @ColumnInfo(name = "legendColor")
+    protected int mLegendColor;
 
     public Task() {
         this.mLabel = null;
         this.mNotes = null;
         this.mDue = null;
-        this.mStatusId = -1;
-        this.mColorId = -1;
+        this.mStatus = -1;
+        this.mLegendColor = -1;
     }
 
     public int getId() {
@@ -64,19 +64,19 @@ public class Task implements Serializable {
         this.mDue = mDue;
     }
 
-    public int getmStatusId() {
-        return mStatusId;
+    public int getmStatus() {
+        return mStatus;
     }
 
-    public void setmStatusId(int mStatusId) {
-        this.mStatusId = mStatusId;
+    public void setmStatus(int mStatus) {
+        this.mStatus = mStatus;
     }
 
-    public int getmColorId() {
-        return mColorId;
+    public int getmLegendColor() {
+        return mLegendColor;
     }
 
-    public void setmColorId(int mColorId) {
-        this.mColorId = mColorId;
+    public void setmLegendColor(int mLegendColor) {
+        this.mLegendColor = mLegendColor;
     }
 }
