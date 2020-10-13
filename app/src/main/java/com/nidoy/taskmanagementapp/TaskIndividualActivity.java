@@ -35,7 +35,7 @@ public class TaskIndividualActivity extends AppCompatActivity {
         topAppBar.setTitleTextColor(task.getTagColor() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE);
         topAppBar.getMenu().findItem(R.id.edit).getIcon().setColorFilter(new PorterDuffColorFilter(task.getTagColor() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
         topAppBar.getMenu().findItem(R.id.delete).getIcon().setColorFilter(new PorterDuffColorFilter(task.getTagColor() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
-        ((TextView) findViewById(R.id.imgLegend)).getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getTagColor(), PorterDuff.Mode.SRC_IN));
+        ((TextView) findViewById(R.id.imgTag)).getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getTagColor(), PorterDuff.Mode.SRC_IN));
         ((TextView) findViewById(R.id.txtLabel)).setText(task.getLabel());
         ((ImageView) findViewById(R.id.imgStatus)).setImageResource(task.getStatusId() == R.string.open ? R.drawable.ic_wb_incandescent_24px : task.getStatusId() == R.string.pending ? R.drawable.ic_hourglass_empty_black_24dp : R.drawable.ic_done_all_24px);
         ((TextView) findViewById(R.id.txtStatus)).setText(task.getStatusId());

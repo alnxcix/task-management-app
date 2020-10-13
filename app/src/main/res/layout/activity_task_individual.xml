@@ -33,7 +33,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/imgLegend"
+                android:id="@+id/imgTag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -54,7 +54,7 @@
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgLegend"
+                app:layout_constraintStart_toEndOf="@+id/imgTag"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
