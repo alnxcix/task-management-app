@@ -3,6 +3,9 @@ package com.nidoy.taskmanagementapp;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.text.SimpleDateFormat;
-import java.util.Objects;
 
 public class TaskIndividualActivity extends AppCompatActivity {
 
@@ -23,21 +25,26 @@ public class TaskIndividualActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_individual);
-
-        MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
-
+        // Initialize task
         Task task = (Task) getIntent().getSerializableExtra("task");
-        topAppBar.setTitle(Objects.requireNonNull(task).getLabel());
-        topAppBar.setBackgroundColor(task.getLegendColor());
+        assert task != null;
+        // Initialize and setup UI elements
+        MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
+        topAppBar.setTitle(task.getLabel());
+        topAppBar.setBackgroundColor(task.getTagColor());
+        topAppBar.setTitleTextColor(task.getTagColor() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE);
+        topAppBar.getMenu().findItem(R.id.edit).getIcon().setColorFilter(new PorterDuffColorFilter(task.getTagColor() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
+        topAppBar.getMenu().findItem(R.id.delete).getIcon().setColorFilter(new PorterDuffColorFilter(task.getTagColor() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
+        ((TextView) findViewById(R.id.imgLegend)).getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getTagColor(), PorterDuff.Mode.SRC_IN));
         ((TextView) findViewById(R.id.txtLabel)).setText(task.getLabel());
-        ((ImageView) findViewById(R.id.imgStatus)).setImageResource(task.getStatus() == R.string.open ? R.drawable.ic_wb_incandescent_24px : task.getStatus() == R.string.pending ? R.drawable.ic_hourglass_empty_black_24dp : R.drawable.ic_done_all_24px);
-        ((TextView) findViewById(R.id.txtStatus)).setText(task.getStatus());
+        ((ImageView) findViewById(R.id.imgStatus)).setImageResource(task.getStatusId() == R.string.open ? R.drawable.ic_wb_incandescent_24px : task.getStatusId() == R.string.pending ? R.drawable.ic_hourglass_empty_black_24dp : R.drawable.ic_done_all_24px);
+        ((TextView) findViewById(R.id.txtStatus)).setText(task.getStatusId());
         ((TextView) findViewById(R.id.txtDueDate)).setText(new SimpleDateFormat("EEE., MMM. dd, yyyy").format(task.getDue()));
         ((TextView) findViewById(R.id.txtTime)).setText(new SimpleDateFormat("hh:mm aa").format(task.getDue()));
         ((TextView) findViewById(R.id.txtNotes)).setText(task.getNotes());
         findViewById(R.id.divider3).setVisibility(task.getNotes() == null || task.getNotes().equals("") ? View.GONE : View.VISIBLE);
         findViewById(R.id.imgNotes).setVisibility(task.getNotes() == null || task.getNotes().equals("") ? View.GONE : View.VISIBLE);
-
+        // Add event listeners
         topAppBar.setOnMenuItemClickListener(v -> {
             switch (v.getItemId()) {
                 case R.id.edit:

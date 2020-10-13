@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 
@@ -29,10 +32,8 @@ public class TaskFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_form);
-
-        // Get intent from previous activity
+        // Initialize task
         Task task = getIntent().getSerializableExtra("task") == null ? new Task() : (Task) getIntent().getSerializableExtra("task");
-
         // Initialize UI elements
         MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
         TextInputLayout txtInputLabel = findViewById(R.id.txtInputLabel);
@@ -41,14 +42,16 @@ public class TaskFormActivity extends AppCompatActivity {
         TextInputLayout txtInputNotes = findViewById(R.id.txtInputNotes);
         ChipGroup chipGroup = findViewById(R.id.chipGroup);
         SpectrumPalette spectrumPalette = findViewById(R.id.spectrumPalette);
-
-        // Set fields
+        // Set app bar
         topAppBar.setTitle(Objects.requireNonNull(task).getLabel() == null ? getString(R.string.new_task) : task.getLabel());
+        topAppBar.setBackgroundColor(task.getTagColor());
+        topAppBar.setTitleTextColor(task.getTagColor() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE);
+        topAppBar.getMenu().findItem(R.id.save).getIcon().setColorFilter(new PorterDuffColorFilter(task.getTagColor() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
+        // Set fields
         Objects.requireNonNull(txtInputLabel.getEditText()).setText(task.getLabel());
         Objects.requireNonNull(txtInputNotes.getEditText()).setText(task.getNotes());
         Objects.requireNonNull(txtInputDate.getEditText()).setText(task.getDue() == null ? null : new SimpleDateFormat("MMM. dd, yyyy").format(task.getDue()));
         Objects.requireNonNull(txtInputTime.getEditText()).setText(task.getDue() == null ? null : new SimpleDateFormat("hh:mm aa").format(task.getDue()));
-
         // Set calendar for date and time pickers
         Calendar cal = Calendar.getInstance();
         if (task.getDue() == null) {
@@ -56,33 +59,34 @@ public class TaskFormActivity extends AppCompatActivity {
             cal.set(Calendar.HOUR_OF_DAY, 0);
             cal.set(Calendar.MINUTE, 0);
         } else cal.setTime(task.getDue());
-
         // Set color picker
-        spectrumPalette.setOnColorSelectedListener(task::setLegendColor);
-        spectrumPalette.setSelectedColor(task.getLegendColor() == -1 ? getResources().getIntArray(R.array.color_picker)[0] : task.getLegendColor());
-
+        spectrumPalette.setOnColorSelectedListener(color -> {
+            task.setTagColor(color);
+            topAppBar.setBackgroundColor(color);
+            topAppBar.setTitleTextColor(color == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE);
+            topAppBar.getMenu().findItem(R.id.save).getIcon().setColorFilter(new PorterDuffColorFilter(color == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
+        });
+        spectrumPalette.setSelectedColor(task.getTagColor() == -1 ? getResources().getIntArray(R.array.color_picker)[0] : task.getTagColor());
         // Add event listeners
         chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
                 case R.id.chipOpen:
-                    task.setStatus(R.string.open);
+                    task.setStatusId(R.string.open);
                     break;
                 case R.id.chipPending:
-                    task.setStatus(R.string.pending);
+                    task.setStatusId(R.string.pending);
                     break;
                 case R.id.chipFinished:
-                    task.setStatus(R.string.finished);
+                    task.setStatusId(R.string.finished);
                     break;
             }
         });
-        chipGroup.check(task.getStatus() == R.string.open ? R.id.chipOpen : task.getStatus() == R.string.pending ? R.id.chipPending : task.getStatus() == R.string.finished ? R.id.chipFinished : R.id.chipOpen);
-
+        chipGroup.check(task.getStatusId() == R.string.open ? R.id.chipOpen : task.getStatusId() == R.string.pending ? R.id.chipPending : task.getStatusId() == R.string.finished ? R.id.chipFinished : R.id.chipOpen);
         txtInputDate.getEditText().setOnClickListener(v -> new DatePickerDialog(TaskFormActivity.this,
                 (view, year, month, dayOfMonth) -> {
                     cal.set(year, month, dayOfMonth);
                     Objects.requireNonNull(txtInputDate.getEditText()).setText(DateFormat.format("MM/dd/yyyy", cal));
                 }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show());
-
         txtInputTime.getEditText().setOnClickListener(v -> new TimePickerDialog(TaskFormActivity.this,
                 (view, hourOfDay, minute) -> {
                     cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), hourOfDay, minute);
@@ -95,7 +99,6 @@ public class TaskFormActivity extends AppCompatActivity {
                 task.setLabel(txtInputLabel.getEditText().getText().toString());
                 task.setNotes(txtInputNotes.getEditText().getText().toString());
                 task.setDue(cal.getTime());
-
                 setResult(RESULT_OK, new Intent().putExtra(EXTRA_REPLY, task));
                 finish();
             }

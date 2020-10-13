@@ -13,28 +13,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Request codes
     public static final int CREATE_TASK_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_TASK_ACTIVITY_REQUEST_CODE = 2;
-
-    // Task view models
     public static TaskViewModel taskViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // Initialize UI elements
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         NavController navController = Navigation.findNavController(this, R.id.fragment);
-
-        // Handling multiple taps by the user on the same navigation item
+        // Setup
         bottomNavigationView.setOnNavigationItemReselectedListener(v -> {
         });
-
-        // Enable action bar
-        // NavigationUI.setupActionBarWithNavController(this, navController, new AppBarConfiguration.Builder(R.id.tasksFragment, R.id.notesFragment, R.id.scheduleFragment).build());
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 

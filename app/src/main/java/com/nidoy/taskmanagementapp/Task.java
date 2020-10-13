@@ -10,23 +10,27 @@ import java.util.Date;
 public class Task implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    protected int id;
-    protected String label;
-    protected String notes;
-    protected Date due;
-    protected int status;
-    protected int legendColor;
+    private int id;
+    private String label;
+    private String notes;
+    private Date due;
+    private int statusId;
+    private int tagColor;
 
     public Task() {
         this.label = null;
         this.notes = null;
         this.due = null;
-        this.status = -1;
-        this.legendColor = -1;
+        this.statusId = -1;
+        this.tagColor = -1;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLabel() {
@@ -53,19 +57,19 @@ public class Task implements Serializable {
         this.due = due;
     }
 
-    public int getStatus() {
-        return status;
+    public int getStatusId() {
+        return statusId;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 
-    public int getLegendColor() {
-        return legendColor;
+    public int getTagColor() {
+        return tagColor;
     }
 
-    public void setLegendColor(int legendColor) {
-        this.legendColor = legendColor;
+    public void setTagColor(int tagColor) {
+        this.tagColor = tagColor;
     }
 }

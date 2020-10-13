@@ -27,11 +27,15 @@ public class TasksMainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // Navigate between tabs (Open, Pending, Finished, and Overdue)
-        ViewPager2 viewPager2 = requireActivity().findViewById(R.id.viewPager);
+        // Initialize UI elements and variables
         TabLayout tabLayout = requireActivity().findViewById(R.id.tabLayout);
-        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
+        ViewPager2 viewPager2 = requireActivity().findViewById(R.id.viewPager);
+        ExtendedFloatingActionButton btnNew = this.requireActivity().findViewById(R.id.btnNew);
+        // Setup
+        viewPager2.setAdapter(new TasksPagerAdapter(this.requireActivity()));
+        btnNew.setText(R.string.task);
+        btnNew.setOnClickListener(v -> requireActivity().startActivityForResult(new Intent(view.getContext(), TaskFormActivity.class), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE));
+        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
             switch (position) {
                 case 0: {
                     setTab(tab, R.string.open, R.drawable.ic_wb_incandescent_24px);
@@ -46,14 +50,7 @@ public class TasksMainFragment extends Fragment {
                     break;
                 }
             }
-        });
-        viewPager2.setAdapter(new TasksPagerAdapter(this.requireActivity()));
-        tabLayoutMediator.attach();
-
-        // ExtendedFloatingActionButton
-        ExtendedFloatingActionButton btnNew = this.requireActivity().findViewById(R.id.btnNew);
-        btnNew.setText(R.string.task);
-        btnNew.setOnClickListener(v -> requireActivity().startActivityForResult(new Intent(view.getContext(), TaskFormActivity.class), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE));
+        }).attach();
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

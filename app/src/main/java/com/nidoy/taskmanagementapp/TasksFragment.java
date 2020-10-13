@@ -41,10 +41,11 @@ public class TasksFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialize variables
+        // Initialize UI elements and variables
         final RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         final TaskListAdapter adapter = new TaskListAdapter(view.getContext());
 
+        // Setup
         adapter.setHasStableIds(true);
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);

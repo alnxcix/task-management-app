@@ -33,15 +33,28 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/imgLegend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                app:drawableLeftCompat="@drawable/ic_label_black_24dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/txtLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginTop="40dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgLegend"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -139,17 +152,14 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtStatus" />
 
-            <!-- TODO Fix imgNotes and txtNotes alignment for multiple lines -->
-
             <ImageView
                 android:id="@+id/imgNotes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                app:layout_constraintBottom_toBottomOf="@id/txtNotes"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/txtNotes"
+                app:layout_constraintTop_toBottomOf="@+id/divider3"
                 app:srcCompat="@drawable/ic_sticky_note_2_black_24dp"
                 tools:ignore="ContentDescription,VectorDrawableCompat" />
 
@@ -160,7 +170,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="24dp"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                 app:layout_constraintLeft_toRightOf="@id/imgNotes"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider3" />

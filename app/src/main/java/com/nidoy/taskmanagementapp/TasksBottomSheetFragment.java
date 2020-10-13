@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,70 +49,62 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        // Initialize UI elements
+        final TextView txtLabel = view.findViewById(R.id.txtLabel);
         final Chip chipOpen = view.findViewById(R.id.chipOpen);
         final Chip chipPending = view.findViewById(R.id.chipPending);
         final Chip chipFinished = view.findViewById(R.id.chipFinished);
-        final ImageView imgOverdue = view.findViewById(R.id.imgOverdue);
-        final TextView txtLabel = view.findViewById(R.id.txtLabel);
-        final TextView txtDueDate = view.findViewById(R.id.txtDueDate);
-        final TextView txtTime = view.findViewById(R.id.txtTime);
-        final TextView txtOverdue = view.findViewById(R.id.txtOverdue);
-        final TextView txtOpen = view.findViewById(R.id.txtOpen);
-        final TextView txtEdit = view.findViewById(R.id.txtEdit);
-        final TextView txtDelete = view.findViewById(R.id.txtDelete);
-
+        // Setup
         txtLabel.setText(task.getLabel());
-        txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getLegendColor(), PorterDuff.Mode.SRC_IN));
-        txtDueDate.setText(new SimpleDateFormat("MMM. dd, yyyy").format(task.getDue()));
-        txtTime.setText(new SimpleDateFormat("hh:mm aa").format(task.getDue()));
-        chipOpen.setChecked(task.getStatus() == R.string.open);
-        chipPending.setChecked(task.getStatus() == R.string.pending);
-        chipFinished.setChecked(task.getStatus() == R.string.finished);
-        chipOpen.setCheckable(task.getStatus() == R.string.open);
-        chipPending.setCheckable(task.getStatus() == R.string.pending);
-        chipFinished.setCheckable(task.getStatus() == R.string.finished);
-
+        txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getTagColor(), PorterDuff.Mode.SRC_IN));
+        ((TextView) view.findViewById(R.id.txtDueDate)).setText(new SimpleDateFormat("MMM. dd").format(task.getDue()));
+        ((TextView) view.findViewById(R.id.txtTime)).setText(new SimpleDateFormat("hh:mm aa").format(task.getDue()));
+        chipOpen.setChecked(task.getStatusId() == R.string.open);
+        chipPending.setChecked(task.getStatusId() == R.string.pending);
+        chipFinished.setChecked(task.getStatusId() == R.string.finished);
+        chipOpen.setCheckable(task.getStatusId() == R.string.open);
+        chipPending.setCheckable(task.getStatusId() == R.string.pending);
+        chipFinished.setCheckable(task.getStatusId() == R.string.finished);
         // Handle overdue indicators
-        imgOverdue.setVisibility(task.getDue().getTime() <= new Date().getTime() && task.getStatus() != R.string.finished ? View.VISIBLE : View.GONE);
-        txtOverdue.setVisibility(task.getDue().getTime() <= new Date().getTime() && task.getStatus() != R.string.finished ? View.VISIBLE : View.GONE);
-
+        view.findViewById(R.id.imgOverdue).setVisibility(task.getDue().getTime() <= new Date().getTime() && task.getStatusId() != R.string.finished ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.txtOverdue).setVisibility(task.getDue().getTime() <= new Date().getTime() && task.getStatusId() != R.string.finished ? View.VISIBLE : View.GONE);
+        // Add event listeners
         chipOpen.setOnClickListener(v -> {
-            if (task.getStatus() != R.string.open) {
+            if (task.getStatusId() != R.string.open) {
                 new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_open_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-                    task.setStatus(R.string.open);
+                    task.setStatusId(R.string.open);
                     MainActivity.taskViewModel.update(task);
                     this.dismiss();
                 }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
             }
         });
         chipPending.setOnClickListener(v -> {
-            if (task.getStatus() != R.string.pending) {
+            if (task.getStatusId() != R.string.pending) {
                 new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_pending_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-                    task.setStatus(R.string.pending);
+                    task.setStatusId(R.string.pending);
                     MainActivity.taskViewModel.update(task);
                     this.dismiss();
                 }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
             }
         });
         chipFinished.setOnClickListener(v -> {
-            if (task.getStatus() != R.string.finished) {
+            if (task.getStatusId() != R.string.finished) {
                 new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_finished_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-                    task.setStatus(R.string.finished);
+                    task.setStatusId(R.string.finished);
                     MainActivity.taskViewModel.update(task);
                     this.dismiss();
                 }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
             }
         });
-        txtOpen.setOnClickListener(v -> {
+        view.findViewById(R.id.txtOpen).setOnClickListener(v -> {
             requireActivity().startActivity(new Intent(requireActivity(), TaskIndividualActivity.class).putExtra("task", task));
             this.dismiss();
         });
-        txtEdit.setOnClickListener(v -> {
+        view.findViewById(R.id.txtEdit).setOnClickListener(v -> {
             requireActivity().startActivityForResult(new Intent(requireActivity(), TaskFormActivity.class).putExtra("task", task), MainActivity.UPDATE_TASK_ACTIVITY_REQUEST_CODE);
             this.dismiss();
         });
-        txtDelete.setOnClickListener(v -> new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_delete_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
+        view.findViewById(R.id.txtDelete).setOnClickListener(v -> new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_delete_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
             MainActivity.taskViewModel.delete(task);
             this.dismiss();
         }).setNegativeButton(requireContext().getText(R.string.no), null).create().show());

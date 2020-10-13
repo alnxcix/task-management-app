@@ -40,12 +40,10 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task current = tasks.get(position);
-
-        holder.txtLabel.setText(current.getLabel());
-        holder.txtTime.setText(new SimpleDateFormat("hh:mm aa").format(current.getDue()));
         holder.txtMonth.setText(new SimpleDateFormat("MMM").format(current.getDue()));
         holder.txtDate.setText(new SimpleDateFormat("dd").format(current.getDue()));
-
+        holder.txtLabel.setText(current.getLabel());
+        holder.txtTime.setText(new SimpleDateFormat("hh:mm aa").format(current.getDue()));
         try {
             holder.txtMonth.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(tasks.get(position - 1).getDue())) ? View.INVISIBLE : View.VISIBLE);
             holder.txtDate.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(tasks.get(position - 1).getDue())) ? View.INVISIBLE : View.VISIBLE);
@@ -53,25 +51,20 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             holder.txtMonth.setVisibility(View.VISIBLE);
             holder.txtDate.setVisibility(View.VISIBLE);
         }
-
         if (new SimpleDateFormat("yyyyMMMdd").format(new Date()).equals(new SimpleDateFormat("yyyyMMMdd").format(current.getDue()))) {
             holder.txtMonth.setTextColor(context.getResources().getColor(R.color.scarlet));
             holder.txtDate.setTextColor(context.getResources().getColor(R.color.scarlet));
         } else {
-            holder.txtMonth.setTextColor(context.getResources().getColor(R.color.pine_dark));
-            holder.txtDate.setTextColor(context.getResources().getColor(R.color.pine_dark));
+            holder.txtMonth.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+            holder.txtDate.setTextColor(context.getResources().getColor(R.color.colorPrimary));
         }
-
-        holder.txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(current.getLegendColor(), PorterDuff.Mode.SRC_IN));
-
+        holder.txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(current.getTagColor(), PorterDuff.Mode.SRC_IN));
         try {
             holder.divider.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(tasks.get(position + 1).getDue())) ? View.GONE : View.VISIBLE);
         } catch (Exception e) {
             holder.divider.setVisibility(View.GONE);
         }
-
-        holder.imgOverdue.setVisibility(current.getDue().getTime() <= new Date().getTime() && current.getStatus() != R.string.finished ? View.VISIBLE : View.INVISIBLE);
-
+        holder.imgOverdue.setVisibility(current.getDue().getTime() <= new Date().getTime() && current.getStatusId() != R.string.finished ? View.VISIBLE : View.INVISIBLE);
         holder.taskCard.setOnClickListener(v -> TasksBottomSheetFragment.newInstance(current).show(((FragmentActivity) context).getSupportFragmentManager(), "dialog"));
     }
 
