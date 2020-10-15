@@ -32,12 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CREATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Task task = (Task) data.getSerializableExtra(TaskFormActivity.EXTRA_REPLY);
-            taskViewModel.insert(task);
-        } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Task task = (Task) data.getSerializableExtra(TaskFormActivity.EXTRA_REPLY);
-            taskViewModel.update(task);
-        }
+        if (requestCode == CREATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)
+            taskViewModel.insert((Task) data.getSerializableExtra(TaskFormActivity.EXTRA_REPLY));
+        else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)
+            taskViewModel.update((Task) data.getSerializableExtra(TaskFormActivity.EXTRA_REPLY));
     }
 }

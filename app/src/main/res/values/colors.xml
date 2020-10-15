@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/gunmetal</color>
+    <color name="colorPrimary">@color/pine_dark</color>
     <color name="colorPrimaryDark">@color/gunmetal_dark</color>
-    <color name="colorAccent">@color/gunmetal_light</color>
+    <color name="colorAccent">@color/pine</color>
 
     -- Custom palette
     <color name="pine">#005867</color>
