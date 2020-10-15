@@ -14,23 +14,23 @@ import java.util.concurrent.Executors;
 
 @Database(entities = {Task.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
-public abstract class RoomDB extends RoomDatabase {
+public abstract class AppDatabase extends RoomDatabase {
 
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-    private static volatile RoomDB INSTANCE;
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+    private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
         }
     };
+    private static volatile AppDatabase INSTANCE;
 
-    static RoomDB getDatabase(final Context context) {
+    static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (RoomDB.class) {
+            synchronized (AppDatabase.class) {
                 if (INSTANCE == null)
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), RoomDB.class, "room_db").addCallback(sRoomDatabaseCallback).build();
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "db").addCallback(sRoomDatabaseCallback).build();
             }
         }
         return INSTANCE;

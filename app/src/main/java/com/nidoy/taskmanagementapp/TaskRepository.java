@@ -7,10 +7,10 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 class TaskRepository {
-    private TaskDAO taskDAO;
+    private final TaskDAO taskDAO;
 
     TaskRepository(Application application) {
-        RoomDB db = RoomDB.getDatabase(application);
+        AppDatabase db = AppDatabase.getDatabase(application);
         taskDAO = db.taskDAO();
     }
 
@@ -19,14 +19,14 @@ class TaskRepository {
     }
 
     void insert(Task task) {
-        RoomDB.databaseWriteExecutor.execute(() -> taskDAO.insert(task));
+        AppDatabase.databaseWriteExecutor.execute(() -> taskDAO.insert(task));
     }
 
     void update(Task task) {
-        RoomDB.databaseWriteExecutor.execute(() -> taskDAO.update(task));
+        AppDatabase.databaseWriteExecutor.execute(() -> taskDAO.update(task));
     }
 
     void delete(Task task) {
-        RoomDB.databaseWriteExecutor.execute(() -> taskDAO.delete(task));
+        AppDatabase.databaseWriteExecutor.execute(() -> taskDAO.delete(task));
     }
 }
