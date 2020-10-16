@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="24dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:drawableLeftCompat="@drawable/ic_label_black_24dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginEnd="4dp"
+                app:srcCompat="@drawable/ic_event_black_24dp"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/txtDueDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginEnd="4dp"
+                app:srcCompat="@drawable/ic_schedule_black_24dp"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button" />
+
+            <ImageView
+                android:id="@+id/imgOverdue"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginEnd="4dp"
+                app:srcCompat="@drawable/ic_report_problem_black_24dp"
+                app:tint="@color/scarlet"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/txtOverdue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/overdue"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:textColor="@color/scarlet" />
+
+        </LinearLayout>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            app:chipSpacingHorizontal="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOpen"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/open"
+                app:chipEndPadding="16dp"
+                app:chipStartPadding="16dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPending"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pending"
+                app:chipEndPadding="16dp"
+                app:chipStartPadding="16dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFinished"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/finished"
+                app:chipEndPadding="16dp"
+                app:chipStartPadding="16dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0.6"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/txtOpen"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="start|center_vertical"
+            android:paddingHorizontal="16dp"
+            android:text="@string/open"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:drawableLeftCompat="@drawable/ic_launch_black_24dp" />
+
+        <TextView
+            android:id="@+id/txtEdit"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="start|center_vertical"
+            android:paddingHorizontal="16dp"
+            android:text="@string/edit"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:drawableLeftCompat="@drawable/ic_create_black_24dp" />
+
+        <TextView
+            android:id="@+id/txtDelete"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="start|center_vertical"
+            android:paddingHorizontal="16dp"
+            android:text="@string/delete"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_marginBottom="8dp"
+            app:drawableLeftCompat="@drawable/ic_delete_black_24dp" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

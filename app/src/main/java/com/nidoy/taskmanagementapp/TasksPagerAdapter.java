@@ -16,18 +16,16 @@ public class TasksPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new OpenTasksFragment();
+                return TasksFragment.newInstance(R.string.open);
             case 1:
-                return new PendingTasksFragment();
-            case 2:
-                return new FinishedTasksFragment();
+                return TasksFragment.newInstance(R.string.pending);
             default:
-                return new OverdueTasksFragment();
+                return TasksFragment.newInstance(R.string.finished);
         }
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 3;
     }
 }

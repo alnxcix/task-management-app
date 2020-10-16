@@ -43,23 +43,5 @@
     <string name="toast_task_open">Task marked as open.</string>
     <string name="toast_task_pending">Task marked as pending.</string>
     <string name="toast_task_saved">Task saved.</string>
-    <string name="activity">Activity</string>
-    <string name="venue_optional">Venue (Optional)</string>
-    <string name="to">To</string>
-    <string name="from">From</string>
-    <string name="add">ADD</string>
-    <string name="day">Day</string>
-
-
-    <string-array name="days">
-        <item>Sun</item>
-        <item>Mon</item>
-        <item>Tue</item>
-        <item>Wed</item>
-        <item>Thu</item>
-        <item>Fri</item>
-        <item>Sat</item>
-    </string-array>
-
 
 </resources>

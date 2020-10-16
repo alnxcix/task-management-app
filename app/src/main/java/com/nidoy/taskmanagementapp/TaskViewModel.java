@@ -8,38 +8,26 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public class TaskViewModel extends AndroidViewModel {
-    private TaskRepository mTaskRepository;
+    private TaskRepository taskRepository;
 
     public TaskViewModel(Application application) {
         super(application);
-        mTaskRepository = new TaskRepository(application);
+        taskRepository = new TaskRepository(application);
     }
 
-    LiveData<List<Task>> getOpenTasks() {
-        return mTaskRepository.getOpenTasks();
-    }
-
-    LiveData<List<Task>> getPendingTasks() {
-        return mTaskRepository.getPendingTasks();
-    }
-
-    LiveData<List<Task>> getFinishedTasks() {
-        return mTaskRepository.getFinishedTasks();
-    }
-
-    LiveData<List<Task>> getOverdueTasks() {
-        return mTaskRepository.getOverdueTasks();
+    LiveData<List<Task>> getTaskByStatusId(int statusId) {
+        return taskRepository.getTasksByStatusId(statusId);
     }
 
     public void insert(Task task) {
-        mTaskRepository.insert(task);
+        taskRepository.insert(task);
     }
 
     public void update(Task task) {
-        mTaskRepository.update(task);
+        taskRepository.update(task);
     }
 
     public void delete(Task task) {
-        mTaskRepository.delete(task);
+        taskRepository.delete(task);
     }
 }

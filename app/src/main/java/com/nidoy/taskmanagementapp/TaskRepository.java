@@ -7,38 +7,26 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 class TaskRepository {
-    private TaskDAO mTaskDAO;
+    private final TaskDAO taskDAO;
 
     TaskRepository(Application application) {
-        RoomDB db = RoomDB.getDatabase(application);
-        mTaskDAO = db.taskDAO();
+        AppDatabase db = AppDatabase.getDatabase(application);
+        taskDAO = db.taskDAO();
     }
 
-    LiveData<List<Task>> getOpenTasks() {
-        return mTaskDAO.getTasksByStatus("Open");
-    }
-
-    LiveData<List<Task>> getPendingTasks() {
-        return mTaskDAO.getTasksByStatus("Pending");
-    }
-
-    LiveData<List<Task>> getFinishedTasks() {
-        return mTaskDAO.getTasksByStatus("Finished");
-    }
-
-    LiveData<List<Task>> getOverdueTasks() {
-        return mTaskDAO.getTasksByStatus("Overdue");
+    LiveData<List<Task>> getTasksByStatusId(int statusId) {
+        return taskDAO.getTasksByStatusId(statusId);
     }
 
     void insert(Task task) {
-        RoomDB.databaseWriteExecutor.execute(() -> mTaskDAO.insert(task));
+        AppDatabase.databaseWriteExecutor.execute(() -> taskDAO.insert(task));
     }
 
     void update(Task task) {
-        RoomDB.databaseWriteExecutor.execute(() -> mTaskDAO.update(task));
+        AppDatabase.databaseWriteExecutor.execute(() -> taskDAO.update(task));
     }
 
     void delete(Task task) {
-        RoomDB.databaseWriteExecutor.execute(() -> mTaskDAO.delete(task));
+        AppDatabase.databaseWriteExecutor.execute(() -> taskDAO.delete(task));
     }
 }

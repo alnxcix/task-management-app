@@ -1,151 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginEnd="10dp"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="4dp"
-    app:contentPadding="10dp"
-    app:strokeWidth="1dp">
+    android:clipToPadding="false">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/txtMonth"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/txtDate"
+        app:layout_constraintRight_toRightOf="@id/txtDate"
+        app:layout_constraintTop_toTopOf="@id/taskCard" />
 
-        <TextView
-            android:id="@+id/txtLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtMonth" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/imgCalendar"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_margin="5dp"
-                android:contentDescription="@string/due_date"
-                app:srcCompat="@drawable/ic_event_black_24dp"
-                app:tint="?android:attr/textColorSecondary"
-                tools:ignore="VectorDrawableCompat" />
-
-            <TextView
-                android:id="@+id/txtDueDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                android:textColor="?android:attr/textColorSecondary" />
-
-            <ImageView
-                android:id="@+id/imgClock"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_margin="5dp"
-                android:contentDescription="@string/time"
-                app:srcCompat="@drawable/ic_schedule_black_24dp"
-                app:tint="?android:attr/textColorSecondary"
-                tools:ignore="VectorDrawableCompat" />
-
-            <TextView
-                android:id="@+id/txtTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                android:textColor="?android:attr/textColorSecondary" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/txtNotes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            android:textColor="?android:attr/textColorSecondary" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/taskCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="@color/beige"
+        app:cardCornerRadius="6dp"
+        app:contentPadding="8dp"
+        app:layout_constraintLeft_toRightOf="@id/txtDate"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
+            <TextView
+                android:id="@+id/txtLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:drawablePadding="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:drawableLeftCompat="@drawable/ic_label_black_24dp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgTime"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="4dp"
+                app:layout_constraintBottom_toBottomOf="@id/txtTime"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:selectionRequired="true"
-                app:singleSelection="true">
+                app:layout_constraintTop_toTopOf="@id/txtTime"
+                app:srcCompat="@drawable/ic_schedule_black_24dp"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipOpen"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/open"
-                    app:chipEndPadding="8dp"
-                    app:chipStartPadding="8dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipPending"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pending"
-                    app:chipEndPadding="8dp"
-                    app:chipStartPadding="8dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipFinished"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/finished"
-                    app:chipEndPadding="8dp"
-                    app:chipStartPadding="8dp" />
-
-            </com.google.android.material.chip.ChipGroup>
-
-            <ImageButton
-                android:id="@+id/btnEdit"
+            <TextView
+                android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="18dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/edit"
-                android:tint="@android:color/darker_gray"
-                app:layout_constraintBottom_toBottomOf="@id/btnDelete"
-                app:layout_constraintRight_toLeftOf="@id/btnDelete"
-                app:layout_constraintTop_toTopOf="@id/btnDelete"
-                app:srcCompat="@drawable/ic_create_black_24dp"
-                tools:ignore="VectorDrawableCompat" />
+                android:layout_marginStart="4dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                app:layout_constraintBottom_toBottomOf="@id/imgOverdue"
+                app:layout_constraintLeft_toRightOf="@id/imgTime"
+                app:layout_constraintTop_toTopOf="@id/imgOverdue" />
 
-            <ImageButton
-                android:id="@+id/btnDelete"
+            <ImageView
+                android:id="@+id/imgOverdue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/delete"
-                android:tint="@android:color/darker_gray"
-                app:layout_constraintBottom_toBottomOf="@id/chipGroup"
+                android:layout_margin="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/chipGroup"
-                app:srcCompat="@drawable/ic_delete_black_24dp"
-                tools:ignore="VectorDrawableCompat" />
+                app:layout_constraintTop_toBottomOf="@id/txtLabel"
+                app:srcCompat="@drawable/ic_report_problem_black_24dp"
+                app:tint="@color/scarlet"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
-
-</com.google.android.material.card.MaterialCardView>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/beige"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/taskCard" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,5 @@
 package com.nidoy.taskmanagementapp;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -12,66 +10,66 @@ import java.util.Date;
 public class Task implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    protected int id;
+    private int id;
+    private String label;
+    private String notes;
+    private Date due;
+    private int statusId;
+    private int tagColor;
 
-    @NonNull
-    @ColumnInfo(name = "label")
-    protected String mLabel;
-
-    @ColumnInfo(name = "notes")
-    protected String mNotes;
-
-    @NonNull
-    @ColumnInfo(name = "due")
-    protected Date mDue;
-
-    @NonNull
-    @ColumnInfo(name = "status")
-    protected String mStatus;
-
-    public Task(@NonNull String mLabel, String mNotes, @NonNull Date mDue, @NonNull String mStatus) {
-        this.mLabel = mLabel;
-        this.mNotes = mNotes;
-        this.mDue = mDue;
-        this.mStatus = mStatus;
+    public Task() {
+        this.label = null;
+        this.notes = null;
+        this.due = null;
+        this.statusId = -1;
+        this.tagColor = -1;
     }
 
     public int getId() {
         return id;
     }
 
-    @NonNull
-    public String getmLabel() {
-        return mLabel;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setmLabel(@NonNull String mLabel) {
-        this.mLabel = mLabel;
+    public String getLabel() {
+        return label;
     }
 
-    public String getmNotes() {
-        return mNotes;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
-    public void setmNotes(String mNotes) {
-        this.mNotes = mNotes;
+    public String getNotes() {
+        return notes;
     }
 
-    @NonNull
-    public Date getmDue() {
-        return mDue;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
-    public void setmDue(@NonNull Date mDue) {
-        this.mDue = mDue;
+    public Date getDue() {
+        return due;
     }
 
-    @NonNull
-    public String getmStatus() {
-        return mStatus;
+    public void setDue(Date due) {
+        this.due = due;
     }
 
-    public void setmStatus(@NonNull String mStatus) {
-        this.mStatus = mStatus;
+    public int getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
+    }
+
+    public int getTagColor() {
+        return tagColor;
+    }
+
+    public void setTagColor(int tagColor) {
+        this.tagColor = tagColor;
     }
 }

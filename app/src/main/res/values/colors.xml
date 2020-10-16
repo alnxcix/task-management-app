@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">@color/pine_dark</color>
+    <color name="colorPrimaryDark">@color/gunmetal_dark</color>
+    <color name="colorAccent">@color/pine</color>
+
+    -- Custom palette
+    <color name="pine">#005867</color>
+    <color name="pine_dark">#002f3d</color>
+    <color name="pine_light">#418595</color>
+    <color name="mustard">#ffb335</color>
+    <color name="mustard_dark">#c78400</color>
+    <color name="mustard_light">#ffe568</color>
+    <color name="scarlet">#f34226</color>
+    <color name="scarlet_dark">#b80000</color>
+    <color name="scarlet_light">#ff7852</color>
+    <color name="beige">#f0edee</color>
+    <color name="gunmetal">#2e383d</color>
+    <color name="gunmetal_light">#576267</color>
+    <color name="gunmetal_dark">#051217</color>
+
+    -- For color pickers
+    <array name="color_picker">
+        <item>#0d6efd</item>
+        <item>#6610f2</item>
+        <item>#6f42c1</item>
+        <item>#d63384</item>
+        <item>#dc3545</item>
+        <item>#fd7e14</item>
+        <item>#ffc107</item>
+        <item>#198754</item>
+        <item>#20c997</item>
+        <item>#0dcaf0</item>
+        <item>#6c757d</item>
+        <item>#343a40</item>
+    </array>
 </resources>

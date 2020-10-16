@@ -15,8 +15,8 @@ public interface TaskDAO {
     @Insert
     void insert(Task task);
 
-    @Query("SELECT * from task_table WHERE status IS :status ORDER BY due ASC")
-    LiveData<List<Task>> getTasksByStatus(String status);
+    @Query("SELECT * from task_table WHERE statusId IS :statusId ORDER BY due ASC")
+    LiveData<List<Task>> getTasksByStatusId(int statusId);
 
     @Update
     void update(Task task);
