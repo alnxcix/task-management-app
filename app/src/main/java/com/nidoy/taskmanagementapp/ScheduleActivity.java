@@ -9,8 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
+
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Calendar;
