@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingBottom="90dp"
+        android:paddingBottom="80dp"
         tools:listitem="@layout/task_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
