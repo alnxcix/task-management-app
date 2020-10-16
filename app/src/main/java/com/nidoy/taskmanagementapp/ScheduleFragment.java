@@ -1,5 +1,6 @@
 package com.nidoy.taskmanagementapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+
+import java.util.Date;
 
 public class ScheduleFragment extends Fragment {
 
@@ -35,6 +38,7 @@ public class ScheduleFragment extends Fragment {
         btnNew.setText(R.string.schedule);
         btnNew.setOnClickListener(v -> {
             // TODO Navigate to NewScheduleActivity
+            requireActivity().startActivityForResult(new Intent(view.getContext(), ScheduleActivity.class).putExtra("sched", new Task("", "", new Date(), "")), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE);
         });
     }
 }
