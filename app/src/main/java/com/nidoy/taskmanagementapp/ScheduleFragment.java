@@ -12,8 +12,6 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
-import java.util.Date;
-
 public class ScheduleFragment extends Fragment {
 
     public ScheduleFragment() { /* Required empty public constructor */ }
@@ -33,12 +31,11 @@ public class ScheduleFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // ExtendedFloatingActionButton
         ExtendedFloatingActionButton btnNew = requireActivity().findViewById(R.id.btnNew);
         btnNew.setText(R.string.schedule);
         btnNew.setOnClickListener(v -> {
             // TODO Navigate to NewScheduleActivity
-            requireActivity().startActivityForResult(new Intent(view.getContext(), ScheduleActivity.class).putExtra("sched", new Task("", "", new Date(), "")), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE);
+            requireActivity().startActivityForResult(new Intent(view.getContext(), ScheduleFormActivity.class).putExtra("schedule", new Schedule()), MainActivity.CREATE_SCHEDULE_ACTIVITY_REQUEST_CODE);
         });
     }
 }

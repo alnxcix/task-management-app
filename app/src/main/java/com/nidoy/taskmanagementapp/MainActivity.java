@@ -15,6 +15,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int CREATE_TASK_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_TASK_ACTIVITY_REQUEST_CODE = 2;
+    public static final int CREATE_NOTE_ACTIVITY_REQUEST_CODE = 3;
+    public static final int UPDATE_NOTE_ACTIVITY_REQUEST_CODE = 4;
+    public static final int CREATE_SCHEDULE_ACTIVITY_REQUEST_CODE = 5;
+    public static final int UPDATE_SCHEDULE_ACTIVITY_REQUEST_CODE = 6;
     public static TaskViewModel taskViewModel;
 
     @Override
@@ -36,5 +40,14 @@ public class MainActivity extends AppCompatActivity {
             taskViewModel.insert((Task) data.getSerializableExtra(TaskFormActivity.EXTRA_REPLY));
         else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)
             taskViewModel.update((Task) data.getSerializableExtra(TaskFormActivity.EXTRA_REPLY));
+        else if (requestCode == CREATE_NOTE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // TODO Add logic here
+        } else if (requestCode == UPDATE_NOTE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // TODO Add logic here
+        } else if (requestCode == CREATE_SCHEDULE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // TODO Add logic here
+        } else if (requestCode == UPDATE_SCHEDULE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // TODO Add logic here
+        }
     }
 }

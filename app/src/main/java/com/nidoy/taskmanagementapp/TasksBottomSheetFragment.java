@@ -56,7 +56,7 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
         final Chip chipFinished = view.findViewById(R.id.chipFinished);
         // Setup
         txtLabel.setText(task.getLabel());
-        txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getTagColor(), PorterDuff.Mode.SRC_IN));
+        txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getThemeId(), PorterDuff.Mode.SRC_IN));
         ((TextView) view.findViewById(R.id.txtDueDate)).setText(new SimpleDateFormat("MMM. dd").format(task.getDue()));
         ((TextView) view.findViewById(R.id.txtTime)).setText(new SimpleDateFormat("hh:mm aa").format(task.getDue()));
         chipOpen.setChecked(task.getStatusId() == R.string.open);

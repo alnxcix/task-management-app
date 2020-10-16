@@ -15,14 +15,14 @@ public class Task implements Serializable {
     private String notes;
     private Date due;
     private int statusId;
-    private int tagColor;
+    private int themeId;
 
     public Task() {
         this.label = null;
         this.notes = null;
         this.due = null;
         this.statusId = -1;
-        this.tagColor = -1;
+        this.themeId = -1;
     }
 
     public int getId() {
@@ -65,11 +65,11 @@ public class Task implements Serializable {
         this.statusId = statusId;
     }
 
-    public int getTagColor() {
-        return tagColor;
+    public int getThemeId() {
+        return themeId;
     }
 
-    public void setTagColor(int tagColor) {
-        this.tagColor = tagColor;
+    public void setThemeId(int themeId) {
+        this.themeId = themeId;
     }
 }

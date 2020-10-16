@@ -59,14 +59,14 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             holder.txtMonth.setTextColor(context.getResources().getColor(R.color.colorPrimary));
             holder.txtDate.setTextColor(context.getResources().getColor(R.color.colorPrimary));
         }
-        holder.txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(current.getTagColor(), PorterDuff.Mode.SRC_IN));
+        holder.txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(current.getThemeId(), PorterDuff.Mode.SRC_IN));
         try {
             holder.divider.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(tasks.get(position + 1).getDue())) ? View.GONE : View.VISIBLE);
         } catch (Exception e) {
             holder.divider.setVisibility(View.GONE);
         }
         holder.imgOverdue.setVisibility(current.getDue().getTime() <= new Date().getTime() && current.getStatusId() != R.string.finished ? View.VISIBLE : View.INVISIBLE);
-        holder.taskCard.setRippleColor(ColorStateList.valueOf(current.getTagColor()));
+        holder.taskCard.setRippleColor(ColorStateList.valueOf(current.getThemeId()));
         holder.taskCard.setOnClickListener(v -> TasksBottomSheetFragment.newInstance(current).show(((FragmentActivity) context).getSupportFragmentManager(), "dialog"));
     }
 

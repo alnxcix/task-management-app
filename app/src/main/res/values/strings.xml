@@ -24,11 +24,23 @@
     <string name="overdue">Overdue</string>
     <string name="tasks">Tasks</string>
 
-    <!-- New task activity fields -->
+    <!-- Common fields -->
+    <string name="theme">Theme</string>
+
+    <!-- Activity form fields -->
     <string name="due_date">Due date</string>
     <string name="notes_opt">Notes (Optional)</string>
     <string name="label">Label</string>
     <string name="time">Time</string>
+    <string name="status">Status</string>
+
+    <!-- Schedule form fields -->
+    <string name="course">Course</string>
+    <string name="instructors">Instructors</string>
+    <string name="venue">Venue</string>
+    <string name="day">Day</string>
+    <string name="start_time">Start time</string>
+    <string name="end_time">End time</string>
 
     <!-- Prompt messages -->
     <string name="prompt_open_task">Mark this task as open?</string>
@@ -36,12 +48,7 @@
     <string name="prompt_finished_task">Mark this task as finished?</string>
     <string name="prompt_delete_task">Delete this task?</string>
 
-    <!-- Toast messages -->
-    <string name="toast_changes_saved">Changes saved.</string>
-    <string name="toast_task_deleted">Task deleted.</string>
-    <string name="toast_task_finished">Task marked finished.</string>
-    <string name="toast_task_open">Task marked as open.</string>
-    <string name="toast_task_pending">Task marked as pending.</string>
-    <string name="toast_task_saved">Task saved.</string>
+    <!-- Snack bar messages -->
+    <string name="snack_fill_up">Fill up all required fields.</string>
 
 </resources>

@@ -34,10 +34,10 @@ public class TaskIndividualActivity extends AppCompatActivity {
         MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
         FloatingActionButton btnEdit = findViewById(R.id.btnEdit);
         topAppBar.setTitle(task.getLabel());
-        topAppBar.setBackgroundColor(task.getTagColor());
-        topAppBar.setTitleTextColor(task.getTagColor() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE);
-        topAppBar.getMenu().findItem(R.id.menuDelete).getIcon().setColorFilter(new PorterDuffColorFilter(task.getTagColor() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
-        ((TextView) findViewById(R.id.imgTag)).getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getTagColor(), PorterDuff.Mode.SRC_IN));
+        topAppBar.setBackgroundColor(task.getThemeId());
+        topAppBar.setTitleTextColor(task.getThemeId() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE);
+        topAppBar.getMenu().findItem(R.id.menuDelete).getIcon().setColorFilter(new PorterDuffColorFilter(task.getThemeId() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
+        ((TextView) findViewById(R.id.imgLabel)).getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getThemeId(), PorterDuff.Mode.SRC_IN));
         ((TextView) findViewById(R.id.txtLabel)).setText(task.getLabel());
         ((ImageView) findViewById(R.id.imgStatus)).setImageResource(task.getStatusId() == R.string.open ? R.drawable.ic_wb_incandescent_24px : task.getStatusId() == R.string.pending ? R.drawable.ic_hourglass_empty_black_24dp : R.drawable.ic_done_all_24px);
         ((TextView) findViewById(R.id.txtStatus)).setText(task.getStatusId());
@@ -46,8 +46,8 @@ public class TaskIndividualActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.txtNotes)).setText(task.getNotes());
         findViewById(R.id.divider3).setVisibility(task.getNotes() == null || task.getNotes().equals("") ? View.GONE : View.VISIBLE);
         findViewById(R.id.imgNotes).setVisibility(task.getNotes() == null || task.getNotes().equals("") ? View.GONE : View.VISIBLE);
-        btnEdit.setBackgroundTintList(ColorStateList.valueOf(task.getTagColor()));
-        btnEdit.getDrawable().setColorFilter(new PorterDuffColorFilter(task.getTagColor() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
+        btnEdit.setBackgroundTintList(ColorStateList.valueOf(task.getThemeId()));
+        btnEdit.getDrawable().setColorFilter(new PorterDuffColorFilter(task.getThemeId() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
         // Add event listeners
         topAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menuDelete) {
