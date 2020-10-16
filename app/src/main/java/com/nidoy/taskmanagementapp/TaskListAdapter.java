@@ -2,6 +2,7 @@ package com.nidoy.taskmanagementapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.LayoutInflater;
@@ -65,6 +66,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             holder.divider.setVisibility(View.GONE);
         }
         holder.imgOverdue.setVisibility(current.getDue().getTime() <= new Date().getTime() && current.getStatusId() != R.string.finished ? View.VISIBLE : View.INVISIBLE);
+        holder.taskCard.setRippleColor(ColorStateList.valueOf(current.getTagColor()));
         holder.taskCard.setOnClickListener(v -> TasksBottomSheetFragment.newInstance(current).show(((FragmentActivity) context).getSupportFragmentManager(), "dialog"));
     }
 
