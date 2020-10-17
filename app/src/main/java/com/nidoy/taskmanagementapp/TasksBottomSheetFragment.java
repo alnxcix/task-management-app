@@ -37,7 +37,7 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        task = (getArguments() == null ? null : (Task) getArguments().getSerializable(ARG_TASK));
+        task = getArguments() == null ? null : (Task) getArguments().getSerializable(ARG_TASK);
     }
 
     @Override

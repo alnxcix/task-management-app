@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int CREATE_SCHEDULE_ACTIVITY_REQUEST_CODE = 5;
     public static final int UPDATE_SCHEDULE_ACTIVITY_REQUEST_CODE = 6;
     public static TaskViewModel taskViewModel;
+    public static ScheduleViewModel scheduleViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +45,9 @@ public class MainActivity extends AppCompatActivity {
             // TODO Add logic here
         } else if (requestCode == UPDATE_NOTE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             // TODO Add logic here
-        } else if (requestCode == CREATE_SCHEDULE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // TODO Add logic here
-        } else if (requestCode == UPDATE_SCHEDULE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // TODO Add logic here
-        }
+        } else if (requestCode == CREATE_SCHEDULE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)
+            scheduleViewModel.insert((Schedule) data.getSerializableExtra(ScheduleFormActivity.EXTRA_REPLY));
+        else if (requestCode == UPDATE_SCHEDULE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)
+            scheduleViewModel.update((Schedule) data.getSerializableExtra(ScheduleFormActivity.EXTRA_REPLY));
     }
 }

@@ -51,9 +51,6 @@ public class TaskFormActivity extends AppCompatActivity {
         SpectrumPalette spectrumPalette = findViewById(R.id.spectrumPalette);
         // Set app bar
         topAppBar.setTitle(Objects.requireNonNull(task).getLabel() == null ? getString(R.string.new_task) : task.getLabel());
-        topAppBar.setBackgroundColor(task.getThemeId());
-        topAppBar.setTitleTextColor(task.getThemeId() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE);
-        topAppBar.getMenu().findItem(R.id.save).getIcon().setColorFilter(new PorterDuffColorFilter(task.getThemeId() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
         // Set fields
         editTextLabel.setText(task.getLabel());
         editTextNotes.setText(task.getNotes());

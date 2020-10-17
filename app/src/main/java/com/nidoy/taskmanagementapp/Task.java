@@ -11,11 +11,9 @@ public class Task implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private String label;
-    private String notes;
+    private String label, notes;
     private Date due;
-    private int statusId;
-    private int themeId;
+    private int statusId, themeId;
 
     public Task() {
         this.label = null;

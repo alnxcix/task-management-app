@@ -15,6 +15,6 @@
         tools:layout="@layout/fragment_notes" />
     <fragment
         android:id="@+id/scheduleFragment"
-        android:name="com.nidoy.taskmanagementapp.ScheduleFragment"
-        tools:layout="@layout/fragment_schedule" />
+        android:name="com.nidoy.taskmanagementapp.SchedulesFragment"
+        tools:layout="@layout/fragment_schedules" />
 </navigation>

@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Task.class}, version = 1, exportSchema = false)
+@Database(entities = {Task.class, Schedule.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -37,5 +37,7 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public abstract TaskDAO taskDAO();
+
+    public abstract ScheduleDAO scheduleDAO();
 
 }

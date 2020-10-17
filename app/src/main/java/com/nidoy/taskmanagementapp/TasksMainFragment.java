@@ -56,6 +56,6 @@ public class TasksMainFragment extends Fragment {
     @SuppressLint("UseCompatLoadingForDrawables")
     private void setTab(TabLayout.Tab tab, int label, int icon) {
         tab.setText(getResources().getString(label));
-        tab.setIcon(getResources().getDrawable(icon));
+//        tab.setIcon(getResources().getDrawable(icon));
     }
 }
