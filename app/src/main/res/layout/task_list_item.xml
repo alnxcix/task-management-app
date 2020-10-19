@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 app:layout_constraintBottom_toBottomOf="@id/imgOverdue"
                 app:layout_constraintLeft_toRightOf="@id/imgTime"
                 app:layout_constraintTop_toTopOf="@id/imgOverdue" />
