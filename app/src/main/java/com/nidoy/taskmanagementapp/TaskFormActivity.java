@@ -7,7 +7,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.view.MenuItem;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,7 +68,7 @@ public class TaskFormActivity extends AppCompatActivity {
             task.setThemeId(color);
             topAppBar.setBackgroundColor(color);
             topAppBar.setTitleTextColor(color == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE);
-            ((MenuItem) findViewById(R.id.menuSave)).getIcon().setColorFilter(new PorterDuffColorFilter(color == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
+            topAppBar.getMenu().findItem(R.id.menuSave).getIcon().setColorFilter(new PorterDuffColorFilter(color == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
         });
         spectrumPalette.setSelectedColor(task.getThemeId() == -1 ? getResources().getIntArray(R.array.color_picker)[0] : task.getThemeId());
         // Add event listeners

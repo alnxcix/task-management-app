@@ -43,6 +43,7 @@ public class ScheduleIndividualActivity extends AppCompatActivity {
         topAppBar.setTitle(schedule.getName());
         topAppBar.setTitleTextColor(dynamicColor);
         topAppBar.setBackgroundColor(schedule.getThemeId());
+        topAppBar.getMenu().findItem(R.id.menuDelete).getIcon().setColorFilter(new PorterDuffColorFilter(dynamicColor, PorterDuff.Mode.SRC_IN));
         tabLayout.setBackgroundColor(schedule.getThemeId());
         tabLayout.setTabTextColors(ColorUtils.setAlphaComponent(dynamicColor, 154), dynamicColor);
         btnNew.getIcon().setColorFilter(dynamicColorFilter);
