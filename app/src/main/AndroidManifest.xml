@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScheduleFormActivity"></activity>
+        <activity android:name=".ScheduleFormActivity" />
         <activity android:name=".NoteFormActivity" />
         <activity android:name=".NoteIndividualActivity" />
         <activity android:name=".TaskFormActivity" />

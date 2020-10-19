@@ -14,8 +14,8 @@ public class ScheduleRepository {
         scheduleDAO = db.scheduleDAO();
     }
 
-    LiveData<List<Schedule>> getSchedules() {
-        return scheduleDAO.getSchedules();
+    LiveData<List<Schedule>> getSortedSchedulesBy(String prop) {
+        return scheduleDAO.getSortedSchedulesBy(prop);
     }
 
     void insert(Schedule schedule) {

@@ -28,7 +28,7 @@ public class TasksFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        statusId = (getArguments() == null ? -1 : getArguments().getInt(ARG_STATUS_ID));
+        statusId = getArguments() == null ? -1 : getArguments().getInt(ARG_STATUS_ID);
     }
 
     @Override

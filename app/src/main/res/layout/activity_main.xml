@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        app:backgroundTint="@color/mustard"
+        app:backgroundTint="@color/beige"
         app:icon="@drawable/ic_add_black_24dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent" />

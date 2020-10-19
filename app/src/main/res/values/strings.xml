@@ -40,6 +40,7 @@
     <string name="new_schedule_name">Give your new schedule a name.</string>
     <string name="name">Name</string>
     <string name="txt_class">Class</string>
+    <string name="class_name">Class name</string>
     <string name="instructors">Instructors</string>
     <string name="venue">Venue</string>
     <string name="day">Day</string>
@@ -58,5 +59,16 @@
     <string name="snack_fill_up">Fill up all required fields.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="sun">Sunday</string>
+    <string name="mon">Monday</string>
+    <string name="tue">Tuesday</string>
+    <string name="wed">Wednesday</string>
+    <string name="thu">Thursday</string>
+    <string name="fri">Friday</string>
+    <string name="sat">Saturday</string>
+
+
+    <string name="new_class">New Class</string>
 
 </resources>

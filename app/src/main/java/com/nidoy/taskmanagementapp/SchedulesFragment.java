@@ -41,13 +41,13 @@ public class SchedulesFragment extends Fragment {
         adapter.setHasStableIds(true);
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), 1));
+        recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
         btnNew.setText(R.string.schedule);
         // Event listeners
         btnNew.setOnClickListener(v -> requireActivity().startActivityForResult(new Intent(view.getContext(), ScheduleFormActivity.class), MainActivity.CREATE_SCHEDULE_ACTIVITY_REQUEST_CODE));
 
         MainActivity.scheduleViewModel = new ViewModelProvider(requireActivity()).get(ScheduleViewModel.class);
         // Update the cached copy of the schedules in the adapter.
-        MainActivity.scheduleViewModel.getSchedules().observe(getViewLifecycleOwner(), adapter::setSchedules);
+        MainActivity.scheduleViewModel.getSortedSchedulesBy("name").observe(getViewLifecycleOwner(), adapter::setSchedules);
     }
 }

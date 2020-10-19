@@ -1,7 +1,7 @@
 package com.nidoy.taskmanagementapp;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,10 +42,9 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     public void onBindViewHolder(@NonNull ScheduleListAdapter.ScheduleViewHolder holder, int position) {
         Schedule current = schedules.get(position);
 
-        holder.scheduleCard.setCardBackgroundColor(current.getThemeId());
-        holder.imgFolder.setColorFilter(current.getThemeId() == context.getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE);
+        holder.imgFolder.setColorFilter(current.getThemeId());
         holder.txtName.setText(current.getName());
-        holder.txtName.setTextColor(current.getThemeId() == context.getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE);
+        holder.scheduleCard.setRippleColor(ColorStateList.valueOf(current.getThemeId()));
         holder.scheduleCard.setOnClickListener(v -> SchedulesBottomSheetFragment.newInstance(current).show(((FragmentActivity) context).getSupportFragmentManager(), "dialog"));
     }
 

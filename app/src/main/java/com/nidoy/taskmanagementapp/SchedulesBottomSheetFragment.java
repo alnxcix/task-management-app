@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,14 +46,11 @@ public class SchedulesBottomSheetFragment extends BottomSheetDialogFragment {
         // Initialize UI elements
         final TextView txtHeading = view.findViewById(R.id.txtHeading);
         final TextView txtSubHeading = view.findViewById(R.id.txtSubHeading);
-        final TextView txtOpen = view.findViewById(R.id.txtOpen);
-        final TextView txtEdit = view.findViewById(R.id.txtEdit);
-        final TextView txtDelete = view.findViewById(R.id.txtDelete);
         // Setup
         txtHeading.setText(schedule.getName());
         txtHeading.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(schedule.getThemeId(), PorterDuff.Mode.SRC_IN));
         view.findViewById(R.id.txtOpen).setOnClickListener(v -> {
-            Toast.makeText(view.getContext(), "Add logic here.", Toast.LENGTH_SHORT).show();
+            requireActivity().startActivity(new Intent(requireActivity(), ScheduleIndividualActivity.class).putExtra("schedule", schedule));
             this.dismiss();
         });
         view.findViewById(R.id.txtEdit).setOnClickListener(v -> {

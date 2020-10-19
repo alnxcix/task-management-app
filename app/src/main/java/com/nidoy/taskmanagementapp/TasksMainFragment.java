@@ -34,7 +34,6 @@ public class TasksMainFragment extends Fragment {
         // Setup
         viewPager2.setAdapter(new TasksPagerAdapter(this.requireActivity()));
         btnNew.setText(R.string.task);
-        btnNew.setOnClickListener(v -> requireActivity().startActivityForResult(new Intent(view.getContext(), TaskFormActivity.class), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE));
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
             switch (position) {
                 case 0: {
@@ -51,6 +50,8 @@ public class TasksMainFragment extends Fragment {
                 }
             }
         }).attach();
+        // Event listeners
+        btnNew.setOnClickListener(v -> requireActivity().startActivityForResult(new Intent(view.getContext(), TaskFormActivity.class), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE));
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

@@ -16,8 +16,8 @@ public class ScheduleViewModel extends AndroidViewModel {
         scheduleRepository = new ScheduleRepository(application);
     }
 
-    LiveData<List<Schedule>> getSchedules() {
-        return scheduleRepository.getSchedules();
+    LiveData<List<Schedule>> getSortedSchedulesBy(String prop) {
+        return scheduleRepository.getSortedSchedulesBy(prop);
     }
 
     public void insert(Schedule schedule) {
