@@ -3,11 +3,14 @@ package com.nidoy.taskmanagementapp;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "class_table", foreignKeys = @ForeignKey(entity = Schedule.class, parentColumns = "id", childColumns = "scheduleId", onDelete = ForeignKey.CASCADE))
+@Entity(tableName = "class_table",
+        foreignKeys = @ForeignKey(entity = Schedule.class, parentColumns = "id", childColumns = "scheduleId", onDelete = ForeignKey.CASCADE),
+        indices = {@Index(value = {"scheduleId"}, unique = true)})
 public class Class implements Serializable {
 
     @NonNull
