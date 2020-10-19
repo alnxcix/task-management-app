@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:menu="@menu/menu_top_nav_task" />
+            app:menu="@menu/menu_top_nav_delete" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

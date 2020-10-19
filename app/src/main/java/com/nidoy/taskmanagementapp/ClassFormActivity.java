@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,7 +62,7 @@ public class ClassFormActivity extends AppCompatActivity {
             c.setThemeId(color);
             topAppBar.setBackgroundColor(color);
             topAppBar.setTitleTextColor(color == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE);
-            topAppBar.getMenu().findItem(R.id.save).getIcon().setColorFilter(new PorterDuffColorFilter(color == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
+            ((MenuItem) findViewById(R.id.menuSave)).getIcon().setColorFilter(new PorterDuffColorFilter(color == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
         });
         spectrumPalette.setSelectedColor(c.getThemeId() == -1 ? getResources().getIntArray(R.array.color_picker)[0] : c.getThemeId());
         editTextStartTime.setOnClickListener(v1 -> {
@@ -92,7 +93,7 @@ public class ClassFormActivity extends AppCompatActivity {
             });
             materialTimePicker2.show(getSupportFragmentManager(), "TIME_PICKER");
         });
-        findViewById(R.id.save).setOnClickListener(v -> {
+        findViewById(R.id.menuSave).setOnClickListener(v -> {
             c.setName(editTextClassName.getText().toString());
             c.setInstructors(editTextInstructors.getText().toString());
             c.setVenue(editTextVenue.getText().toString());

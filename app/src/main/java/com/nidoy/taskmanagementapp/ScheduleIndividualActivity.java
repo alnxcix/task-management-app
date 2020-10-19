@@ -21,6 +21,8 @@ import java.util.Objects;
 public class ScheduleIndividualActivity extends AppCompatActivity {
 
     private static final int CREATE_CLASS_ACTIVITY_REQUEST_CODE = 1;
+    private static final int UPDATE_CLASS_ACTIVITY_REQUEST_CODE = 2;
+    private static Schedule schedule;
     public static ClassViewModel classViewModel;
 
     @Override
@@ -28,7 +30,7 @@ public class ScheduleIndividualActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_individual);
         // Initialize UI elements and variables
-        Schedule schedule = (Schedule) getIntent().getSerializableExtra("schedule");
+        schedule = (Schedule) getIntent().getSerializableExtra("schedule");
         assert schedule != null;
         int dynamicColor = schedule.getThemeId() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE;
         PorterDuffColorFilter dynamicColorFilter = new PorterDuffColorFilter(dynamicColor, PorterDuff.Mode.SRC_IN);
@@ -85,7 +87,10 @@ public class ScheduleIndividualActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CREATE_CLASS_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)
+        if (requestCode == CREATE_CLASS_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             classViewModel.insert((Class) data.getSerializableExtra(ClassFormActivity.EXTRA_REPLY));
+            schedule.setNumClasses(schedule.getNumClasses() + 1);
+            MainActivity.scheduleViewModel.update(schedule);
+        }
     }
 }

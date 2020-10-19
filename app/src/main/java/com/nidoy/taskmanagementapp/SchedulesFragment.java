@@ -48,6 +48,6 @@ public class SchedulesFragment extends Fragment {
 
         MainActivity.scheduleViewModel = new ViewModelProvider(requireActivity()).get(ScheduleViewModel.class);
         // Update the cached copy of the schedules in the adapter.
-        MainActivity.scheduleViewModel.getSortedSchedulesBy("name").observe(getViewLifecycleOwner(), adapter::setSchedules);
+        MainActivity.scheduleViewModel.getSchedulesSortedByName().observe(getViewLifecycleOwner(), adapter::setSchedules);
     }
 }

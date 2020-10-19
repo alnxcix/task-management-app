@@ -8,9 +8,7 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "class_table",
-        foreignKeys = @ForeignKey(entity = Schedule.class, parentColumns = "id", childColumns = "scheduleId", onDelete = ForeignKey.CASCADE),
-        indices = {@Index(value = {"scheduleId"}, unique = true)})
+@Entity(tableName = "class_table", foreignKeys = @ForeignKey(entity = Schedule.class, parentColumns = "id", childColumns = "scheduleId", onDelete = ForeignKey.CASCADE), indices = {@Index(value = {"scheduleId"}, unique = true)})
 public class Class implements Serializable {
 
     @NonNull

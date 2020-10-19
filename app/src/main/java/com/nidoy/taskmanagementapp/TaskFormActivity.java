@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,7 +69,7 @@ public class TaskFormActivity extends AppCompatActivity {
             task.setThemeId(color);
             topAppBar.setBackgroundColor(color);
             topAppBar.setTitleTextColor(color == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE);
-            topAppBar.getMenu().findItem(R.id.save).getIcon().setColorFilter(new PorterDuffColorFilter(color == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
+            ((MenuItem) findViewById(R.id.menuSave)).getIcon().setColorFilter(new PorterDuffColorFilter(color == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
         });
         spectrumPalette.setSelectedColor(task.getThemeId() == -1 ? getResources().getIntArray(R.array.color_picker)[0] : task.getThemeId());
         // Add event listeners
@@ -113,7 +114,7 @@ public class TaskFormActivity extends AppCompatActivity {
             });
             materialTimePicker.show(getSupportFragmentManager(), "TIME_PICKER");
         });
-        findViewById(R.id.save).setOnClickListener(v -> {
+        findViewById(R.id.menuSave).setOnClickListener(v -> {
             if (editTextLabel.getText().toString().isEmpty() || editTextDueDate.getText().toString().isEmpty() || editTextTime.getText().toString().isEmpty())
                 Snackbar.make(findViewById(R.id.parent), getString(R.string.snack_fill_up), Snackbar.LENGTH_SHORT).show();
             else {

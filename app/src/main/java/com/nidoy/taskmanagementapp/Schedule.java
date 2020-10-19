@@ -11,11 +11,12 @@ public class Schedule implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
-    private int themeId;
+    private int themeId, numClasses;
 
     public Schedule() {
         this.name = null;
         this.themeId = -1;
+        this.numClasses = 0;
     }
 
     public int getId() {
@@ -40,5 +41,13 @@ public class Schedule implements Serializable {
 
     public void setThemeId(int themeId) {
         this.themeId = themeId;
+    }
+
+    public int getNumClasses() {
+        return numClasses;
+    }
+
+    public void setNumClasses(int numClasses) {
+        this.numClasses = numClasses;
     }
 }

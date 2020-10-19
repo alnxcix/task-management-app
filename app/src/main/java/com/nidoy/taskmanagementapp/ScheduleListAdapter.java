@@ -1,5 +1,6 @@
 package com.nidoy.taskmanagementapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
@@ -38,12 +39,13 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         return new ScheduleViewHolder(inflater.inflate(R.layout.schedule_list_item, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ScheduleListAdapter.ScheduleViewHolder holder, int position) {
         Schedule current = schedules.get(position);
-
         holder.imgFolder.setColorFilter(current.getThemeId());
         holder.txtName.setText(current.getName());
+        holder.txtNumClass.setText(current.getNumClasses() + " " + context.getString(R.string.txt_class));
         holder.scheduleCard.setRippleColor(ColorStateList.valueOf(current.getThemeId()));
         holder.scheduleCard.setOnClickListener(v -> SchedulesBottomSheetFragment.newInstance(current).show(((FragmentActivity) context).getSupportFragmentManager(), "dialog"));
     }
@@ -61,13 +63,14 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     public static class ScheduleViewHolder extends RecyclerView.ViewHolder {
         private final MaterialCardView scheduleCard;
         private final ImageView imgFolder;
-        private final TextView txtName;
+        private final TextView txtName, txtNumClass;
 
         private ScheduleViewHolder(View itemView) {
             super(itemView);
             scheduleCard = itemView.findViewById(R.id.scheduleCard);
             imgFolder = itemView.findViewById(R.id.imgFolder);
             txtName = itemView.findViewById(R.id.txtName);
+            txtNumClass = itemView.findViewById(R.id.txtNumClasses);
         }
     }
 }
