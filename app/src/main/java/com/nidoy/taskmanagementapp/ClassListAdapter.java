@@ -43,8 +43,8 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
         holder.txtName.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(c.getThemeId(), PorterDuff.Mode.SRC_IN));
         holder.txtInstructors.setText(c.getInstructors());
         holder.txtInstructors.setVisibility(c.getInstructors() == null ? View.GONE : View.VISIBLE);
-        holder.txtVenue.setText(c.getVenue());
-        holder.txtVenue.setVisibility(c.getVenue() == null ? View.GONE : View.VISIBLE);
+//        holder.txtVenue.setText(c.getVenue());
+//        holder.txtVenue.setVisibility(c.getVenue() == null ? View.GONE : View.VISIBLE);
     }
 
     @Override

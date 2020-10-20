@@ -14,10 +14,6 @@ public class ClassRepository {
         classDAO = db.classDAO();
     }
 
-    LiveData<List<Class>> getClasses() {
-        return classDAO.getClasses();
-    }
-
     LiveData<List<Class>> getClassesByScheduleId(final int scheduleId) {
         return classDAO.getClassesBySchedule(scheduleId);
     }

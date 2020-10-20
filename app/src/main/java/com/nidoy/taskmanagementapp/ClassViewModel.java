@@ -15,10 +15,6 @@ public class ClassViewModel extends AndroidViewModel {
         classRepository = new ClassRepository(application);
     }
 
-    LiveData<List<Class>> getClasses() {
-        return classRepository.getClasses();
-    }
-
     LiveData<List<Class>> getClassesByScheduleId(final int scheduleId) {
         return classRepository.getClassesByScheduleId(scheduleId);
     }

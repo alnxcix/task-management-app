@@ -2,30 +2,40 @@ package com.nidoy.taskmanagementapp;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.time.LocalTime;
 
-@Entity(tableName = "timeSlot_table", foreignKeys = @ForeignKey(entity = Class.class, parentColumns = "name", childColumns = "className", onDelete = ForeignKey.CASCADE))
+@Entity(tableName = "timeSlot_table", foreignKeys = @ForeignKey(entity = Class.class, parentColumns = "id", childColumns = "classId", onDelete = ForeignKey.CASCADE))
 public class TimeSlot implements Serializable {
 
-    private String className;
-    private int dayId;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    private int classId, dayId;
     private LocalTime startTime, endTime;
 
-    public TimeSlot(String className) {
-        this.className = className;
-        this.dayId = -1;
+    public TimeSlot(int classId, int dayId) {
+        this.classId = classId;
+        this.dayId = dayId;
         this.startTime = null;
         this.endTime = null;
     }
 
-    public String getClassName() {
-        return className;
+    public int getId() {
+        return id;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getClassId() {
+        return classId;
+    }
+
+    public void setClassId(int classId) {
+        this.classId = classId;
     }
 
     public int getDayId() {

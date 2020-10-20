@@ -10,17 +10,17 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface ClassDAO {
+public interface TimeSlotDAO {
 
     @Insert
-    void insert(Class c);
+    void insert(TimeSlot timeSlot);
 
-    @Query("SELECT * from class_table WHERE scheduleId IS :scheduleId ORDER BY name ASC")
-    LiveData<List<Class>> getClassesBySchedule(int scheduleId);
+    @Query("SELECT * FROM timeSlot_table WHERE :classId LIKE classId")
+    LiveData<List<TimeSlot>> getClassTimeSlots(int classId);
 
     @Update
-    void update(Class c);
+    void update(TimeSlot timeSlot);
 
     @Delete
-    void delete(Class c);
+    void delete(TimeSlot timeSlot);
 }

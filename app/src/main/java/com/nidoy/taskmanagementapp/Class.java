@@ -1,28 +1,33 @@
 package com.nidoy.taskmanagementapp;
 
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "class_table", foreignKeys = @ForeignKey(entity = Schedule.class, parentColumns = "id", childColumns = "scheduleId", onDelete = ForeignKey.CASCADE), indices = {@Index(value = {"scheduleId"}, unique = true)})
+@Entity(tableName = "class_table", foreignKeys = @ForeignKey(entity = Schedule.class, parentColumns = "id", childColumns = "scheduleId", onDelete = ForeignKey.CASCADE))
 public class Class implements Serializable {
 
-    @NonNull
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String name;
-    private String instructors, venue;
+    private String instructors;
     private int themeId, scheduleId;
 
     public Class(int scheduleId) {
         this.name = null;
         this.instructors = null;
-        this.venue = null;
         this.themeId = -1;
         this.scheduleId = scheduleId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -39,14 +44,6 @@ public class Class implements Serializable {
 
     public void setInstructors(String instructors) {
         this.instructors = instructors;
-    }
-
-    public String getVenue() {
-        return venue;
-    }
-
-    public void setVenue(String venue) {
-        this.venue = venue;
     }
 
     public int getThemeId() {
