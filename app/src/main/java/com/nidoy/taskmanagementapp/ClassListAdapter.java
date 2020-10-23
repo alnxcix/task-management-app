@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.ClassViewHolder> {
@@ -45,13 +46,14 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
     @Override
     public void onBindViewHolder(@NonNull ClassListAdapter.ClassViewHolder holder, int position) {
         Class c = classes.get(position);
+        final LocalTime duration = LocalTime.ofNanoOfDay(c.getEndTime().toNanoOfDay() - c.getStartTime().toNanoOfDay());
         holder.chipTime.setText(c.getStartTime().toString());
         holder.chipTime.setChipBackgroundColor(ColorStateList.valueOf(ColorUtils.setAlphaComponent(c.getThemeId(), 64)));
         holder.imgMark.setColorFilter(c.getThemeId());
         holder.viewTop.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
         holder.viewBottom.setVisibility(position == classes.size() - 1 ? View.GONE : View.VISIBLE);
         holder.txtTime.setText(c.getStartTime().toString() + " - " + c.getEndTime().toString());
-        holder.txtHours.setText(c.getEndTime().getHour() - c.getStartTime().getHour() + " " + context.getString(R.string.hours) + ", " + Math.abs(c.getEndTime().getMinute() - c.getStartTime().getMinute()) + " " + context.getString(R.string.minutes));
+        holder.txtHours.setText(duration.getHour() + " " + context.getString(R.string.hours) + ", " + duration.getMinute() + " " + context.getString(R.string.minutes));
         holder.txtName.setText(c.getName());
         holder.txtInstructors.setVisibility(c.getInstructors() == null ? View.GONE : View.VISIBLE);
         holder.txtInstructors.setText(c.getInstructors());
