@@ -12,18 +12,17 @@ import androidx.core.graphics.ColorUtils;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import java.util.Objects;
-
 public class ScheduleIndividualActivity extends AppCompatActivity {
 
-    private static final int CREATE_CLASS_ACTIVITY_REQUEST_CODE = 1;
-    private static final int UPDATE_CLASS_ACTIVITY_REQUEST_CODE = 2;
-    private static Schedule schedule;
-    public static ClassViewModel classViewModel;
+    static final int CREATE_CLASS_ACTIVITY_REQUEST_CODE = 1;
+    static final int UPDATE_CLASS_ACTIVITY_REQUEST_CODE = 2;
+    static Schedule schedule;
+    static ClassViewModel classViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,7 @@ public class ScheduleIndividualActivity extends AppCompatActivity {
         ViewPager2 viewPager2 = findViewById(R.id.viewPager);
         ExtendedFloatingActionButton btnNew = findViewById(R.id.btnNew);
         // Setup
-        Objects.requireNonNull(topAppBar.getNavigationIcon()).setColorFilter(dynamicColorFilter);
+        topAppBar.getNavigationIcon().setColorFilter(dynamicColorFilter);
         topAppBar.setTitle(schedule.getName());
         topAppBar.setTitleTextColor(dynamicColor);
         topAppBar.setBackgroundColor(schedule.getThemeId());
@@ -50,39 +49,16 @@ public class ScheduleIndividualActivity extends AppCompatActivity {
         btnNew.setTextColor(dynamicColor);
         btnNew.setBackgroundColor(schedule.getThemeId());
         viewPager2.setAdapter(new ClassesPagerAdapter(this, schedule.getId()));
-        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
-            switch (position) {
-                case 0: {
-                    tab.setText(getResources().getString(R.string.sun));
-                    break;
-                }
-                case 1: {
-                    tab.setText(getResources().getString(R.string.mon));
-                    break;
-                }
-                case 2: {
-                    tab.setText(getResources().getString(R.string.tue));
-                    break;
-                }
-                case 3: {
-                    tab.setText(getResources().getString(R.string.wed));
-                    break;
-                }
-                case 4: {
-                    tab.setText(getResources().getString(R.string.thu));
-                    break;
-                }
-                case 5: {
-                    tab.setText(getResources().getString(R.string.fri));
-                    break;
-                }
-                case 6: {
-                    tab.setText(getResources().getString(R.string.sat));
-                    break;
-                }
-            }
-        }).attach();
+        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(getResources().getStringArray(R.array.arr_week)[position])).attach();
         // Event listeners
+        findViewById(R.id.menuDelete).setOnClickListener(v -> new MaterialAlertDialogBuilder(this)
+                .setTitle(getString(R.string.dialog_title_delete_schedule))
+                .setMessage(getString(R.string.dialog_message_delete_schedule))
+                .setPositiveButton(getString(R.string.delete), (dialog, which) -> {
+                    MainActivity.scheduleViewModel.delete(schedule);
+                    finish();
+                }).setNegativeButton(getString(R.string.cancel), null)
+                .show());
         btnNew.setOnClickListener(v -> startActivityForResult(new Intent(this, ClassFormActivity.class).putExtra("class", new Class(schedule.getId())), CREATE_CLASS_ACTIVITY_REQUEST_CODE));
     }
 
@@ -92,6 +68,8 @@ public class ScheduleIndividualActivity extends AppCompatActivity {
             classViewModel.insert((Class) data.getSerializableExtra(ClassFormActivity.EXTRA_REPLY));
             schedule.setNumClasses(schedule.getNumClasses() + 1);
             MainActivity.scheduleViewModel.update(schedule);
+        } else if (requestCode == UPDATE_CLASS_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            classViewModel.update((Class) data.getSerializableExtra(ClassFormActivity.EXTRA_REPLY));
         }
     }
 }

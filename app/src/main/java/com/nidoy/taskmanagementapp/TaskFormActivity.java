@@ -35,6 +35,7 @@ public class TaskFormActivity extends AppCompatActivity {
     private MaterialTimePicker materialTimePicker;
     private MaterialTimePicker.Builder builder2;
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,17 +76,17 @@ public class TaskFormActivity extends AppCompatActivity {
         chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
                 case R.id.chipOpen:
-                    task.setStatusId(R.string.open);
+                    task.setStatusId(0);
                     break;
                 case R.id.chipPending:
-                    task.setStatusId(R.string.pending);
+                    task.setStatusId(1);
                     break;
                 case R.id.chipFinished:
-                    task.setStatusId(R.string.finished);
+                    task.setStatusId(2);
                     break;
             }
         });
-        chipGroup.check(task.getStatusId() == R.string.open ? R.id.chipOpen : task.getStatusId() == R.string.pending ? R.id.chipPending : task.getStatusId() == R.string.finished ? R.id.chipFinished : R.id.chipOpen);
+        chipGroup.check(task.getStatusId() == 0 ? R.id.chipOpen : task.getStatusId() == 1 ? R.id.chipPending : R.id.chipFinished);
         editTextDueDate.setOnClickListener(v -> {
             builder1 = MaterialDatePicker.Builder.datePicker();
             builder1.setTitleText("Select date");

@@ -19,7 +19,7 @@ public class Task implements Serializable {
         this.label = null;
         this.notes = null;
         this.due = null;
-        this.statusId = -1;
+        this.statusId = 0;
         this.themeId = -1;
     }
 

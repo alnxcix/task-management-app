@@ -53,6 +53,6 @@ public class ClassesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         ScheduleIndividualActivity.classViewModel = new ViewModelProvider(requireActivity()).get(ClassViewModel.class);
-        ScheduleIndividualActivity.classViewModel.getClassesByScheduleId(scheduleId).observe(getViewLifecycleOwner(), adapter::setClasses);
+        ScheduleIndividualActivity.classViewModel.getClasses(scheduleId, dayId).observe(getViewLifecycleOwner(), adapter::setClasses);
     }
 }

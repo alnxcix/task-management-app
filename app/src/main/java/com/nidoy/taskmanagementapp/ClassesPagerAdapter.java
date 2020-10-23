@@ -17,22 +17,7 @@ public class ClassesPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position) {
-            case 0:
-                return ClassesFragment.newInstance(scheduleId, R.string.sun);
-            case 1:
-                return ClassesFragment.newInstance(scheduleId, R.string.mon);
-            case 2:
-                return ClassesFragment.newInstance(scheduleId, R.string.tue);
-            case 3:
-                return ClassesFragment.newInstance(scheduleId, R.string.wed);
-            case 4:
-                return ClassesFragment.newInstance(scheduleId, R.string.thu);
-            case 5:
-                return ClassesFragment.newInstance(scheduleId, R.string.fri);
-            default:
-                return ClassesFragment.newInstance(scheduleId, R.string.sat);
-        }
+        return ClassesFragment.newInstance(scheduleId, position);
     }
 
     @Override

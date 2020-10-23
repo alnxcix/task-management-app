@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Button" />
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
             <ImageView
                 android:layout_width="14dp"
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Button" />
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
             <ImageView
                 android:id="@+id/imgOverdue"
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/overdue"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 android:textColor="@color/scarlet" />
 
         </LinearLayout>

@@ -60,7 +60,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             holder.txtDate.setTextColor(context.getResources().getColor(R.color.colorPrimary));
         }
         holder.txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(current.getThemeId(), PorterDuff.Mode.SRC_IN));
-        holder.imgOverdue.setVisibility(current.getDue().getTime() <= new Date().getTime() && current.getStatusId() != R.string.finished ? View.VISIBLE : View.INVISIBLE);
+        holder.imgOverdue.setVisibility(current.getDue().getTime() <= new Date().getTime() && current.getStatusId() != 2 ? View.VISIBLE : View.INVISIBLE);
         holder.taskCard.setRippleColor(ColorStateList.valueOf(current.getThemeId()));
         holder.taskCard.setOnClickListener(v -> TasksBottomSheetFragment.newInstance(current).show(((FragmentActivity) context).getSupportFragmentManager(), "dialog"));
     }
@@ -92,7 +92,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             txtDate = itemView.findViewById(R.id.txtDate);
             txtLabel = itemView.findViewById(R.id.txtLabel);
             txtTime = itemView.findViewById(R.id.txtTime);
-            taskCard = itemView.findViewById(R.id.taskCard);
+            taskCard = itemView.findViewById(R.id.cardTask);
             imgOverdue = itemView.findViewById(R.id.imgOverdue);
         }
     }

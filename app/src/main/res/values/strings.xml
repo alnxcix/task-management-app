@@ -17,10 +17,7 @@
     <string name="yes">Yes</string>
 
     <!-- Nav labels -->
-    <string name="finished">Finished</string>
     <string name="notes">Notes</string>
-    <string name="open">Open</string>
-    <string name="pending">Pending</string>
     <string name="overdue">Overdue</string>
     <string name="tasks">Tasks</string>
     <string name="schedules">Schedules</string>
@@ -28,36 +25,28 @@
     <!-- Common fields -->
     <string name="theme">Theme</string>
 
-    <!-- Activity form fields -->
-    <string name="due_date">Due date</string>
-    <string name="notes_opt">Notes (Optional)</string>
+    <!-- Task fields -->
     <string name="label">Label</string>
+    <string name="due_date">Due Date</string>
     <string name="time">Time</string>
     <string name="status">Status</string>
+    <string name="open">Open</string>
+    <string name="pending">Pending</string>
+    <string name="finished">Finished</string>
+    <string name="notes_opt">Notes (Optional)</string>
     <string name="cancel">Cancel</string>
 
-    <!-- Schedule form fields -->
-    <string name="new_schedule_name">Give your new schedule a name.</string>
-    <string name="name">Name</string>
+    <!-- Schedule + Class fields -->
+    <string name="schedule_name">Schedule Name</string>
+    <string name="new_class">New Class</string>
     <string name="txt_class">Class</string>
-    <string name="class_name">Class name</string>
+    <string name="class_name">Class Name</string>
     <string name="instructors">Instructors</string>
     <string name="venue">Venue</string>
     <string name="day">Day</string>
+    <string name="select_time">Select Time</string>
     <string name="start_time">Start Time</string>
     <string name="end_time">End Time</string>
-
-    <!-- Dialog messages -->
-    <string name="prompt_open_task">Mark this task as open?</string>
-    <string name="prompt_pending_task">Mark this task as pending?</string>
-    <string name="prompt_finished_task">Mark this task as finished?</string>
-    <string name="prompt_delete_task">Delete this task?</string>
-    <string name="dialog_title_delete_schedule">Delete schedule?</string>
-    <string name="dialog_message_delete_schedule">You will not be able to recover this schedule and its contents after deleting.</string>
-
-    <!-- Snack bar messages -->
-    <string name="snack_fill_up">Fill up all required fields.</string>
-
     <string name="sun">Sunday</string>
     <string name="mon">Monday</string>
     <string name="tue">Tuesday</string>
@@ -65,20 +54,37 @@
     <string name="thu">Thursday</string>
     <string name="fri">Friday</string>
     <string name="sat">Saturday</string>
+    <string name="hours">Hrs</string>
+    <string name="minutes">Mins</string>
 
+    <!-- Dialog messages -->
+    <string name="prompt_open_task">Mark this task as open?</string>
+    <string name="prompt_pending_task">Mark this task as pending?</string>
+    <string name="prompt_finished_task">Mark this task as finished?</string>
+    <string name="prompt_delete_task">Delete this task?</string>
+    <string name="dialog_title_delete_schedule">Delete schedule?</string>
+    <string name="dialog_title_delete_class">Delete class?</string>
+    <string name="dialog_message_delete_schedule">You will not be able to recover this schedule and its contents after being deleted.</string>
+    <string name="dialog_message_delete_class">You will not be able to recover this class and its contents after being deleted.</string>
 
-    <string name="new_class">New Class</string>
-    <string name="select_time">Select Time</string>
-    <string name="timeslot_is_empty">This class has no timeslots. Delete this class instead?</string>
+    <!-- Snack bar messages -->
+    <string name="snack_fill_up">Fill up all required fields.</string>
 
-    <string-array name="week">
-        <item>Sunday</item>
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-        <item>Saturday</item>
+    <!-- String arrays -->
+    <string-array name="arr_task_status">
+        <item>@string/open</item>
+        <item>@string/pending</item>
+        <item>@string/finished</item>
+    </string-array>
+
+    <string-array name="arr_week">
+        <item>@string/sun</item>
+        <item>@string/mon</item>
+        <item>@string/tue</item>
+        <item>@string/wed</item>
+        <item>@string/thu</item>
+        <item>@string/fri</item>
+        <item>@string/sat</item>
     </string-array>
 
 </resources>

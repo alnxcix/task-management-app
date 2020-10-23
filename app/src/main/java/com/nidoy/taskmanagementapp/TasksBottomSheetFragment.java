@@ -59,38 +59,38 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
         txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getThemeId(), PorterDuff.Mode.SRC_IN));
         ((TextView) view.findViewById(R.id.txtDueDate)).setText(new SimpleDateFormat("MMM. dd").format(task.getDue()));
         ((TextView) view.findViewById(R.id.txtTime)).setText(new SimpleDateFormat("hh:mm aa").format(task.getDue()));
-        chipOpen.setChecked(task.getStatusId() == R.string.open);
-        chipPending.setChecked(task.getStatusId() == R.string.pending);
-        chipFinished.setChecked(task.getStatusId() == R.string.finished);
-        chipOpen.setCheckable(task.getStatusId() == R.string.open);
-        chipPending.setCheckable(task.getStatusId() == R.string.pending);
-        chipFinished.setCheckable(task.getStatusId() == R.string.finished);
+        chipOpen.setChecked(task.getStatusId() == 0);
+        chipPending.setChecked(task.getStatusId() == 1);
+        chipFinished.setChecked(task.getStatusId() == 2);
+        chipOpen.setCheckable(task.getStatusId() == 0);
+        chipPending.setCheckable(task.getStatusId() == 1);
+        chipFinished.setCheckable(task.getStatusId() == 2);
         // Handle overdue indicators
-        view.findViewById(R.id.imgOverdue).setVisibility(task.getDue().getTime() <= new Date().getTime() && task.getStatusId() != R.string.finished ? View.VISIBLE : View.GONE);
-        view.findViewById(R.id.txtOverdue).setVisibility(task.getDue().getTime() <= new Date().getTime() && task.getStatusId() != R.string.finished ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.imgOverdue).setVisibility(task.getDue().getTime() <= new Date().getTime() && task.getStatusId() != 2 ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.txtOverdue).setVisibility(task.getDue().getTime() <= new Date().getTime() && task.getStatusId() != 2 ? View.VISIBLE : View.GONE);
         // Add event listeners
         chipOpen.setOnClickListener(v -> {
-            if (task.getStatusId() != R.string.open) {
+            if (task.getStatusId() != 0) {
                 new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_open_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-                    task.setStatusId(R.string.open);
+                    task.setStatusId(0);
                     MainActivity.taskViewModel.update(task);
                     this.dismiss();
                 }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
             }
         });
         chipPending.setOnClickListener(v -> {
-            if (task.getStatusId() != R.string.pending) {
+            if (task.getStatusId() != 1) {
                 new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_pending_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-                    task.setStatusId(R.string.pending);
+                    task.setStatusId(1);
                     MainActivity.taskViewModel.update(task);
                     this.dismiss();
                 }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
             }
         });
         chipFinished.setOnClickListener(v -> {
-            if (task.getStatusId() != R.string.finished) {
+            if (task.getStatusId() != 2) {
                 new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_finished_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-                    task.setStatusId(R.string.finished);
+                    task.setStatusId(2);
                     MainActivity.taskViewModel.update(task);
                     this.dismiss();
                 }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();

@@ -12,15 +12,15 @@ public class Class implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private String name, venue, instructors;
+    private String name, instructors, venue;
     private int dayId, themeId, scheduleId;
     private LocalTime startTime, endTime;
 
     public Class(int scheduleId) {
         this.name = null;
-        this.venue = null;
         this.instructors = null;
-        this.dayId = -1;
+        this.venue = null;
+        this.dayId = 0;
         this.startTime = null;
         this.endTime = null;
         this.themeId = -1;
@@ -43,20 +43,20 @@ public class Class implements Serializable {
         this.name = name;
     }
 
-    public String getVenue() {
-        return venue;
-    }
-
-    public void setVenue(String venue) {
-        this.venue = venue;
-    }
-
     public String getInstructors() {
         return instructors;
     }
 
     public void setInstructors(String instructors) {
         this.instructors = instructors;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
     }
 
     public int getDayId() {

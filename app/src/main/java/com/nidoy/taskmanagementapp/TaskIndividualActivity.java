@@ -39,8 +39,8 @@ public class TaskIndividualActivity extends AppCompatActivity {
         topAppBar.getMenu().findItem(R.id.menuDelete).getIcon().setColorFilter(new PorterDuffColorFilter(task.getThemeId() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE, PorterDuff.Mode.SRC_IN));
         ((TextView) findViewById(R.id.imgLabel)).getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getThemeId(), PorterDuff.Mode.SRC_IN));
         ((TextView) findViewById(R.id.txtLabel)).setText(task.getLabel());
-        ((ImageView) findViewById(R.id.imgStatus)).setImageResource(task.getStatusId() == R.string.open ? R.drawable.ic_wb_incandescent_24px : task.getStatusId() == R.string.pending ? R.drawable.ic_hourglass_empty_black_24dp : R.drawable.ic_done_all_24px);
-        ((TextView) findViewById(R.id.txtStatus)).setText(task.getStatusId());
+        ((ImageView) findViewById(R.id.imgStatus)).setImageResource(task.getStatusId() == 0 ? R.drawable.ic_wb_incandescent_24px : task.getStatusId() == 1 ? R.drawable.ic_hourglass_empty_black_24dp : R.drawable.ic_done_all_24px);
+        ((TextView) findViewById(R.id.txtStatus)).setText(getResources().getStringArray(R.array.arr_task_status)[task.getStatusId()]);
         ((TextView) findViewById(R.id.txtDueDate)).setText(new SimpleDateFormat("EEE., MMM. dd, yyyy").format(task.getDue()));
         ((TextView) findViewById(R.id.txtTime)).setText(new SimpleDateFormat("hh:mm aa").format(task.getDue()));
         ((TextView) findViewById(R.id.txtNotes)).setText(task.getNotes());

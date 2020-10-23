@@ -1,15 +1,21 @@
 package com.nidoy.taskmanagementapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.graphics.ColorUtils;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.chip.Chip;
 
 import java.util.List;
 
@@ -35,16 +41,25 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
         return new ClassListAdapter.ClassViewHolder(layoutInflater.inflate(R.layout.class_list_item, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ClassListAdapter.ClassViewHolder holder, int position) {
         Class c = classes.get(position);
-        holder.txtTime.setVisibility(View.GONE);
+        holder.chipTime.setText(c.getStartTime().toString());
+        holder.chipTime.setChipBackgroundColor(ColorStateList.valueOf(ColorUtils.setAlphaComponent(c.getThemeId(), 64)));
+        holder.imgMark.setColorFilter(c.getThemeId());
+        holder.viewTop.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
+        holder.viewBottom.setVisibility(position == classes.size() - 1 ? View.GONE : View.VISIBLE);
+        holder.txtTime.setText(c.getStartTime().toString() + " - " + c.getEndTime().toString());
+        holder.txtHours.setText(c.getEndTime().getHour() - c.getStartTime().getHour() + " " + context.getString(R.string.hours) + ", " + Math.abs(c.getEndTime().getMinute() - c.getStartTime().getMinute()) + " " + context.getString(R.string.minutes));
         holder.txtName.setText(c.getName());
-        holder.txtName.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(c.getThemeId(), PorterDuff.Mode.SRC_IN));
-        holder.txtInstructors.setText(c.getInstructors());
         holder.txtInstructors.setVisibility(c.getInstructors() == null ? View.GONE : View.VISIBLE);
-//        holder.txtVenue.setText(c.getVenue());
-//        holder.txtVenue.setVisibility(c.getVenue() == null ? View.GONE : View.VISIBLE);
+        holder.txtInstructors.setText(c.getInstructors());
+        holder.txtVenue.setVisibility(c.getVenue() == null ? View.GONE : View.VISIBLE);
+        holder.txtVenue.setText(c.getVenue());
+        // Event listeners
+        holder.chipTime.setOnClickListener(v -> ClassesBottomSheetFragment.newInstance(c).show(((FragmentActivity) context).getSupportFragmentManager(), "dialog"));
+        holder.cardClass.setOnClickListener(v -> ClassesBottomSheetFragment.newInstance(c).show(((FragmentActivity) context).getSupportFragmentManager(), "dialog"));
     }
 
     @Override
@@ -53,12 +68,21 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
     }
 
     public static class ClassViewHolder extends RecyclerView.ViewHolder {
-
-        TextView txtName, txtTime, txtInstructors, txtVenue;
+        final Chip chipTime;
+        final ImageView imgMark;
+        final View viewTop, viewBottom;
+        final MaterialCardView cardClass;
+        final TextView txtName, txtTime, txtHours, txtInstructors, txtVenue;
 
         public ClassViewHolder(@NonNull View itemView) {
             super(itemView);
+            chipTime = itemView.findViewById(R.id.chipTime);
+            imgMark = itemView.findViewById(R.id.imgMark);
+            viewTop = itemView.findViewById(R.id.viewTop);
+            viewBottom = itemView.findViewById(R.id.viewBottom);
+            cardClass = itemView.findViewById(R.id.cardClass);
             txtTime = itemView.findViewById(R.id.txtTime);
+            txtHours = itemView.findViewById(R.id.txtHours);
             txtName = itemView.findViewById(R.id.txtName);
             txtInstructors = itemView.findViewById(R.id.txtInstructors);
             txtVenue = itemView.findViewById(R.id.txtVenue);

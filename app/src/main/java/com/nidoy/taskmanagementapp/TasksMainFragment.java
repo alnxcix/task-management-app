@@ -24,6 +24,7 @@ public class TasksMainFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_tasks_main, container, false);
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -34,29 +35,8 @@ public class TasksMainFragment extends Fragment {
         // Setup
         viewPager2.setAdapter(new TasksPagerAdapter(this.requireActivity()));
         btnNew.setText(R.string.task);
-        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
-            switch (position) {
-                case 0: {
-                    setTab(tab, R.string.open, R.drawable.ic_wb_incandescent_24px);
-                    break;
-                }
-                case 1: {
-                    setTab(tab, R.string.pending, R.drawable.ic_hourglass_empty_black_24dp);
-                    break;
-                }
-                case 2: {
-                    setTab(tab, R.string.finished, R.drawable.ic_done_all_24px);
-                    break;
-                }
-            }
-        }).attach();
+        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(getResources().getStringArray(R.array.arr_task_status)[position])).attach();
         // Event listeners
         btnNew.setOnClickListener(v -> requireActivity().startActivityForResult(new Intent(view.getContext(), TaskFormActivity.class), MainActivity.CREATE_TASK_ACTIVITY_REQUEST_CODE));
-    }
-
-    @SuppressLint("UseCompatLoadingForDrawables")
-    private void setTab(TabLayout.Tab tab, int label, int icon) {
-        tab.setText(getResources().getString(label));
-//        tab.setIcon(getResources().getDrawable(icon));
     }
 }

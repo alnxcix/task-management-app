@@ -14,14 +14,15 @@ public class TasksPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position) {
-            case 0:
-                return TasksFragment.newInstance(R.string.open);
-            case 1:
-                return TasksFragment.newInstance(R.string.pending);
-            default:
-                return TasksFragment.newInstance(R.string.finished);
-        }
+        return TasksFragment.newInstance(position);
+//        switch (position) {
+//            case 0:
+//                return TasksFragment.newInstance(R.string.open);
+//            case 1:
+//                return TasksFragment.newInstance(R.string.pending);
+//            default:
+//                return TasksFragment.newInstance(R.string.finished);
+//        }
     }
 
     @Override

@@ -38,7 +38,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_margin="8dp"
         app:cardElevation="3dp"
-        android:id="@+id/taskCard"
+        android:id="@+id/cardTask"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:cardCornerRadius="6dp"

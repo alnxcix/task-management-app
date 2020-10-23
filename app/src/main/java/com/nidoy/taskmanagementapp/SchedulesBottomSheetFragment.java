@@ -1,5 +1,6 @@
 package com.nidoy.taskmanagementapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -40,6 +41,7 @@ public class SchedulesBottomSheetFragment extends BottomSheetDialogFragment {
         return inflater.inflate(R.layout.fragment_schedules_bottom_sheet, container, false);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -53,6 +55,7 @@ public class SchedulesBottomSheetFragment extends BottomSheetDialogFragment {
             requireActivity().startActivity(new Intent(requireActivity(), ScheduleIndividualActivity.class).putExtra("schedule", schedule));
             this.dismiss();
         });
+        txtSubHeading.setText(schedule.getNumClasses() + " " + getString(R.string.txt_class));
         view.findViewById(R.id.txtEdit).setOnClickListener(v -> {
             requireActivity().startActivityForResult(new Intent(requireActivity(), ScheduleFormActivity.class).putExtra("schedule", schedule), MainActivity.UPDATE_SCHEDULE_ACTIVITY_REQUEST_CODE);
             this.dismiss();
