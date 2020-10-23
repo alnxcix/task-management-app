@@ -69,6 +69,7 @@
 
     <!-- Snack bar messages -->
     <string name="snack_fill_up">Fill up all required fields.</string>
+    <string name="title">Title</string>
 
     <!-- String arrays -->
     <string-array name="arr_task_status">
