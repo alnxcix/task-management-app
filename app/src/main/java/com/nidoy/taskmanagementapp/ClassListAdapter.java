@@ -66,6 +66,11 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
     }
 
     @Override
+    public long getItemId(int position) {
+        return classes.get(position).getId();
+    }
+
+    @Override
     public int getItemCount() {
         return classes != null ? classes.size() : 0;
     }
