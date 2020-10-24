@@ -73,6 +73,8 @@ public class ClassesBottomSheetFragment extends BottomSheetDialogFragment {
                 .setMessage(getString(R.string.dialog_message_delete_class))
                 .setPositiveButton(getString(R.string.delete), (dialog, which) -> {
                     ScheduleIndividualActivity.classViewModel.delete(c);
+                    ScheduleIndividualActivity.schedule.setNumClasses(ScheduleIndividualActivity.schedule.getNumClasses() - 1);
+                    MainActivity.scheduleViewModel.update(ScheduleIndividualActivity.schedule);
                     this.dismiss();
                 }).setNegativeButton(getString(R.string.cancel), null)
                 .show());

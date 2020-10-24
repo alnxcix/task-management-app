@@ -52,6 +52,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
         holder.imgMark.setColorFilter(c.getThemeId());
         holder.viewTop.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
         holder.viewBottom.setVisibility(position == classes.size() - 1 ? View.GONE : View.VISIBLE);
+        holder.cardClass.setRippleColor(ColorStateList.valueOf(c.getThemeId()));
         holder.txtTime.setText(c.getStartTime().toString() + " - " + c.getEndTime().toString());
         holder.txtHours.setText(duration.getHour() + " " + context.getString(R.string.hours) + ", " + duration.getMinute() + " " + context.getString(R.string.minutes));
         holder.txtName.setText(c.getName());
