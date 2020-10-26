@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClassIndividualActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:menu="@menu/menu_top_nav_delete" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/imgClassName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                app:drawableLeftCompat="@drawable/ic_trip_origin_black_24dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtClassName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/imgClassName"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/imgClassName" />
+
+            <ImageView
+                android:id="@+id/imgInstructors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/lblInstructors"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lblInstructors"
+                app:srcCompat="@drawable/ic_person_black_24dp"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/lblInstructors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/instructors"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                app:layout_constraintLeft_toRightOf="@id/imgInstructors"
+                app:layout_constraintTop_toBottomOf="@id/txtClassName" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:alpha="0.6"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@id/lblInstructors"
+                app:layout_constraintLeft_toRightOf="@id/lblInstructors"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lblInstructors" />
+
+            <TextView
+                android:id="@+id/txtInstructors"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toLeftOf="@id/lblInstructors"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblInstructors" />
+
+            <ImageView
+                android:id="@+id/imgVenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/lblVenue"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lblVenue"
+                app:srcCompat="@drawable/ic_location_on_black_24dp"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/lblVenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/venue"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                app:layout_constraintLeft_toRightOf="@id/imgVenue"
+                app:layout_constraintTop_toBottomOf="@id/txtInstructors" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:alpha="0.6"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@id/lblVenue"
+                app:layout_constraintLeft_toRightOf="@id/lblVenue"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lblVenue" />
+
+            <TextView
+                android:id="@+id/txtVenue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toLeftOf="@id/lblVenue"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblVenue" />
+
+            <ImageView
+                android:id="@+id/imgDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/lblDay"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lblDay"
+                app:srcCompat="@drawable/ic_wb_sunny_black_24dp"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/lblDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/day"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                app:layout_constraintLeft_toRightOf="@id/imgDay"
+                app:layout_constraintTop_toBottomOf="@id/txtVenue" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:alpha="0.6"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@id/lblDay"
+                app:layout_constraintLeft_toRightOf="@id/lblDay"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lblDay" />
+
+            <TextView
+                android:id="@+id/txtDay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toLeftOf="@id/lblDay"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblDay" />
+
+            <ImageView
+                android:id="@+id/imgTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/lblStartTime"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lblStartTime"
+                app:srcCompat="@drawable/ic_schedule_black_24dp"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/lblStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/start_time"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                app:layout_constraintLeft_toRightOf="@id/imgTime"
+                app:layout_constraintTop_toBottomOf="@id/txtDay" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:alpha="0.6"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@id/lblStartTime"
+                app:layout_constraintLeft_toRightOf="@id/lblStartTime"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lblStartTime" />
+
+            <TextView
+                android:id="@+id/txtStartTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toLeftOf="@id/lblStartTime"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblStartTime" />
+
+            <TextView
+                android:id="@+id/lblEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/end_time"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                app:layout_constraintLeft_toRightOf="@id/imgTime"
+                app:layout_constraintTop_toBottomOf="@id/txtStartTime" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:alpha="0.6"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@id/lblEndTime"
+                app:layout_constraintLeft_toRightOf="@id/lblEndTime"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lblEndTime" />
+
+            <TextView
+                android:id="@+id/txtEndTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="26dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toLeftOf="@id/lblEndTime"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblEndTime" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_create_black_24dp"
+        tools:ignore="ContentDescription" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

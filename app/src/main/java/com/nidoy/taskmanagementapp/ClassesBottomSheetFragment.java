@@ -64,6 +64,10 @@ public class ClassesBottomSheetFragment extends BottomSheetDialogFragment {
         txtVenue.setVisibility(c.getVenue() == null ? View.GONE : View.VISIBLE);
         txtVenue.setText(c.getVenue());
         // Event listeners
+        view.findViewById(R.id.txtOpen).setOnClickListener(v -> {
+            requireActivity().startActivity(new Intent(requireActivity(), ClassIndividualActivity.class).putExtra("class", c));
+            this.dismiss();
+        });
         view.findViewById(R.id.txtEdit).setOnClickListener(v -> {
             requireActivity().startActivityForResult(new Intent(requireActivity(), ClassFormActivity.class).putExtra("class", c), ScheduleIndividualActivity.UPDATE_CLASS_ACTIVITY_REQUEST_CODE);
             this.dismiss();
