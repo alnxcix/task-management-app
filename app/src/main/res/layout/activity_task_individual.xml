@@ -47,132 +47,191 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="40dp"
                 android:layout_marginEnd="16dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgLabel"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintLeft_toRightOf="@id/imgLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/imgLabel" />
 
             <ImageView
                 android:id="@+id/imgDueDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:layout_constraintBottom_toBottomOf="@id/txtDueDate"
+                app:layout_constraintBottom_toBottomOf="@id/lblDueDate"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/txtDueDate"
+                app:layout_constraintTop_toTopOf="@id/lblDueDate"
                 app:srcCompat="@drawable/ic_event_black_24dp"
                 tools:ignore="ContentDescription,VectorDrawableCompat" />
 
             <TextView
-                android:id="@+id/txtDueDate"
+                android:id="@+id/lblDueDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/due_date"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 app:layout_constraintLeft_toRightOf="@id/imgDueDate"
                 app:layout_constraintTop_toBottomOf="@id/txtLabel" />
 
             <View
-                android:id="@+id/divider1"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginVertical="24dp"
+                android:layout_marginHorizontal="16dp"
                 android:alpha="0.6"
                 android:background="@android:color/darker_gray"
-                app:layout_constraintLeft_toLeftOf="@id/txtDueDate"
+                app:layout_constraintBottom_toBottomOf="@id/lblDueDate"
+                app:layout_constraintLeft_toRightOf="@id/lblDueDate"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtDueDate" />
+                app:layout_constraintTop_toTopOf="@id/lblDueDate" />
+
+            <TextView
+                android:id="@+id/txtDueDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toLeftOf="@id/lblDueDate"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblDueDate" />
 
             <ImageView
                 android:id="@+id/imgTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:layout_constraintBottom_toBottomOf="@id/txtTime"
+                app:layout_constraintBottom_toBottomOf="@id/lblTime"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/txtTime"
+                app:layout_constraintTop_toTopOf="@id/lblTime"
                 app:srcCompat="@drawable/ic_schedule_black_24dp"
                 tools:ignore="ContentDescription,VectorDrawableCompat" />
 
             <TextView
-                android:id="@+id/txtTime"
+                android:id="@+id/lblTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/time"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 app:layout_constraintLeft_toRightOf="@id/imgTime"
-                app:layout_constraintTop_toBottomOf="@id/divider1" />
+                app:layout_constraintTop_toBottomOf="@id/txtDueDate" />
 
             <View
-                android:id="@+id/divider2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginVertical="24dp"
+                android:layout_marginHorizontal="16dp"
                 android:alpha="0.6"
                 android:background="@android:color/darker_gray"
-                app:layout_constraintLeft_toLeftOf="@id/txtTime"
+                app:layout_constraintBottom_toBottomOf="@id/lblTime"
+                app:layout_constraintLeft_toRightOf="@id/lblTime"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtTime" />
+                app:layout_constraintTop_toTopOf="@id/lblTime" />
+
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toLeftOf="@id/lblTime"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblTime" />
 
             <ImageView
                 android:id="@+id/imgStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:layout_constraintBottom_toBottomOf="@id/txtStatus"
+                app:layout_constraintBottom_toBottomOf="@id/lblStatus"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/txtStatus"
+                app:layout_constraintTop_toTopOf="@id/lblStatus"
                 tools:ignore="ContentDescription,VectorDrawableCompat" />
 
             <TextView
-                android:id="@+id/txtStatus"
+                android:id="@+id/lblStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/status"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 app:layout_constraintLeft_toRightOf="@id/imgStatus"
-                app:layout_constraintTop_toBottomOf="@id/divider2" />
+                app:layout_constraintTop_toBottomOf="@id/txtTime" />
 
             <View
-                android:id="@+id/divider3"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginVertical="24dp"
+                android:layout_marginHorizontal="16dp"
                 android:alpha="0.6"
                 android:background="@android:color/darker_gray"
-                app:layout_constraintLeft_toLeftOf="@id/txtStatus"
+                app:layout_constraintBottom_toBottomOf="@id/lblStatus"
+                app:layout_constraintLeft_toRightOf="@id/lblStatus"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtStatus" />
+                app:layout_constraintTop_toTopOf="@id/lblStatus" />
+
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toLeftOf="@id/lblStatus"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblStatus" />
 
             <ImageView
                 android:id="@+id/imgNotes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/lblNotes"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider3"
+                app:layout_constraintTop_toTopOf="@id/lblNotes"
                 app:srcCompat="@drawable/ic_sticky_note_2_black_24dp"
                 tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+            <TextView
+                android:id="@+id/lblNotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/notes"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                app:layout_constraintLeft_toRightOf="@id/imgTime"
+                app:layout_constraintTop_toBottomOf="@id/txtStatus" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:alpha="0.6"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@id/lblNotes"
+                app:layout_constraintLeft_toRightOf="@id/lblNotes"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lblNotes" />
 
             <TextView
                 android:id="@+id/txtNotes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintLeft_toRightOf="@id/imgNotes"
+                app:layout_constraintLeft_toLeftOf="@id/lblNotes"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider3" />
+                app:layout_constraintTop_toBottomOf="@+id/lblNotes" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

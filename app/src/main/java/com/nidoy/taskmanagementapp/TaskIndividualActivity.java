@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,13 +39,11 @@ public class TaskIndividualActivity extends AppCompatActivity {
         topAppBar.getMenu().findItem(R.id.menuDelete).getIcon().setColorFilter(new PorterDuffColorFilter(dynamicColor, PorterDuff.Mode.SRC_IN));
         ((TextView) findViewById(R.id.imgLabel)).getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getThemeId(), PorterDuff.Mode.SRC_IN));
         ((TextView) findViewById(R.id.txtLabel)).setText(task.getLabel());
-        ((ImageView) findViewById(R.id.imgStatus)).setImageResource(task.getStatusId() == 0 ? R.drawable.ic_wb_incandescent_24px : task.getStatusId() == 1 ? R.drawable.ic_hourglass_empty_black_24dp : R.drawable.ic_done_all_24px);
-        ((TextView) findViewById(R.id.txtStatus)).setText(getResources().getStringArray(R.array.arr_task_status)[task.getStatusId()]);
         ((TextView) findViewById(R.id.txtDueDate)).setText(new SimpleDateFormat("EEE., MMM. dd, yyyy").format(task.getDue()));
         ((TextView) findViewById(R.id.txtTime)).setText(new SimpleDateFormat("hh:mm aa").format(task.getDue()));
+        ((ImageView) findViewById(R.id.imgStatus)).setImageResource(task.getStatusId() == 0 ? R.drawable.ic_wb_incandescent_24px : task.getStatusId() == 1 ? R.drawable.ic_hourglass_empty_black_24dp : R.drawable.ic_done_all_24px);
+        ((TextView) findViewById(R.id.txtStatus)).setText(getResources().getStringArray(R.array.arr_task_status)[task.getStatusId()]);
         ((TextView) findViewById(R.id.txtNotes)).setText(task.getNotes());
-        findViewById(R.id.divider3).setVisibility(task.getNotes() == null || task.getNotes().equals("") ? View.GONE : View.VISIBLE);
-        findViewById(R.id.imgNotes).setVisibility(task.getNotes() == null || task.getNotes().equals("") ? View.GONE : View.VISIBLE);
         btnEdit.setBackgroundTintList(ColorStateList.valueOf(task.getThemeId()));
         btnEdit.getDrawable().setColorFilter(new PorterDuffColorFilter(dynamicColor, PorterDuff.Mode.SRC_IN));
         // Add event listeners
