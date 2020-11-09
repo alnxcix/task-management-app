@@ -13,6 +13,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
@@ -93,11 +94,15 @@ public class ClassFormActivity extends AppCompatActivity {
         });
         spectrumPalette.setSelectedColor(c.getThemeId() == -1 ? getResources().getIntArray(R.array.color_picker)[0] : c.getThemeId());
         findViewById(R.id.menuSave).setOnClickListener(v -> {
-            c.setName(editTextClassName.getText().toString());
-            c.setInstructors(editTextInstructors.getText().toString());
-            c.setVenue(editTextVenue.getText().toString());
-            setResult(RESULT_OK, new Intent().putExtra(EXTRA_REPLY, c));
-            finish();
+            if (editTextClassName.getText().toString().isEmpty() || editTextStartTime.getText().toString().isEmpty() || editTextEndTime.getText().toString().isEmpty())
+                Snackbar.make(findViewById(R.id.parent), getString(R.string.snack_fill_up), Snackbar.LENGTH_SHORT).show();
+            else {
+                c.setName(editTextClassName.getText().toString());
+                c.setInstructors(editTextInstructors.getText().toString());
+                c.setVenue(editTextVenue.getText().toString());
+                setResult(RESULT_OK, new Intent().putExtra(EXTRA_REPLY, c));
+                finish();
+            }
         });
     }
 }

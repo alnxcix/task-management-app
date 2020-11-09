@@ -51,14 +51,17 @@ public class ScheduleIndividualActivity extends AppCompatActivity {
         viewPager2.setAdapter(new ClassesPagerAdapter(this, schedule.getId()));
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(getResources().getStringArray(R.array.arr_week)[position])).attach();
         // Event listeners
-        findViewById(R.id.menuDelete).setOnClickListener(v -> new MaterialAlertDialogBuilder(this)
-                .setTitle(getString(R.string.dialog_title_delete_schedule))
-                .setMessage(getString(R.string.dialog_message_delete_schedule))
-                .setPositiveButton(getString(R.string.delete), (dialog, which) -> {
-                    MainActivity.scheduleViewModel.delete(schedule);
-                    finish();
-                }).setNegativeButton(getString(R.string.cancel), null)
-                .show());
+        topAppBar.getMenu().findItem(R.id.menuDelete).setOnMenuItemClickListener(v -> {
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle(getString(R.string.dialog_title_delete_schedule))
+                    .setMessage(getString(R.string.dialog_message_delete_schedule))
+                    .setPositiveButton(getString(R.string.delete), (dialog, which) -> {
+                        MainActivity.scheduleViewModel.delete(schedule);
+                        finish();
+                    }).setNegativeButton(getString(R.string.cancel), null)
+                    .show();
+            return true;
+        });
         btnNew.setOnClickListener(v -> startActivityForResult(new Intent(this, ClassFormActivity.class).putExtra("class", new Class(schedule.getId())), CREATE_CLASS_ACTIVITY_REQUEST_CODE));
     }
 
