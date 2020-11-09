@@ -1,0 +1,45 @@
+Index: app/src/main/java/com/nidoy/taskmanagementapp/AppDatabase.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.nidoy.taskmanagementapp;\r\n\r\nimport android.content.Context;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.room.Database;\r\nimport androidx.room.Room;\r\nimport androidx.room.RoomDatabase;\r\nimport androidx.room.TypeConverters;\r\nimport androidx.sqlite.db.SupportSQLiteDatabase;\r\n\r\nimport java.util.concurrent.ExecutorService;\r\nimport java.util.concurrent.Executors;\r\n\r\n@Database(entities = {Task.class, Schedule.class, Class.class, TimeSlot.class}, version = 1, exportSchema = false)\r\n@TypeConverters({Converters.class})\r\npublic abstract class AppDatabase extends RoomDatabase {\r\n\r\n    private static volatile AppDatabase INSTANCE;\r\n    private static final int NUMBER_OF_THREADS = 4;\r\n\r\n    public abstract TaskDAO taskDAO();\r\n\r\n    public abstract ScheduleDAO scheduleDAO();\r\n\r\n    public abstract ClassDAO classDAO();\r\n\r\n    public abstract TimeSlotDAO timeSlotDAO();\r\n\r\n    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);\r\n    private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {\r\n        @Override\r\n        public void onOpen(@NonNull SupportSQLiteDatabase db) {\r\n            super.onOpen(db);\r\n        }\r\n    };\r\n\r\n    static AppDatabase getDatabase(final Context context) {\r\n        if (INSTANCE == null) {\r\n            synchronized (AppDatabase.class) {\r\n                if (INSTANCE == null)\r\n                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, \"db\").addCallback(sRoomDatabaseCallback).build();\r\n            }\r\n        }\r\n        return INSTANCE;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/nidoy/taskmanagementapp/AppDatabase.java	(revision d87263abd17cbe76befcbb51a466374be72e415a)
++++ app/src/main/java/com/nidoy/taskmanagementapp/AppDatabase.java	(date 1603386323618)
+@@ -12,7 +12,7 @@
+ import java.util.concurrent.ExecutorService;
+ import java.util.concurrent.Executors;
+ 
+-@Database(entities = {Task.class, Schedule.class, Class.class, TimeSlot.class}, version = 1, exportSchema = false)
++@Database(entities = {Task.class, Schedule.class, Note.class, Class.class, TimeSlot.class}, version = 1, exportSchema = false)
+ @TypeConverters({Converters.class})
+ public abstract class AppDatabase extends RoomDatabase {
+ 
+@@ -27,6 +27,8 @@
+ 
+     public abstract TimeSlotDAO timeSlotDAO();
+ 
++    public abstract NoteDAO noteDAO();
++
+     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+     private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+         @Override
+Index: app/src/main/java/com/nidoy/taskmanagementapp/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.nidoy.taskmanagementapp;\r\n\r\nimport android.app.Activity;\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.navigation.NavController;\r\nimport androidx.navigation.Navigation;\r\nimport androidx.navigation.ui.NavigationUI;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n    public static final int CREATE_TASK_ACTIVITY_REQUEST_CODE = 1;\r\n    public static final int UPDATE_TASK_ACTIVITY_REQUEST_CODE = 2;\r\n    public static final int CREATE_NOTE_ACTIVITY_REQUEST_CODE = 3;\r\n    public static final int UPDATE_NOTE_ACTIVITY_REQUEST_CODE = 4;\r\n    public static final int CREATE_SCHEDULE_ACTIVITY_REQUEST_CODE = 5;\r\n    public static final int UPDATE_SCHEDULE_ACTIVITY_REQUEST_CODE = 6;\r\n    public static TaskViewModel taskViewModel;\r\n    public static ScheduleViewModel scheduleViewModel;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main);\r\n        // Initialize UI elements\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);\r\n        NavController navController = Navigation.findNavController(this, R.id.fragment);\r\n        // Setup\r\n        bottomNavigationView.setOnNavigationItemReselectedListener(v -> {\r\n        });\r\n        NavigationUI.setupWithNavController(bottomNavigationView, navController);\r\n    }\r\n\r\n    public void onActivityResult(int requestCode, int resultCode, Intent data) {\r\n        super.onActivityResult(requestCode, resultCode, data);\r\n        if (requestCode == CREATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)\r\n            taskViewModel.insert((Task) data.getSerializableExtra(TaskFormActivity.EXTRA_REPLY));\r\n        else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)\r\n            taskViewModel.update((Task) data.getSerializableExtra(TaskFormActivity.EXTRA_REPLY));\r\n        else if (requestCode == CREATE_NOTE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {\r\n            // TODO Add logic here\r\n        } else if (requestCode == UPDATE_NOTE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {\r\n            // TODO Add logic here\r\n        } else if (requestCode == CREATE_SCHEDULE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)\r\n            scheduleViewModel.insert((Schedule) data.getSerializableExtra(ScheduleFormActivity.EXTRA_REPLY));\r\n        else if (requestCode == UPDATE_SCHEDULE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)\r\n            scheduleViewModel.update((Schedule) data.getSerializableExtra(ScheduleFormActivity.EXTRA_REPLY));\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/nidoy/taskmanagementapp/MainActivity.java	(revision d87263abd17cbe76befcbb51a466374be72e415a)
++++ app/src/main/java/com/nidoy/taskmanagementapp/MainActivity.java	(date 1603382216406)
+@@ -10,6 +10,8 @@
+ import androidx.navigation.ui.NavigationUI;
+ 
+ import com.google.android.material.bottomnavigation.BottomNavigationView;
++import com.nidoy.taskmanagementapp.ScheduleViewModel;
++import com.nidoy.taskmanagementapp.TaskViewModel;
+ 
+ public class MainActivity extends AppCompatActivity {
+ 
