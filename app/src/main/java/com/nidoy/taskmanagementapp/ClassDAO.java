@@ -15,7 +15,7 @@ public interface ClassDAO {
     @Insert
     void insert(Class c);
 
-    @Query("SELECT * from class_table WHERE scheduleId IS :scheduleId AND dayId IS :dayId ORDER BY startTime ASC")
+    @Query("SELECT * FROM class_table WHERE scheduleId IS :scheduleId AND dayId IS :dayId ORDER BY startTime")
     LiveData<List<Class>> getClasses(int scheduleId, int dayId);
 
     @Update
