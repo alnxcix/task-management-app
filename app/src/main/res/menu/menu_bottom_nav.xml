@@ -6,10 +6,10 @@
         android:icon="@drawable/ic_assignment_black_24dp"
         android:title="@string/tasks" />
     <item
-        android:id="@+id/notesFragment"
+        android:id="@+id/notebooksFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_sticky_note_2_black_24dp"
-        android:title="@string/notes" />
+        android:icon="@drawable/ic_menu_book_black_24dp"
+        android:title="@string/notebooks" />
     <item
         android:id="@+id/scheduleFragment"
         android:enabled="true"

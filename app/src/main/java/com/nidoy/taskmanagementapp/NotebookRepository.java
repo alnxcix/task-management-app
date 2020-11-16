@@ -1,5 +1,5 @@
 package com.nidoy.taskmanagementapp;
 
-public class NoteRepository {
+public class NotebookRepository {
     // TODO
 }

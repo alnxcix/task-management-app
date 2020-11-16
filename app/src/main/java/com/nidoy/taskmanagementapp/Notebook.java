@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import java.io.Serializable;
 
 @Entity(tableName = "schedule_table")
-public class Note implements Serializable {
+public class Notebook implements Serializable {
     /*
      * TODO Create schema for Note
      * Note properties:

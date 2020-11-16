@@ -196,7 +196,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="@string/notes"
+                android:hint="@string/notes_opt"
                 app:layout_constraintTop_toBottomOf="@id/divider3">
 
                 <com.google.android.material.textfield.TextInputEditText

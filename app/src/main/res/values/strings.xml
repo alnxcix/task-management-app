@@ -11,13 +11,14 @@
     <string name="edit">Edit</string>
     <string name="no">No</string>
     <string name="note">Note</string>
+    <string name="notebook">Notebook</string>
     <string name="task">Task</string>
     <string name="save">Save</string>
     <string name="schedule">Schedule</string>
     <string name="yes">Yes</string>
 
     <!-- Nav labels -->
-    <string name="notes">Notes</string>
+    <string name="notebooks">Notebooks</string>
     <string name="overdue">Overdue</string>
     <string name="tasks">Tasks</string>
     <string name="schedules">Schedules</string>
@@ -33,6 +34,7 @@
     <string name="open">Open</string>
     <string name="pending">Pending</string>
     <string name="finished">Finished</string>
+    <string name="notes">Notes</string>
     <string name="notes_opt">Notes (Optional)</string>
     <string name="cancel">Cancel</string>
 

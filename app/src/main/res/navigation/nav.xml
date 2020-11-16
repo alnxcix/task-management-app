@@ -10,9 +10,9 @@
         android:name="com.nidoy.taskmanagementapp.TasksMainFragment"
         tools:layout="@layout/fragment_tasks_main" />
     <fragment
-        android:id="@+id/notesFragment"
-        android:name="com.nidoy.taskmanagementapp.NotesFragment"
-        tools:layout="@layout/fragment_notes" />
+        android:id="@+id/notebooksFragment"
+        android:name="com.nidoy.taskmanagementapp.NotebooksFragment"
+        tools:layout="@layout/fragment_notebooks" />
     <fragment
         android:id="@+id/scheduleFragment"
         android:name="com.nidoy.taskmanagementapp.SchedulesFragment"

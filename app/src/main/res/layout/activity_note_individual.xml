@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".NoteIndividualActivity">
+    android:layout_height="match_parent">
+    <!--    Todo: add context-->
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"

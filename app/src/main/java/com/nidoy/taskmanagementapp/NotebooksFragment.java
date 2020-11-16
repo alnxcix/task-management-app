@@ -11,9 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
-public class NotesFragment extends Fragment {
+public class NotebooksFragment extends Fragment {
 
-    public NotesFragment() { /* Required empty public constructor */ }
+    public NotebooksFragment() { /* Required empty public constructor */ }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class NotesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notes, container, false);
+        return inflater.inflate(R.layout.fragment_notebooks, container, false);
     }
 
     @Override
@@ -32,9 +32,9 @@ public class NotesFragment extends Fragment {
 
         // ExtendedFloatingActionButton
         ExtendedFloatingActionButton btnNew = requireActivity().findViewById(R.id.btnNew);
-        btnNew.setText(R.string.note);
+        btnNew.setText(R.string.notebook);
         btnNew.setOnClickListener(v -> {
-            // TODO Navigate to NewNoteActivity
+            // TODO Navigate to NewNotebookActivity
         });
     }
 }

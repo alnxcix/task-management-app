@@ -1,5 +1,5 @@
 package com.nidoy.taskmanagementapp;
 
-public interface NoteDAO {
+public interface NotebookDAO {
     // TODO Finish DAO for Note
 }
