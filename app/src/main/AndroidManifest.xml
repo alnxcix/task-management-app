@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".NotebookIndividualActivity" />
+        <activity android:name=".NotebookFormActivity" />
         <activity android:name=".ClassIndividualActivity" />
         <activity android:name=".ScheduleFormActivity" />
-        <activity android:name=".NotebookFormActivity" />
-        <activity android:name=".NotebookIndividualActivity" />
         <activity android:name=".TaskFormActivity" />
         <activity android:name=".TaskIndividualActivity" />
         <activity android:name=".ClassFormActivity" />
@@ -25,4 +25,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

@@ -14,5 +14,5 @@
         android:id="@+id/scheduleFragment"
         android:enabled="true"
         android:icon="@drawable/ic_event_black_24dp"
-        android:title="@string/schedule" />
+        android:title="@string/schedules" />
 </menu>

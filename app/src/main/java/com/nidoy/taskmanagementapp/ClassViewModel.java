@@ -30,5 +30,4 @@ public class ClassViewModel extends AndroidViewModel {
     public void delete(Class c) {
         classRepository.delete(c);
     }
-
 }

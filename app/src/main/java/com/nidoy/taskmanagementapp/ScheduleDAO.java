@@ -15,7 +15,7 @@ public interface ScheduleDAO {
     @Insert
     void insert(Schedule schedule);
 
-    @Query("SELECT * FROM schedule_table")
+    @Query("SELECT * FROM schedule_table ORDER BY name ASC")
     LiveData<List<Schedule>> getSchedulesSortedByName();
 
     @Update

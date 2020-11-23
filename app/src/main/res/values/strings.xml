@@ -2,7 +2,7 @@
     <string name="app_name">Task Management App</string>
 
     <!-- Activity labels -->
-    <string name="new_note">New Note</string>
+    <string name="new_notebook">New Notebook</string>
     <string name="new_schedule">New Schedule</string>
     <string name="new_task">New Task</string>
 
@@ -15,6 +15,7 @@
     <string name="task">Task</string>
     <string name="save">Save</string>
     <string name="schedule">Schedule</string>
+    <string name="txt_class">Class</string>
     <string name="yes">Yes</string>
 
     <!-- Nav labels -->
@@ -38,10 +39,13 @@
     <string name="notes_opt">Notes (Optional)</string>
     <string name="cancel">Cancel</string>
 
+    <!-- Notebook + Note fields -->
+    <string name="notebook_name">Notebook Name</string>
+
     <!-- Schedule + Class fields -->
     <string name="schedule_name">Schedule Name</string>
     <string name="new_class">New Class</string>
-    <string name="txt_class">Class</string>
+    <string name="txt_classes">Classes</string>
     <string name="class_name">Class Name</string>
     <string name="instructors">Instructors</string>
     <string name="venue">Venue</string>
@@ -64,10 +68,16 @@
     <string name="prompt_pending_task">Mark this task as pending?</string>
     <string name="prompt_finished_task">Mark this task as finished?</string>
     <string name="prompt_delete_task">Delete this task?</string>
+
+    <string name="dialog_title_delete_notebook">Delete this notebook?</string>
+    <string name="dialog_title_delete_note">Delete this note?</string>
     <string name="dialog_title_delete_schedule">Delete schedule?</string>
     <string name="dialog_title_delete_class">Delete class?</string>
-    <string name="dialog_message_delete_schedule">You will not be able to recover this schedule and its contents after being deleted.</string>
-    <string name="dialog_message_delete_class">You will not be able to recover this class and its contents after being deleted.</string>
+
+    <string name="dialog_message_delete_notebook">You will not be able to recover this notebook and its contents after deleting.</string>
+    <string name="dialog_message_delete_note">You will not be able to recover this note after deleting.</string>
+    <string name="dialog_message_delete_schedule">You will not be able to recover this schedule and its contents after deleting.</string>
+    <string name="dialog_message_delete_class">You will not be able to recover this class and its contents after deleting.</string>
 
     <!-- Snack bar messages -->
     <string name="snack_fill_up">Fill up all required fields.</string>

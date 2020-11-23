@@ -45,7 +45,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         Schedule current = schedules.get(position);
         holder.imgFolder.setColorFilter(current.getThemeId());
         holder.txtName.setText(current.getName());
-        holder.txtNumClass.setText(current.getNumClasses() + " " + context.getString(R.string.txt_class));
+        holder.txtNumClasses.setText(current.getNumClasses() + " " + context.getString(R.string.txt_classes));
         holder.scheduleCard.setRippleColor(ColorStateList.valueOf(current.getThemeId()));
         holder.scheduleCard.setOnClickListener(v -> SchedulesBottomSheetFragment.newInstance(current).show(((FragmentActivity) context).getSupportFragmentManager(), "dialog"));
     }
@@ -63,14 +63,14 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     public static class ScheduleViewHolder extends RecyclerView.ViewHolder {
         private final MaterialCardView scheduleCard;
         private final ImageView imgFolder;
-        private final TextView txtName, txtNumClass;
+        private final TextView txtName, txtNumClasses;
 
         private ScheduleViewHolder(View itemView) {
             super(itemView);
             scheduleCard = itemView.findViewById(R.id.scheduleCard);
             imgFolder = itemView.findViewById(R.id.imgFolder);
             txtName = itemView.findViewById(R.id.txtName);
-            txtNumClass = itemView.findViewById(R.id.txtNumClasses);
+            txtNumClasses = itemView.findViewById(R.id.txtNumClasses);
         }
     }
 }

@@ -12,20 +12,22 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Task.class, Schedule.class, Class.class}, version = 1, exportSchema = false)
+@Database(entities = {Task.class, Notebook.class, Schedule.class, Class.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
-    private static final int NUMBER_OF_THREADS = 4;
 
     public abstract TaskDAO taskDAO();
+
+    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(4);
 
     public abstract ScheduleDAO scheduleDAO();
 
     public abstract ClassDAO classDAO();
 
-    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    public abstract NotebookDAO notebookDAO();
+
     private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {

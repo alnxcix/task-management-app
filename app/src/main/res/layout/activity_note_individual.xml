@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- TODO: Edit ids -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--    Todo: add context-->
+    <!-- TODO: Add context-->
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -21,7 +22,6 @@
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:menu="@menu/menu_top_nav_delete" />
     </com.google.android.material.appbar.AppBarLayout>
-
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
