@@ -6,12 +6,10 @@ import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
 
 public class NotebookIndividualActivity extends AppCompatActivity {
 
@@ -30,8 +28,6 @@ public class NotebookIndividualActivity extends AppCompatActivity {
         int dynamicColor = notebook.getThemeId() == getResources().getIntArray(R.array.color_picker)[6] ? Color.BLACK : Color.WHITE;
         PorterDuffColorFilter dynamicColorFilter = new PorterDuffColorFilter(dynamicColor, PorterDuff.Mode.SRC_IN);
         MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
-        TabLayout tabLayout = findViewById(R.id.tabLayout);
-        ViewPager2 viewPager2 = findViewById(R.id.viewPager);
         ExtendedFloatingActionButton btnNew = findViewById(R.id.btnNew);
         // Setup
         topAppBar.getNavigationIcon().setColorFilter(dynamicColorFilter);
