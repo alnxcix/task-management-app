@@ -50,6 +50,6 @@ public class NotebookIndividualActivity extends AppCompatActivity {
                     .show();
             return true;
         });
-        btnNew.setOnClickListener(v -> {/* TODO: Add logic here*/ });
+        btnNew.setOnClickListener(v -> { /* TODO: Add logic here */ });
     }
 }
