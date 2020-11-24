@@ -41,6 +41,9 @@
 
     <!-- Notebook + Note fields -->
     <string name="notebook_name">Notebook Name</string>
+    <string name="new_note">New Note</string>
+    <string name="start_typing_here">Start typing here...</string>
+    <string name="modified_last">Modified last</string>
 
     <!-- Schedule + Class fields -->
     <string name="schedule_name">Schedule Name</string>

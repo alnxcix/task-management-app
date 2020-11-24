@@ -18,7 +18,6 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:menu="@menu/menu_top_nav_save" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -152,7 +151,6 @@
                     android:text="@string/finished"
                     app:chipEndPadding="8dp"
                     app:chipStartPadding="8dp" />
-
             </com.google.android.material.chip.ChipGroup>
 
             <View
@@ -213,9 +211,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.core.widget.NestedScrollView>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -71,8 +71,7 @@ public class ScheduleIndividualActivity extends AppCompatActivity {
             classViewModel.insert((Class) data.getSerializableExtra(ClassFormActivity.EXTRA_REPLY));
             schedule.setNumClasses(schedule.getNumClasses() + 1);
             MainActivity.scheduleViewModel.update(schedule);
-        } else if (requestCode == UPDATE_CLASS_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        } else if (requestCode == UPDATE_CLASS_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)
             classViewModel.update((Class) data.getSerializableExtra(ClassFormActivity.EXTRA_REPLY));
-        }
     }
 }
