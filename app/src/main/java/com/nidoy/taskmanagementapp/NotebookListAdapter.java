@@ -2,12 +2,15 @@ package com.nidoy.taskmanagementapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,7 +44,10 @@ public class NotebookListAdapter extends RecyclerView.Adapter<NotebookListAdapte
     @Override
     public void onBindViewHolder(@NonNull NotebookListAdapter.NotebookViewHolder holder, int position) {
         Notebook current = notebooks.get(position);
-        holder.viewTheme.setBackgroundColor(current.getThemeId());
+
+        GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TL_BR, new int[]{current.getThemeId(), ColorUtils.blendARGB(current.getThemeId(), Color.BLACK, 0.5f)});
+
+        holder.viewTheme.setBackground(gd);
         holder.txtName.setText(current.getName());
         holder.txtNumNotes.setText(current.getNumNotes() + " " + context.getString(R.string.notes));
         holder.notebookCard.setOnClickListener(v -> NotebooksBottomSheetFragment.newInstance(current).show(((FragmentActivity) context).getSupportFragmentManager(), "dialog"));
