@@ -59,7 +59,7 @@ public class TaskFormActivity extends AppCompatActivity {
         editTextLabel.setText(task.getLabel());
         editTextNotes.setText(task.getNotes());
         editTextDueDate.setText(task.getDue() == null ? null : task.getDue().format(DateTimeFormatter.ofPattern("MMM. dd, yyyy")));
-        editTextTime.setText(task.getDue() == null ? null : task.getDue().format(DateTimeFormatter.ofPattern("MMM. dd, yyyy")));
+        editTextTime.setText(task.getDue() == null ? null : task.getDue().format(DateTimeFormatter.ofPattern("hh:mm a")));
         // Set localDate and localTime for date and time pickers
         localDate = task.getDue() == null ? LocalDate.now() : task.getDue().toLocalDate();
         localTime = task.getDue() == null ? LocalTime.of(12, 0) : task.getDue().toLocalTime();
