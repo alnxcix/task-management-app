@@ -20,15 +20,14 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.thebluealliance.spectrum.SpectrumPalette;
 
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
 @SuppressLint("SimpleDateFormat")
 public class TaskFormActivity extends AppCompatActivity {
-
     public static final String EXTRA_REPLY = "REPLY";
-
     // Material pickers + builders
     private MaterialDatePicker<Long> materialDatePicker;
     private MaterialDatePicker.Builder<Long> builder1;
@@ -83,6 +82,7 @@ public class TaskFormActivity extends AppCompatActivity {
                     break;
                 case R.id.chipFinished:
                     task.setStatusId(2);
+                    task.setFinish(LocalDateTime.now());
                     break;
             }
         });

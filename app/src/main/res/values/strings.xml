@@ -35,6 +35,7 @@
     <string name="open">Open</string>
     <string name="pending">Pending</string>
     <string name="finished">Finished</string>
+    <string name="finished_on">Finished on</string>
     <string name="notes">Notes</string>
     <string name="notes_opt">Notes (Optional)</string>
     <string name="cancel">Cancel</string>
@@ -42,8 +43,10 @@
     <!-- Notebook + Note fields -->
     <string name="notebook_name">Notebook Name</string>
     <string name="new_note">New Note</string>
-    <string name="start_typing_here">Start typing here...</string>
+    <string name="start_typing_here">Start typing here…</string>
     <string name="modified_last">Modified last</string>
+    <string name="date_last_modified">Date last modified</string>
+    <string name="content">Content</string>
 
     <!-- Schedule + Class fields -->
     <string name="schedule_name">Schedule Name</string>
@@ -67,16 +70,15 @@
     <string name="minutes">Mins</string>
 
     <!-- Dialog messages -->
-    <string name="prompt_open_task">Mark this task as open?</string>
-    <string name="prompt_pending_task">Mark this task as pending?</string>
-    <string name="prompt_finished_task">Mark this task as finished?</string>
-    <string name="prompt_delete_task">Delete this task?</string>
-
+    <string name="dialog_open_task">Mark this task as open?</string>
+    <string name="dialog_pending_task">Mark this task as pending?</string>
+    <string name="dialog_finished_task">Mark this task as finished?</string>
+    <string name="dialog_title_delete_task">Delete this task?</string>
     <string name="dialog_title_delete_notebook">Delete this notebook?</string>
     <string name="dialog_title_delete_note">Delete this note?</string>
     <string name="dialog_title_delete_schedule">Delete schedule?</string>
     <string name="dialog_title_delete_class">Delete class?</string>
-
+    <string name="dialog_message_delete_task">You will not be able to recover this task and its contents after deleting.</string>
     <string name="dialog_message_delete_notebook">You will not be able to recover this notebook and its contents after deleting.</string>
     <string name="dialog_message_delete_note">You will not be able to recover this note after deleting.</string>
     <string name="dialog_message_delete_schedule">You will not be able to recover this schedule and its contents after deleting.</string>

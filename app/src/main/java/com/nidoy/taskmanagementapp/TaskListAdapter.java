@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.card.MaterialCardView;
 
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -41,10 +43,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task current = tasks.get(position);
+        holder.dateLayout.setVisibility(current.getStatusId() == 2 ? View.GONE : View.VISIBLE);
         holder.txtMonth.setText(new SimpleDateFormat("MMM").format(current.getDue()));
         holder.txtDate.setText(new SimpleDateFormat("dd").format(current.getDue()));
         holder.txtLabel.setText(current.getLabel());
-        holder.txtTime.setText(new SimpleDateFormat("hh:mm aa").format(current.getDue()));
+        holder.txtTime.setText(current.getStatusId() == 2 ? context.getString(R.string.finished_on) + " " + current.getFinish().format(DateTimeFormatter.ofPattern("MMM. dd, yyyy")) : new SimpleDateFormat("hh:mm aa").format(current.getDue()));
+        holder.txtTime.setCompoundDrawablesWithIntrinsicBounds(current.getStatusId() == 2 ? R.drawable.ic_done_all_black_14dp : R.drawable.ic_schedule_black_14dp, 0, 0, 0);
         try {
             holder.txtMonth.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(tasks.get(position - 1).getDue())) ? View.INVISIBLE : View.VISIBLE);
             holder.txtDate.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(tasks.get(position - 1).getDue())) ? View.INVISIBLE : View.VISIBLE);
@@ -82,12 +86,14 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     }
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
+        private final LinearLayout dateLayout;
         private final TextView txtMonth, txtDate, txtLabel, txtTime;
         private final MaterialCardView taskCard;
         private final ImageView imgOverdue;
 
         private TaskViewHolder(View itemView) {
             super(itemView);
+            dateLayout = itemView.findViewById(R.id.dateLayout);
             txtMonth = itemView.findViewById(R.id.txtMonth);
             txtDate = itemView.findViewById(R.id.txtDate);
             txtLabel = itemView.findViewById(R.id.txtLabel);

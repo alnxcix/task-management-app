@@ -15,6 +15,8 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.time.format.DateTimeFormatter;
+
 public class NoteIndividualActivity extends AppCompatActivity {
 
     @Override
@@ -34,6 +36,7 @@ public class NoteIndividualActivity extends AppCompatActivity {
         topAppBar.getMenu().findItem(R.id.menuDelete).getIcon().setColorFilter(new PorterDuffColorFilter(dynamicColor, PorterDuff.Mode.SRC_IN));
         ((TextView) findViewById(R.id.imgTitle)).getCompoundDrawables()[0].setColorFilter(note.getThemeId(), PorterDuff.Mode.SRC_IN);
         ((TextView) findViewById(R.id.txtTitle)).setText(note.getTitle());
+        ((TextView) findViewById(R.id.txtDateLastModified)).setText(note.getDateLastModified().format(DateTimeFormatter.ofPattern("MMM. dd, yyyy")));
         ((TextView) findViewById(R.id.txtContent)).setText(note.getContent());
         btnEdit.setBackgroundTintList(ColorStateList.valueOf(note.getThemeId()));
         btnEdit.getDrawable().setColorFilter(new PorterDuffColorFilter(dynamicColor, PorterDuff.Mode.SRC_IN));

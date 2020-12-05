@@ -12,12 +12,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
@@ -45,7 +47,7 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
         return inflater.inflate(R.layout.fragment_tasks_bottom_sheet, container, false);
     }
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint({"SimpleDateFormat", "SetTextI18n"})
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -59,6 +61,9 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
         txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getThemeId(), PorterDuff.Mode.SRC_IN));
         ((TextView) view.findViewById(R.id.txtDueDate)).setText(new SimpleDateFormat("MMM. dd").format(task.getDue()));
         ((TextView) view.findViewById(R.id.txtTime)).setText(new SimpleDateFormat("hh:mm aa").format(task.getDue()));
+        ((TextView) view.findViewById(R.id.txtFinish)).setText(task.getStatusId() == 2 ? getString(R.string.finished) + " " + task.getFinish().format(DateTimeFormatter.ofPattern("MMM. dd, yyyy")) : null);
+        view.findViewById(R.id.txtFinish).setVisibility(task.getStatusId() == 2 ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.txtOverdue).setVisibility(task.getDue().getTime() <= new Date().getTime() && task.getStatusId() != 2 ? View.VISIBLE : View.GONE);
         chipOpen.setChecked(task.getStatusId() == 0);
         chipPending.setChecked(task.getStatusId() == 1);
         chipFinished.setChecked(task.getStatusId() == 2);
@@ -66,34 +71,42 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
         chipPending.setCheckable(task.getStatusId() == 1);
         chipFinished.setCheckable(task.getStatusId() == 2);
         // Handle overdue indicators
-        view.findViewById(R.id.imgOverdue).setVisibility(task.getDue().getTime() <= new Date().getTime() && task.getStatusId() != 2 ? View.VISIBLE : View.GONE);
-        view.findViewById(R.id.txtOverdue).setVisibility(task.getDue().getTime() <= new Date().getTime() && task.getStatusId() != 2 ? View.VISIBLE : View.GONE);
         // Add event listeners
         chipOpen.setOnClickListener(v -> {
             if (task.getStatusId() != 0) {
-                new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_open_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-                    task.setStatusId(0);
-                    MainActivity.taskViewModel.update(task);
-                    this.dismiss();
-                }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
+                new MaterialAlertDialogBuilder(getContext())
+                        .setTitle(getString(R.string.dialog_open_task))
+                        .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+                            task.setStatusId(0);
+                            MainActivity.taskViewModel.update(task);
+                            this.dismiss();
+                        }).setNegativeButton(getString(R.string.no), null)
+                        .show();
             }
         });
         chipPending.setOnClickListener(v -> {
             if (task.getStatusId() != 1) {
-                new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_pending_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-                    task.setStatusId(1);
-                    MainActivity.taskViewModel.update(task);
-                    this.dismiss();
-                }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
+                new MaterialAlertDialogBuilder(getContext())
+                        .setTitle(getString(R.string.dialog_pending_task))
+                        .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+                            task.setStatusId(1);
+                            MainActivity.taskViewModel.update(task);
+                            this.dismiss();
+                        }).setNegativeButton(getString(R.string.no), null)
+                        .show();
             }
         });
         chipFinished.setOnClickListener(v -> {
             if (task.getStatusId() != 2) {
-                new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_finished_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-                    task.setStatusId(2);
-                    MainActivity.taskViewModel.update(task);
-                    this.dismiss();
-                }).setNegativeButton(requireContext().getText(R.string.no), null).create().show();
+                new MaterialAlertDialogBuilder(getContext())
+                        .setTitle(getString(R.string.dialog_finished_task))
+                        .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+                            task.setStatusId(2);
+                            task.setFinish(LocalDateTime.now());
+                            MainActivity.taskViewModel.update(task);
+                            this.dismiss();
+                        }).setNegativeButton(getString(R.string.no), null)
+                        .show();
             }
         });
         view.findViewById(R.id.txtOpen).setOnClickListener(v -> {
@@ -104,9 +117,13 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
             requireActivity().startActivityForResult(new Intent(requireActivity(), TaskFormActivity.class).putExtra("task", task), MainActivity.UPDATE_TASK_ACTIVITY_REQUEST_CODE);
             this.dismiss();
         });
-        view.findViewById(R.id.txtDelete).setOnClickListener(v -> new AlertDialog.Builder(requireContext()).setMessage(requireContext().getText(R.string.prompt_delete_task)).setPositiveButton(requireContext().getText(R.string.yes), (dialog, which) -> {
-            MainActivity.taskViewModel.delete(task);
-            this.dismiss();
-        }).setNegativeButton(requireContext().getText(R.string.no), null).create().show());
+        view.findViewById(R.id.txtDelete).setOnClickListener(v -> new MaterialAlertDialogBuilder(getContext())
+                .setTitle(getString(R.string.dialog_title_delete_task))
+                .setMessage(getString(R.string.dialog_message_delete_task))
+                .setPositiveButton(getString(R.string.delete), (dialog, which) -> {
+                    MainActivity.taskViewModel.delete(task);
+                    this.dismiss();
+                }).setNegativeButton(getString(R.string.cancel), null)
+                .show());
     }
 }

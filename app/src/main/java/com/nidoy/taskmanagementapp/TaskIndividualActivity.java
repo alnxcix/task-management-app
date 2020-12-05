@@ -11,10 +11,10 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
@@ -41,16 +41,20 @@ public class TaskIndividualActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.txtLabel)).setText(task.getLabel());
         ((TextView) findViewById(R.id.txtDueDate)).setText(new SimpleDateFormat("EEE., MMM. dd, yyyy").format(task.getDue()));
         ((TextView) findViewById(R.id.txtTime)).setText(new SimpleDateFormat("hh:mm aa").format(task.getDue()));
-        ((ImageView) findViewById(R.id.imgStatus)).setImageResource(task.getStatusId() == 0 ? R.drawable.ic_wb_incandescent_24px : task.getStatusId() == 1 ? R.drawable.ic_hourglass_empty_black_24dp : R.drawable.ic_done_all_24px);
+        ((ImageView) findViewById(R.id.imgStatus)).setImageResource(task.getStatusId() == 0 ? R.drawable.ic_wb_incandescent_24px : task.getStatusId() == 1 ? R.drawable.ic_hourglass_empty_black_24dp : R.drawable.ic_done_all_black_24dp);
         ((TextView) findViewById(R.id.txtStatus)).setText(getResources().getStringArray(R.array.arr_task_status)[task.getStatusId()]);
         ((TextView) findViewById(R.id.txtNotes)).setText(task.getNotes());
         btnEdit.setBackgroundTintList(ColorStateList.valueOf(task.getThemeId()));
         btnEdit.getDrawable().setColorFilter(new PorterDuffColorFilter(dynamicColor, PorterDuff.Mode.SRC_IN));
         // Add event listeners
-        findViewById(R.id.menuDelete).setOnClickListener(v -> new AlertDialog.Builder(this).setMessage(this.getText(R.string.prompt_delete_task)).setPositiveButton(this.getText(R.string.yes), (dialog, which) -> {
-            MainActivity.taskViewModel.delete(task);
-            finish();
-        }).setNegativeButton(this.getText(R.string.no), null).create().show());
+        findViewById(R.id.menuDelete).setOnClickListener(v -> new MaterialAlertDialogBuilder(this)
+                .setTitle(getString(R.string.dialog_title_delete_task))
+                .setMessage(getString(R.string.dialog_message_delete_task))
+                .setPositiveButton(getString(R.string.delete), (dialog, which) -> {
+                    MainActivity.taskViewModel.delete(task);
+                    finish();
+                }).setNegativeButton(getString(R.string.cancel), null)
+                .show());
         btnEdit.setOnClickListener(v -> this.startActivityForResult(new Intent(this, TaskFormActivity.class).putExtra("task", task), MainActivity.UPDATE_TASK_ACTIVITY_REQUEST_CODE));
     }
 
