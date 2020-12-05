@@ -18,7 +18,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.time.format.DateTimeFormatter;
 
 public class NoteIndividualActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +56,9 @@ public class NoteIndividualActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == NotebookIndividualActivity.UPDATE_NOTE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)
+        if (requestCode == NotebookIndividualActivity.UPDATE_NOTE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             NotebookIndividualActivity.noteViewModel.update((Note) data.getSerializableExtra(NoteFormActivity.EXTRA_REPLY));
+            finish();
+        }
     }
 }

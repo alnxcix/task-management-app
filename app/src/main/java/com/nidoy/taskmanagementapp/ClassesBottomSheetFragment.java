@@ -19,9 +19,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.time.LocalTime;
 
 public class ClassesBottomSheetFragment extends BottomSheetDialogFragment {
-
     private static final String ARG_CLASS = "class";
-
     private Class c;
 
     public static ClassesBottomSheetFragment newInstance(Class c) {

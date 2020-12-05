@@ -5,16 +5,13 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity(tableName = "task_table")
 public class Task implements Serializable {
-
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String label, notes;
-    private Date due;
-    private LocalDateTime finish;
+    private LocalDateTime due, finish;
     private int statusId, themeId;
 
     public Task() {
@@ -50,11 +47,11 @@ public class Task implements Serializable {
         this.notes = notes;
     }
 
-    public Date getDue() {
+    public LocalDateTime getDue() {
         return due;
     }
 
-    public void setDue(Date due) {
+    public void setDue(LocalDateTime due) {
         this.due = due;
     }
 

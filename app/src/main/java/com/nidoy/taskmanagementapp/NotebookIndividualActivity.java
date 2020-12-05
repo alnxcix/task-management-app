@@ -16,7 +16,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 public class NotebookIndividualActivity extends AppCompatActivity {
-
     static final int CREATE_NOTE_ACTIVITY_REQUEST_CODE = 1;
     static final int UPDATE_NOTE_ACTIVITY_REQUEST_CODE = 2;
     static Notebook notebook;

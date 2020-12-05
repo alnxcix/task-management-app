@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public class TaskViewModel extends AndroidViewModel {
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
     public TaskViewModel(Application application) {
         super(application);

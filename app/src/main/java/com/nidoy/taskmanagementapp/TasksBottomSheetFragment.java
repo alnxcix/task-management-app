@@ -17,13 +17,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
-
     private static final String ARG_TASK = "task";
 
     private Task task;
@@ -59,18 +56,17 @@ public class TasksBottomSheetFragment extends BottomSheetDialogFragment {
         // Setup
         txtLabel.setText(task.getLabel());
         txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getThemeId(), PorterDuff.Mode.SRC_IN));
-        ((TextView) view.findViewById(R.id.txtDueDate)).setText(new SimpleDateFormat("MMM. dd").format(task.getDue()));
-        ((TextView) view.findViewById(R.id.txtTime)).setText(new SimpleDateFormat("hh:mm aa").format(task.getDue()));
+        ((TextView) view.findViewById(R.id.txtDueDate)).setText(task.getDue().format(DateTimeFormatter.ofPattern("MMM. dd, yyyy")));
+        ((TextView) view.findViewById(R.id.txtTime)).setText(task.getDue().format(DateTimeFormatter.ofPattern("hh:mm a")));
         ((TextView) view.findViewById(R.id.txtFinish)).setText(task.getStatusId() == 2 ? getString(R.string.finished) + " " + task.getFinish().format(DateTimeFormatter.ofPattern("MMM. dd, yyyy")) : null);
         view.findViewById(R.id.txtFinish).setVisibility(task.getStatusId() == 2 ? View.VISIBLE : View.GONE);
-        view.findViewById(R.id.txtOverdue).setVisibility(task.getDue().getTime() <= new Date().getTime() && task.getStatusId() != 2 ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.txtOverdue).setVisibility(task.getDue().isBefore(LocalDateTime.now()) && task.getStatusId() != 2 ? View.VISIBLE : View.GONE);
         chipOpen.setChecked(task.getStatusId() == 0);
         chipPending.setChecked(task.getStatusId() == 1);
         chipFinished.setChecked(task.getStatusId() == 2);
         chipOpen.setCheckable(task.getStatusId() == 0);
         chipPending.setCheckable(task.getStatusId() == 1);
         chipFinished.setCheckable(task.getStatusId() == 2);
-        // Handle overdue indicators
         // Add event listeners
         chipOpen.setOnClickListener(v -> {
             if (task.getStatusId() != 0) {

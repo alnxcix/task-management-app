@@ -18,7 +18,6 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.List;
 
 public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapter.ScheduleViewHolder> {
-
     private final LayoutInflater inflater;
     private final Context context;
     private List<Schedule> schedules; // Cached copy of schedules

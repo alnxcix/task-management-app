@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 public class SchedulesFragment extends Fragment {
-
     public SchedulesFragment() { /* Required empty public constructor */ }
 
     @Override
@@ -26,7 +25,6 @@ public class SchedulesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_schedules, container, false);
     }
 

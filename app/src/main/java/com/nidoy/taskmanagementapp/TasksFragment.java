@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TasksFragment extends Fragment {
-
     private static final String ARG_STATUS_ID = "statusId";
-
     private int statusId;
 
     public static TasksFragment newInstance(int statusId) {
@@ -40,17 +38,14 @@ public class TasksFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         // Initialize UI elements and variables
         final RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         final TaskListAdapter adapter = new TaskListAdapter(view.getContext());
-
         // Setup
         adapter.setHasStableIds(true);
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
         MainActivity.taskViewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
         // Update the cached copy of the tasks in the adapter.
         MainActivity.taskViewModel.getTaskByStatusId(statusId).observe(getViewLifecycleOwner(), adapter::setTasks);

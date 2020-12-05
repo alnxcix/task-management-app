@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class TasksPagerAdapter extends FragmentStateAdapter {
-
     public TasksPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
@@ -15,14 +14,6 @@ public class TasksPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         return TasksFragment.newInstance(position);
-//        switch (position) {
-//            case 0:
-//                return TasksFragment.newInstance(R.string.open);
-//            case 1:
-//                return TasksFragment.newInstance(R.string.pending);
-//            default:
-//                return TasksFragment.newInstance(R.string.finished);
-//        }
     }
 
     @Override

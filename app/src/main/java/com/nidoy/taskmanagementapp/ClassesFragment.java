@@ -13,10 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ClassesFragment extends Fragment {
-
     private static final String ARG_SCHEDULE_ID = "scheduleId";
     private static final String ARG_DAY_ID = "dayId";
-
     private int scheduleId, dayId;
 
     public static ClassesFragment newInstance(int scheduleId, int dayId) {
@@ -51,7 +49,6 @@ public class ClassesFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
         ScheduleIndividualActivity.classViewModel = new ViewModelProvider(requireActivity()).get(ClassViewModel.class);
         ScheduleIndividualActivity.classViewModel.getClasses(scheduleId, dayId).observe(getViewLifecycleOwner(), adapter::setClasses);
     }

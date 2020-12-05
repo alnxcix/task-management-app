@@ -18,13 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
-
     private final LayoutInflater layoutInflater;
     private final Context context;
     List<Task> tasks; // Cached copy of tasks
@@ -44,19 +43,19 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task current = tasks.get(position);
         holder.dateLayout.setVisibility(current.getStatusId() == 2 ? View.GONE : View.VISIBLE);
-        holder.txtMonth.setText(new SimpleDateFormat("MMM").format(current.getDue()));
-        holder.txtDate.setText(new SimpleDateFormat("dd").format(current.getDue()));
+        holder.txtMonth.setText(current.getDue().format(DateTimeFormatter.ofPattern("MMM.")));
+        holder.txtDate.setText(current.getDue().format(DateTimeFormatter.ofPattern("dd")));
         holder.txtLabel.setText(current.getLabel());
-        holder.txtTime.setText(current.getStatusId() == 2 ? context.getString(R.string.finished_on) + " " + current.getFinish().format(DateTimeFormatter.ofPattern("MMM. dd, yyyy")) : new SimpleDateFormat("hh:mm aa").format(current.getDue()));
+        holder.txtTime.setText(current.getStatusId() == 2 ? context.getString(R.string.finished_on) + " " + current.getFinish().format(DateTimeFormatter.ofPattern("MMM. dd, yyyy")) : current.getDue().format(DateTimeFormatter.ofPattern("hh:mm a")));
         holder.txtTime.setCompoundDrawablesWithIntrinsicBounds(current.getStatusId() == 2 ? R.drawable.ic_done_all_black_14dp : R.drawable.ic_schedule_black_14dp, 0, 0, 0);
         try {
-            holder.txtMonth.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(tasks.get(position - 1).getDue())) ? View.INVISIBLE : View.VISIBLE);
-            holder.txtDate.setVisibility(new SimpleDateFormat("yyyyMMMdd").format(current.getDue()).equals(new SimpleDateFormat("yyyyMMMdd").format(tasks.get(position - 1).getDue())) ? View.INVISIBLE : View.VISIBLE);
+            holder.txtMonth.setVisibility(current.getDue().toLocalDate().isEqual(tasks.get(position - 1).getDue().toLocalDate()) ? View.INVISIBLE : View.VISIBLE);
+            holder.txtDate.setVisibility(current.getDue().toLocalDate().isEqual(tasks.get(position - 1).getDue().toLocalDate()) ? View.INVISIBLE : View.VISIBLE);
         } catch (Exception e) {
             holder.txtMonth.setVisibility(View.VISIBLE);
             holder.txtDate.setVisibility(View.VISIBLE);
         }
-        if (new SimpleDateFormat("yyyyMMMdd").format(new Date()).equals(new SimpleDateFormat("yyyyMMMdd").format(current.getDue()))) {
+        if (current.getDue().toLocalDate().equals(LocalDate.now())) {
             holder.txtMonth.setTextColor(context.getResources().getColor(R.color.scarlet));
             holder.txtDate.setTextColor(context.getResources().getColor(R.color.scarlet));
         } else {
@@ -64,7 +63,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             holder.txtDate.setTextColor(context.getResources().getColor(R.color.colorPrimary));
         }
         holder.txtLabel.getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(current.getThemeId(), PorterDuff.Mode.SRC_IN));
-        holder.imgOverdue.setVisibility(current.getDue().getTime() <= new Date().getTime() && current.getStatusId() != 2 ? View.VISIBLE : View.INVISIBLE);
+        holder.imgOverdue.setVisibility(current.getDue().isBefore(LocalDateTime.now()) && current.getStatusId() != 2 ? View.VISIBLE : View.INVISIBLE);
         holder.taskCard.setRippleColor(ColorStateList.valueOf(current.getThemeId()));
         holder.taskCard.setOnClickListener(v -> TasksBottomSheetFragment.newInstance(current).show(((FragmentActivity) context).getSupportFragmentManager(), "dialog"));
     }

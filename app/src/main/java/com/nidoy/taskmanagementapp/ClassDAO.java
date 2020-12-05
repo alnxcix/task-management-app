@@ -11,7 +11,6 @@ import java.util.List;
 
 @Dao
 public interface ClassDAO {
-
     @Insert
     void insert(Class c);
 

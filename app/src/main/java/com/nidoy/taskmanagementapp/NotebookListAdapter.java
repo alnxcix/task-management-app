@@ -20,7 +20,6 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.List;
 
 public class NotebookListAdapter extends RecyclerView.Adapter<NotebookListAdapter.NotebookViewHolder> {
-
     private final LayoutInflater layoutInflater;
     private final Context context;
     List<Notebook> notebooks; // Cached copy of notebooks

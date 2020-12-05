@@ -19,9 +19,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.time.format.DateTimeFormatter;
 
 public class NotesBottomSheetFragment extends BottomSheetDialogFragment {
-
     private static final String ARG_NOTE = "note";
-
     private Note note;
 
     public static NotesBottomSheetFragment newInstance(Note note) {

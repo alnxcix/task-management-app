@@ -21,7 +21,6 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.ClassViewHolder> {
-
     private final LayoutInflater layoutInflater;
     private final Context context;
     List<Class> classes; // Cached copy of classes
@@ -96,4 +95,4 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
             txtVenue = itemView.findViewById(R.id.txtVenue);
         }
     }
-}
+}/**/

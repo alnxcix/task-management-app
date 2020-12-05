@@ -15,26 +15,14 @@ import java.util.concurrent.Executors;
 @Database(entities = {Task.class, Notebook.class, Note.class, Schedule.class, Class.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
-
-    private static volatile AppDatabase INSTANCE;
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(4);
-
-    public abstract TaskDAO taskDAO();
-
-    public abstract NotebookDAO notebookDAO();
-
-    public abstract NoteDAO noteDAO();
-
-    public abstract ScheduleDAO scheduleDAO();
-
-    public abstract ClassDAO classDAO();
-
     private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
         }
     };
+    private static volatile AppDatabase INSTANCE;
 
     static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -45,4 +33,14 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+    public abstract TaskDAO taskDAO();
+
+    public abstract NotebookDAO notebookDAO();
+
+    public abstract NoteDAO noteDAO();
+
+    public abstract ScheduleDAO scheduleDAO();
+
+    public abstract ClassDAO classDAO();
 }

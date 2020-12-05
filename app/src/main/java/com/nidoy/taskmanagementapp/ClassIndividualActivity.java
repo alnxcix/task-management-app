@@ -16,7 +16,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ClassIndividualActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +57,9 @@ public class ClassIndividualActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ScheduleIndividualActivity.UPDATE_CLASS_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK)
+        if (requestCode == ScheduleIndividualActivity.UPDATE_CLASS_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             ScheduleIndividualActivity.classViewModel.update((Class) data.getSerializableExtra(ClassFormActivity.EXTRA_REPLY));
+            finish();
+        }
     }
 }

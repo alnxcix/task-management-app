@@ -11,7 +11,6 @@ import java.util.List;
 
 @Dao
 public interface ScheduleDAO {
-
     @Insert
     void insert(Schedule schedule);
 

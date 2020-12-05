@@ -19,7 +19,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteViewHolder> {
-
     private final LayoutInflater layoutInflater;
     private final Context context;
     List<Note> notes; // Cached copy of notes

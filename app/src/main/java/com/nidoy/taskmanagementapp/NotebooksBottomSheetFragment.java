@@ -15,9 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class NotebooksBottomSheetFragment extends BottomSheetDialogFragment {
-
     private static final String ARG_NOTEBOOK = "notebook";
-
     private Notebook notebook;
 
     public static NotebooksBottomSheetFragment newInstance(Notebook notebook) {

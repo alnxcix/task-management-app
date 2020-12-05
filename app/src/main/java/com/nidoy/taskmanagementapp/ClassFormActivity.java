@@ -22,9 +22,7 @@ import com.thebluealliance.spectrum.SpectrumPalette;
 import java.time.LocalTime;
 
 public class ClassFormActivity extends AppCompatActivity {
-
     public static final String EXTRA_REPLY = "REPLY";
-
     private MaterialTimePicker materialTimePicker;
     private MaterialTimePicker.Builder builder;
 

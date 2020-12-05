@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public class ScheduleViewModel extends AndroidViewModel {
-
     private final ScheduleRepository scheduleRepository;
 
     public ScheduleViewModel(Application application) {

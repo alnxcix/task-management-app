@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 @Entity(tableName = "schedule_table")
 public class Schedule implements Serializable {
-
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;

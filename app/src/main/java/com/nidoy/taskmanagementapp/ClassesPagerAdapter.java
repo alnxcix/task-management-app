@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class ClassesPagerAdapter extends FragmentStateAdapter {
-
     private final int scheduleId;
 
     public ClassesPagerAdapter(@NonNull FragmentActivity fragmentActivity, int scheduleId) {

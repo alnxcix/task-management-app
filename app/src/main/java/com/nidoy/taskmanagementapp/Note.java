@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Entity(tableName = "note_table", foreignKeys = @ForeignKey(entity = Notebook.class, parentColumns = "id", childColumns = "notebookId", onDelete = ForeignKey.CASCADE))
 public class Note implements Serializable {
-
     @PrimaryKey(autoGenerate = true)
     private int id;
     private int notebookId, themeId;

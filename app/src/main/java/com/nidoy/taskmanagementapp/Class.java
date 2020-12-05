@@ -9,7 +9,6 @@ import java.time.LocalTime;
 
 @Entity(tableName = "class_table", foreignKeys = @ForeignKey(entity = Schedule.class, parentColumns = "id", childColumns = "scheduleId", onDelete = ForeignKey.CASCADE))
 public class Class implements Serializable {
-
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name, instructors, venue;

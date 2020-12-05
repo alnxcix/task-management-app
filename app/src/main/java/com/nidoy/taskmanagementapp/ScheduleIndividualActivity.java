@@ -18,7 +18,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class ScheduleIndividualActivity extends AppCompatActivity {
-
     static final int CREATE_CLASS_ACTIVITY_REQUEST_CODE = 1;
     static final int UPDATE_CLASS_ACTIVITY_REQUEST_CODE = 2;
     static Schedule schedule;

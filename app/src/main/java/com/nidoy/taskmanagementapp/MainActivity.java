@@ -12,7 +12,6 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
     public static final int CREATE_TASK_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_TASK_ACTIVITY_REQUEST_CODE = 2;
     public static final int CREATE_NOTEBOOK_ACTIVITY_REQUEST_CODE = 3;

@@ -17,7 +17,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class SchedulesBottomSheetFragment extends BottomSheetDialogFragment {
-
     private static final String ARG_SCHEDULE = "schedule";
 
     private Schedule schedule;

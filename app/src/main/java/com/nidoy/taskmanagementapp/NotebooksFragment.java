@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 public class NotebooksFragment extends Fragment {
-
     public NotebooksFragment() { /* Required empty public constructor */ }
 
     @Override
@@ -26,7 +25,6 @@ public class NotebooksFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_notebooks, container, false);
     }
 
@@ -45,7 +43,6 @@ public class NotebooksFragment extends Fragment {
         btnNew.setText(R.string.notebook);
         // Event listeners
         btnNew.setOnClickListener(v -> requireActivity().startActivityForResult(new Intent(view.getContext(), NotebookFormActivity.class), MainActivity.CREATE_NOTEBOOK_ACTIVITY_REQUEST_CODE));
-
         MainActivity.notebookViewModel = new ViewModelProvider(requireActivity()).get(NotebookViewModel.class);
         // Update the cached copy of the notebooks in the adapter.
         MainActivity.notebookViewModel.getNotebooksSortedByName().observe(getViewLifecycleOwner(), adapter::setNotebooks);

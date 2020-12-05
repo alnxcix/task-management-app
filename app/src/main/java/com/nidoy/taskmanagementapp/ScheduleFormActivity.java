@@ -15,7 +15,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.thebluealliance.spectrum.SpectrumPalette;
 
 public class ScheduleFormActivity extends AppCompatActivity {
-
     public static final String EXTRA_REPLY = "REPLY";
 
     @Override

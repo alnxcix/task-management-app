@@ -17,7 +17,6 @@ import com.thebluealliance.spectrum.SpectrumPalette;
 import java.time.LocalDateTime;
 
 public class NoteFormActivity extends AppCompatActivity {
-
     public static final String EXTRA_REPLY = "REPLY";
 
     @Override

@@ -17,10 +17,9 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 public class TaskIndividualActivity extends AppCompatActivity {
-
     @SuppressLint({"SimpleDateFormat", "UseCompatLoadingForDrawables"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +38,10 @@ public class TaskIndividualActivity extends AppCompatActivity {
         topAppBar.getMenu().findItem(R.id.menuDelete).getIcon().setColorFilter(new PorterDuffColorFilter(dynamicColor, PorterDuff.Mode.SRC_IN));
         ((TextView) findViewById(R.id.imgLabel)).getCompoundDrawables()[0].setColorFilter(new PorterDuffColorFilter(task.getThemeId(), PorterDuff.Mode.SRC_IN));
         ((TextView) findViewById(R.id.txtLabel)).setText(task.getLabel());
-        ((TextView) findViewById(R.id.txtDueDate)).setText(new SimpleDateFormat("EEE., MMM. dd, yyyy").format(task.getDue()));
-        ((TextView) findViewById(R.id.txtTime)).setText(new SimpleDateFormat("hh:mm aa").format(task.getDue()));
+        ((TextView) findViewById(R.id.txtDueDate)).setText(task.getDue().format(DateTimeFormatter.ofPattern("EEE., MMMM dd, yyyy")));
+        ((TextView) findViewById(R.id.txtTime)).setText(task.getDue().format(DateTimeFormatter.ofPattern("hh:mm a")));
         ((ImageView) findViewById(R.id.imgStatus)).setImageResource(task.getStatusId() == 0 ? R.drawable.ic_wb_incandescent_24px : task.getStatusId() == 1 ? R.drawable.ic_hourglass_empty_black_24dp : R.drawable.ic_done_all_black_24dp);
-        ((TextView) findViewById(R.id.txtStatus)).setText(getResources().getStringArray(R.array.arr_task_status)[task.getStatusId()]);
+        ((TextView) findViewById(R.id.txtStatus)).setText(task.getStatusId() == 2 ? getString(R.string.finished_on) + " " + task.getFinish().format(DateTimeFormatter.ofPattern("MMM. dd, yyyy")) : getResources().getStringArray(R.array.arr_task_status)[task.getStatusId()]);
         ((TextView) findViewById(R.id.txtNotes)).setText(task.getNotes());
         btnEdit.setBackgroundTintList(ColorStateList.valueOf(task.getThemeId()));
         btnEdit.getDrawable().setColorFilter(new PorterDuffColorFilter(dynamicColor, PorterDuff.Mode.SRC_IN));
