@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nidoy.taskmanagementapp">
+    package="com.ics26011.taskmanagementapp">
 
     <application
         android:allowBackup="true"
@@ -9,17 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NoteIndividualActivity"></activity>
-        <activity android:name=".NoteFormActivity" />
-        <activity android:name=".NotebookIndividualActivity" />
-        <activity android:name=".NotebookFormActivity" />
-        <activity android:name=".ClassIndividualActivity" />
-        <activity android:name=".ScheduleFormActivity" />
-        <activity android:name=".TaskFormActivity" />
-        <activity android:name=".TaskIndividualActivity" />
-        <activity android:name=".ClassFormActivity" />
-        <activity android:name=".ScheduleIndividualActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.ics26011.taskmanagementapp.NoteIndividualActivity"></activity>
+        <activity android:name="com.ics26011.taskmanagementapp.NoteFormActivity" />
+        <activity android:name="com.ics26011.taskmanagementapp.NotebookIndividualActivity" />
+        <activity android:name="com.ics26011.taskmanagementapp.NotebookFormActivity" />
+        <activity android:name="com.ics26011.taskmanagementapp.ClassIndividualActivity" />
+        <activity android:name="com.ics26011.taskmanagementapp.ScheduleFormActivity" />
+        <activity android:name="com.ics26011.taskmanagementapp.TaskFormActivity" />
+        <activity android:name="com.ics26011.taskmanagementapp.TaskIndividualActivity" />
+        <activity android:name="com.ics26011.taskmanagementapp.ClassFormActivity" />
+        <activity android:name="com.ics26011.taskmanagementapp.ScheduleIndividualActivity" />
+        <activity android:name="com.ics26011.taskmanagementapp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

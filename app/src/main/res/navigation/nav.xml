@@ -7,14 +7,14 @@
 
     <fragment
         android:id="@+id/tasksFragment"
-        android:name="com.nidoy.taskmanagementapp.TasksMainFragment"
+        android:name="com.ics26011.taskmanagementapp.TasksMainFragment"
         tools:layout="@layout/fragment_tasks_main" />
     <fragment
         android:id="@+id/notebooksFragment"
-        android:name="com.nidoy.taskmanagementapp.NotebooksFragment"
+        android:name="com.ics26011.taskmanagementapp.NotebooksFragment"
         tools:layout="@layout/fragment_notebooks" />
     <fragment
         android:id="@+id/scheduleFragment"
-        android:name="com.nidoy.taskmanagementapp.SchedulesFragment"
+        android:name="com.ics26011.taskmanagementapp.SchedulesFragment"
         tools:layout="@layout/fragment_schedules" />
 </navigation>

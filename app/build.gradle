@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.nidoy.taskmanagementapp"
+        applicationId "com.ics26011.taskmanagementapp"
         minSdkVersion 19
         multiDexEnabled true
         targetSdkVersion 30
